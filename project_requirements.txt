@@ -1,0 +1,22 @@
+executables:
+- push_swap
+	- input:
+		- recieves <stack a> as argument which is a list of integers
+	- job
+		- find the most efficient instruction set
+	- output:
+		- dispaly smallest list of instructions possible to sort <stack a> in ascending order
+		  each instructions are followed by a '\n'
+		- dispaly errors on stderr
+
+- checker
+	- input:
+		- recieves <stack a> as argument which is a list of integers
+	- job
+		- execute the instructions, and validate the sorted <stack a>
+	- output:
+		- dispaly nothing when no argument is passed
+		- dispaly 'OK\n' when <stack a> is sorted and <stack b> is empty
+		- in every other case, dispaly 'KO\n'
+		- dispaly errors on stderr
+	- 
