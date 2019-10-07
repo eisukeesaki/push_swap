@@ -6,22 +6,17 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/03 17:07:33 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:10:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define UNUSED(x) (void)(x)
-
-// typedef void	ins(int *);
-
-// typedef struct	s_ins
-// {
-// 	void		ins(int *);
-// }
-
-
+typedef struct		s_stack
+{
+	int				*n;
+	struct s_stack	*next;
+}					t_stack;
 
 #endif
