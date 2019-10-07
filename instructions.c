@@ -6,63 +6,52 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/03 12:23:16 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:12:46 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(int *list)
+void	sa(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	sb(int *list)
+void	sb(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	ss(int *list)
+void	ss(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	pa(int *list)
+void	pa(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	pb(int *list)
+void	pb(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	ra(int *list)
+void	ra(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	rb(int *list)
+void	rb(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	rr(int *list)
+void	rr(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	rra(int *list)
+void	rra(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	rrb(int *list)
+void	rrb(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
 
-void	rrr(int *list)
+void	rrr(int *list __attribute((unused)))
 {
-	UNUSED(list);
 }
