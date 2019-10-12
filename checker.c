@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/10 22:38:34 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/12 14:56:52 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,25 @@
 #include <limits.h>
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< dev purpose
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< prototypes
 t_stack	*newnode(int data);
 void	nodeappend(t_stack *head, t_stack *new);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> prototypes
 
-void	val_error(void)
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< error funcs
+void	dup_err(void)
 {
-	write(1, "validation error", 17);
+	write(1, "dup err", 8);
 	exit(1);
 }
+
+void	range_err(void)
+{
+	write(1, "range err", 10);
+	exit(1);
+}
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> error funcs
 
 void	print_stack(t_stack *head)
 {
@@ -36,6 +47,7 @@ void	print_stack(t_stack *head)
 		head = head->next;
 	}
 }
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dev purpose
 
 // void	validate_sort(t_stack *head_a, t_stack *head_b)
 // {
@@ -43,19 +55,29 @@ void	print_stack(t_stack *head)
 // 	// check stack_b: empty?
 // }
 
-// TODO		validate_dup(t_stack *head)
-// {
-	// TODO:	- traverse node->n and check for duplicates
-// }
+void		validate_dup(t_stack *head)
+{
+	t_stack	*start;
+	t_stack	*comp;
+
+	start = head;
+	while (start != NULL)
+	{
+		comp = start->next;
+		while (comp != NULL)
+		{
+			if (start->n == comp->n)
+				dup_err();
+			comp = comp->next;
+		}
+		start = start->next;
+	}
+}
 
 intmax_t	validate_int(intmax_t n)
 {
-	// printf("%jd\n", n);
-	intmax_t	dup;
 	if (!(INT_MIN <= n && n <= INT_MAX))
-		val_error();
-	// printf("%jd\n", n);
-
+		range_err();
 	return (n);
 }
 
@@ -97,7 +119,8 @@ int		main(int ac, char **av)
 	{
 		head_a = build_a(av);
 	}
-	// validate duplicates
+	validate_dup(head_a);
+
 	// validate_sort(head_a, head_b);
 
 	print_stack(head_a);
