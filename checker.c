@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/13 19:32:09 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/13 20:42:22 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< dev purpose
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< prototypes
 t_stack	*newnode(int data);
-void	nodeappend(t_stack *head, t_stack *new);
+void	ins_node_aft(t_stack *head, t_stack *new);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> prototypes
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< error funcs
@@ -65,7 +65,7 @@ void	validate_sort(t_stack *head)
 	comp = head->next;
 	while (comp != NULL)
 	{
-		if (!(start->n < comp->n))
+		if (!(start->n > comp->n))
 			sort_err(); // replace with error()
 		comp = comp->next;
 		start = start->next;
@@ -98,18 +98,18 @@ intmax_t	validate_int(intmax_t n)
 	return (n);
 }
 
-t_stack	*build_a(char **av)
+t_stack	*build_a(int index, char **av)
 {
 	size_t	i;
 	size_t	k;
 	char	**split;
-	t_stack	*head;
+	t_stack	*head; // head == top of stack
 	t_stack	*tmp;
 
-	i = 1;
+	i = index;
 	k = 0;
 	head = NULL;
-	while (av[i])
+	while (0 < i)
 	{
 		split = ft_strsplit(av[i], ' ');
 		while (split[k])
@@ -118,11 +118,11 @@ t_stack	*build_a(char **av)
 			if (head == NULL)
 				head = tmp;
 			else
-				nodeappend(head, tmp);
+				ins_node_aft(head, tmp);
 			k++;
 		}
 		k = 0;
-		i++;
+		i--;
 	}
 	return (head);
 }
@@ -134,22 +134,24 @@ int		main(int ac, char **av)
 	head_a = NULL;
 	if (ac > 1)
 	{
-		head_a = build_a(av);
+		head_a = build_a(ac - 1, av);
 	}
+	else
+		exit(1);
 	print_stack(head_a);
 
 	validate_dup(head_a);
 
 	validate_sort(head_a);
 
-	// validate emptiness of stack b
-
 	return (0);
 }
 
-// TODO:	- alloc stack_b
-// TODO:	- read instructions on stdout
-//			- create array of pointers to instruction funs
+// TODO:	- re-order stack a; make first arg at the top
+// TODO:	- read instructions on stdin
+// TODO:	- validate instructions
+// TODO:	- create array of pointers to instruction funs
 // TODO:	- dispatch all funcs in array of instructions. pass stack_a stack_b as args
 // TODO:	- implement instruction funcs
-// TODO:	- validate sorted result
+// TODO:	- alloc stack_b
+// TODO:	- validate emptiness of stack b
