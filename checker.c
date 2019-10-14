@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/12 14:56:52 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/13 19:32:09 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,40 @@ void	range_err(void)
 	write(1, "range err", 10);
 	exit(1);
 }
+
+void	sort_err(void)
+{
+	write(1, "sort err", 9);
+	exit(1);
+}
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> error funcs
 
 void	print_stack(t_stack *head)
 {
 	while (head != NULL)
 	{
-		printf("n:%d\n", (int)head->n);
+		printf("%d,", (int)head->n);
 		head = head->next;
 	}
+	printf("\n");
 }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dev purpose
 
-// void	validate_sort(t_stack *head_a, t_stack *head_b)
-// {
-// 	// check stack_a: ascending?
-// 	// check stack_b: empty?
-// }
+void	validate_sort(t_stack *head)
+{
+	t_stack	*start;
+	t_stack	*comp;
+
+	start = head;
+	comp = head->next;
+	while (comp != NULL)
+	{
+		if (!(start->n < comp->n))
+			sort_err(); // replace with error()
+		comp = comp->next;
+		start = start->next;
+	}
+}
 
 void		validate_dup(t_stack *head)
 {
@@ -67,7 +84,7 @@ void		validate_dup(t_stack *head)
 		while (comp != NULL)
 		{
 			if (start->n == comp->n)
-				dup_err();
+				dup_err(); // replace with error()
 			comp = comp->next;
 		}
 		start = start->next;
@@ -119,11 +136,13 @@ int		main(int ac, char **av)
 	{
 		head_a = build_a(av);
 	}
+	print_stack(head_a);
+
 	validate_dup(head_a);
 
-	// validate_sort(head_a, head_b);
+	validate_sort(head_a);
 
-	print_stack(head_a);
+	// validate emptiness of stack b
 
 	return (0);
 }
