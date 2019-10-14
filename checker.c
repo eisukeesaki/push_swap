@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/13 20:42:22 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/10/13 21:16:39 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	dup_err(void)
 	exit(1);
 }
 
-void	range_err(void)
+void	notint_err(void)
 {
-	write(1, "range err", 10);
+	write(1, "not int err", 12);
 	exit(1);
 }
 
@@ -94,7 +94,7 @@ void		validate_dup(t_stack *head)
 intmax_t	validate_int(intmax_t n)
 {
 	if (!(INT_MIN <= n && n <= INT_MAX))
-		range_err();
+		notint_err(); // replace with error()
 	return (n);
 }
 
@@ -137,7 +137,7 @@ int		main(int ac, char **av)
 		head_a = build_a(ac - 1, av);
 	}
 	else
-		exit(1);
+		exit(0);
 	print_stack(head_a);
 
 	validate_dup(head_a);
@@ -147,7 +147,7 @@ int		main(int ac, char **av)
 	return (0);
 }
 
-// TODO:	- re-order stack a; make first arg at the top
+
 // TODO:	- read instructions on stdin
 // TODO:	- validate instructions
 // TODO:	- create array of pointers to instruction funs
@@ -155,3 +155,23 @@ int		main(int ac, char **av)
 // TODO:	- implement instruction funcs
 // TODO:	- alloc stack_b
 // TODO:	- validate emptiness of stack b
+
+// tests:	<error management>
+//	- throw error when non numeric args are given
+//	-  Run checker with valid parameters, and write an action that doesn't exist
+//		during the instruction phase. The program must display "Error"
+//	- Run checker with valid parameters, and write an action with
+//		one or several spaces before and/or after the action during the instruction phase.
+//		The program must display "Error".
+//	- throw error when instructions that doesn't sort the stack are given.
+//		- Run checker with the following command
+//			"$>./checker 0 9 1 8 2 7 3 6 4 5" then write the following valid action list
+//			"[sa, pb, rrr]". Checker should display "KO".
+//		- Run checker with a valid list as parameter of your choice then
+//			write a valid instruction list that doesn't order the integers.
+//			Checker should display "KO". 
+
+// tests:	<sorting>
+//	- Run checker with the following command "$>./checker 0 9 1 8 2" then
+//		write the following valid action list "[pb, ra, pb, ra, sa, ra, pa, pa]".
+//		The program should display "OK"
