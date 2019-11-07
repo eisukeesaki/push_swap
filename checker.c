@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/13 21:16:39 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/07 01:17:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug
 #include <stdio.h>
 #include <limits.h>
+#include <fcntl.h>
+#include <stdlib.h>
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< dev purpose
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< prototypes
-t_stack	*newnode(int data);
-void	ins_node_aft(t_stack *head, t_stack *new);
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> prototypes
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
+void	print_stack(t_stack *head);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< error funcs
 void	dup_err(void)
@@ -45,18 +47,10 @@ void	sort_err(void)
 }
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> error funcs
 
-void	print_stack(t_stack *head)
-{
-	while (head != NULL)
-	{
-		printf("%d,", (int)head->n);
-		head = head->next;
-	}
-	printf("\n");
-}
+
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dev purpose
 
-void	validate_sort(t_stack *head)
+void	vali_sort(t_stack *head)
 {
 	t_stack	*start;
 	t_stack	*comp;
@@ -65,14 +59,15 @@ void	validate_sort(t_stack *head)
 	comp = head->next;
 	while (comp != NULL)
 	{
-		if (!(start->n > comp->n))
+		// if (!(start->n > comp->n))
+		if (!(start->n < comp->n))
 			sort_err(); // replace with error()
-		comp = comp->next;
 		start = start->next;
+		comp = comp->next;
 	}
 }
 
-void		validate_dup(t_stack *head)
+void		vali_dup(t_stack *head)
 {
 	t_stack	*start;
 	t_stack	*comp;
@@ -91,14 +86,15 @@ void		validate_dup(t_stack *head)
 	}
 }
 
-intmax_t	validate_int(intmax_t n)
+intmax_t	vali_int(intmax_t n)
 {
 	if (!(INT_MIN <= n && n <= INT_MAX))
 		notint_err(); // replace with error()
 	return (n);
 }
 
-t_stack	*build_a(int index, char **av)
+// t_stack	*build_a(int index, char **av)
+t_stack	*build_a(int ac, char **av)
 {
 	size_t	i;
 	size_t	k;
@@ -106,15 +102,16 @@ t_stack	*build_a(int index, char **av)
 	t_stack	*head; // head == top of stack
 	t_stack	*tmp;
 
-	i = index;
+	i = 1;
 	k = 0;
 	head = NULL;
-	while (0 < i)
+	// while (0 < i)
+	while (i < (size_t)ac)
 	{
 		split = ft_strsplit(av[i], ' ');
 		while (split[k])
 		{
-			tmp = newnode(validate_int(my_atoi(split[k])));
+			tmp = newnode(vali_int(my_atoi(split[k])));
 			if (head == NULL)
 				head = tmp;
 			else
@@ -122,7 +119,8 @@ t_stack	*build_a(int index, char **av)
 			k++;
 		}
 		k = 0;
-		i--;
+		// i--;
+		i++;
 	}
 	return (head);
 }
@@ -130,23 +128,62 @@ t_stack	*build_a(int index, char **av)
 int		main(int ac, char **av)
 {
 	t_stack	*head_a;
+	char	*ins;
+	// size_t	i;
+	int		fd = 0; // test
 
 	head_a = NULL;
 	if (ac > 1)
 	{
-		head_a = build_a(ac - 1, av);
+		// head_a = build_a(ac - 1, av);
+		head_a = build_a(ac, av);
 	}
 	else
 		exit(0);
-	print_stack(head_a);
+	print_stack(head_a); // test
 
-	validate_dup(head_a);
+	vali_dup(head_a);
+	vali_sort(head_a);
 
-	validate_sort(head_a);
+	ins = NULL;
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
+	if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
+	{
+		puts("file open error");
+		exit(1);
+	}
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
+	// while (get_next_line(0, &ins))
+	while (get_next_line(fd, &ins))
+	{
+		printf("read a instruction\n"); // test
+		ft_putendl(ins); //test
+		ft_strdel(&ins); // test
+	}
+
+	// i = 0;
+	// while (ins[i])
+	// {
+	// 	ft_putendl(&ins[i]);
+	// 	ft_strdel(&ins);
+	// 	i++;
+	// }
+	// i = 0;
+	// t_ins				ins_table[2] =
+	// {
+	// 	{"sa", sa},
+	// 	{"sb", sb},
+	// };
+	// while (ins[i])
+	// {
+	// 	if (ft_strequ(&ins[i], ins_table[i].name))
+	// 		ins_table[i].ins(head_a);
+	// 	i++;
+	// }
 
 	return (0);
 }
-
+// TODO:	- modify gnl so that it allocates buffer dynamically
 
 // TODO:	- read instructions on stdin
 // TODO:	- validate instructions
