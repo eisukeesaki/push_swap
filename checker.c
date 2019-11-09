@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/07 01:17:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/08 21:07:19 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,78 +22,11 @@
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< dev purpose
-
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
 void	print_stack(t_stack *head);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< error funcs
-void	dup_err(void)
-{
-	write(1, "dup err", 8);
-	exit(1);
-}
-
-void	notint_err(void)
-{
-	write(1, "not int err", 12);
-	exit(1);
-}
-
-void	sort_err(void)
-{
-	write(1, "sort err", 9);
-	exit(1);
-}
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> error funcs
-
-
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dev purpose
 
-void	vali_sort(t_stack *head)
-{
-	t_stack	*start;
-	t_stack	*comp;
-
-	start = head;
-	comp = head->next;
-	while (comp != NULL)
-	{
-		// if (!(start->n > comp->n))
-		if (!(start->n < comp->n))
-			sort_err(); // replace with error()
-		start = start->next;
-		comp = comp->next;
-	}
-}
-
-void		vali_dup(t_stack *head)
-{
-	t_stack	*start;
-	t_stack	*comp;
-
-	start = head;
-	while (start != NULL)
-	{
-		comp = start->next;
-		while (comp != NULL)
-		{
-			if (start->n == comp->n)
-				dup_err(); // replace with error()
-			comp = comp->next;
-		}
-		start = start->next;
-	}
-}
-
-intmax_t	vali_int(intmax_t n)
-{
-	if (!(INT_MIN <= n && n <= INT_MAX))
-		notint_err(); // replace with error()
-	return (n);
-}
-
-// t_stack	*build_a(int index, char **av)
 t_stack	*build_a(int ac, char **av)
 {
 	size_t	i;
@@ -115,7 +48,7 @@ t_stack	*build_a(int ac, char **av)
 			if (head == NULL)
 				head = tmp;
 			else
-				ins_node_aft(head, tmp);
+				link_node_tail(head, tmp);
 			k++;
 		}
 		k = 0;
@@ -130,7 +63,8 @@ int		main(int ac, char **av)
 	t_stack	*head_a;
 	char	*ins;
 	// size_t	i;
-	int		fd = 0; // test
+	int		fd = 0; // test stdout
+	// int		fd = 1; // test stdin
 
 	head_a = NULL;
 	if (ac > 1)
@@ -140,6 +74,10 @@ int		main(int ac, char **av)
 	}
 	else
 		exit(0);
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< link_node_head() test
+	// link_node_head(head_a, newnode(555));
+	// print_stack(head_a->prev);
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> link_node_head() test
 	print_stack(head_a); // test
 
 	vali_dup(head_a);
@@ -158,6 +96,7 @@ int		main(int ac, char **av)
 	{
 		printf("read a instruction\n"); // test
 		ft_putendl(ins); //test
+		// TODO: store each ins in array of array, then validate them
 		ft_strdel(&ins); // test
 	}
 
@@ -180,18 +119,19 @@ int		main(int ac, char **av)
 	// 		ins_table[i].ins(head_a);
 	// 	i++;
 	// }
-
+	free(ins);
 	return (0);
 }
-// TODO:	- modify gnl so that it allocates buffer dynamically
 
-// TODO:	- read instructions on stdin
-// TODO:	- validate instructions
-// TODO:	- create array of pointers to instruction funs
-// TODO:	- dispatch all funcs in array of instructions. pass stack_a stack_b as args
-// TODO:	- implement instruction funcs
-// TODO:	- alloc stack_b
-// TODO:	- validate emptiness of stack b
+// TODO:	[x] read instructions on stdin
+// TODO:	[] singly list => doubly list
+// TODO:	[] validate instructions
+				// [] see TODO@L99
+// TODO:	[] create array of pointers to instruction funs
+// TODO:	[] dispatch all funcs in array of instructions. pass stack_a stack_b as args
+// TODO:	[] implement instruction funcs
+// TODO:	[] alloc stack_b
+// TODO:	[] validate emptiness of stack b
 
 // tests:	<error management>
 //	- throw error when non numeric args are given
