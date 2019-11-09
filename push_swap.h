@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/17 22:58:54 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/08 20:01:08 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct		s_stack
 {
 	int				n;
+	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -40,11 +41,21 @@ typedef struct		s_ins
 **-----------------------------------------------------------------------------
 */
 void				error(void);
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug purpose
+void				dup_err(void);
+void				notint_err(void);
+void				sort_err(void);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 intmax_t			my_atoi(const char *str);
 int					get_next_line(const int fd, char **line);
+intmax_t			vali_int(intmax_t n);
+void				vali_dup(t_stack *head);
+void				vali_sort(t_stack *head);
+
 
 t_stack				*newnode(int data);
-void				ins_node_aft(t_stack *head, t_stack *new);
+void				link_node_head(t_stack *head, t_stack *new);
+void				link_node_tail(t_stack *head, t_stack *new);
 
 void				sa(t_stack *head);
 void				sb(t_stack *head);
