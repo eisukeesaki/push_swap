@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ins_node_aft.c                                     :+:      :+:    :+:   */
+/*   link_node_tail.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,9 +13,10 @@
 #include "push_swap.h"
 #include <stddef.h>
 
-void	ins_node_aft(t_stack *head, t_stack *new)
+void	link_node_tail(t_stack *head, t_stack *new)
 {
 	while (head->next != NULL)
 		head = head->next;
+	new->prev = head;
 	head->next = new;
 }
