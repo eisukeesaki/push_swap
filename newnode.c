@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 18:07:09 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/10 17:37:43 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/08 16:50:56 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack	*newnode(int data)
 
 	node = (t_stack *)ft_memalloc(sizeof(t_stack));
 	node->n = data;
+	node->prev = NULL;
 	node->next = NULL;
 	return (node);
 }
