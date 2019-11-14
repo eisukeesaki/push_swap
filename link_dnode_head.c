@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   link_node_head.c                                   :+:      :+:    :+:   */
+/*   link_dnode_head.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include <stddef.h>
 
-void	link_node_head(t_stack *head, t_stack *new)
+void	link_dnode_head(t_stack *head, t_stack *new)
 {
 	new->next = head;
 	head->prev = new;

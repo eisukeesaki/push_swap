@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   link_node_tail.c                                     :+:      :+:    :+:   */
+/*   newdnode.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/04 17:13:04 by eesaki            #+#    #+#             */
-/*   Updated: 2019/10/13 20:12:26 by eesaki           ###   ########.fr       */
+/*   Created: 2019/04/06 18:07:09 by eesaki            #+#    #+#             */
+/*   Updated: 2019/11/08 16:50:56 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
-#include <stddef.h>
 
-void	link_node_tail(t_stack *head, t_stack *new)
+t_stack	*newdnode(int data)
 {
-	while (head->next != NULL)
-		head = head->next;
-	new->prev = head;
-	head->next = new;
+	t_stack	*node;
+
+	node = (t_stack *)ft_memalloc(sizeof(t_stack));
+	node->n = data;
+	node->prev = NULL;
+	node->next = NULL;
+	return (node);
 }
