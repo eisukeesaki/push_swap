@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/08 21:07:19 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/13 21:11:05 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ t_stack	*build_a(int ac, char **av)
 		split = ft_strsplit(av[i], ' ');
 		while (split[k])
 		{
-			tmp = newnode(vali_int(my_atoi(split[k])));
+			tmp = newdnode(vali_int(my_atoi(split[k])));
 			if (head == NULL)
 				head = tmp;
 			else
-				link_node_tail(head, tmp);
+				link_dnode_tail(head, tmp);
 			k++;
 		}
 		k = 0;
@@ -60,8 +60,9 @@ t_stack	*build_a(int ac, char **av)
 
 int		main(int ac, char **av)
 {
-	t_stack	*head_a;
-	char	*ins;
+	t_stack		*head_a;
+	char		*ins;
+	t_ins_set	*ins_set;
 	// size_t	i;
 	int		fd = 0; // test stdout
 	// int		fd = 1; // test stdin
@@ -74,14 +75,9 @@ int		main(int ac, char **av)
 	}
 	else
 		exit(0);
-	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< link_node_head() test
-	// link_node_head(head_a, newnode(555));
-	// print_stack(head_a->prev);
-	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> link_node_head() test
-	print_stack(head_a); // test
-
 	vali_dup(head_a);
-	vali_sort(head_a);
+
+	print_stack(head_a); // test
 
 	ins = NULL;
 	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
@@ -92,13 +88,16 @@ int		main(int ac, char **av)
 	}
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
 	// while (get_next_line(0, &ins))
+	ins_set = NULL;
 	while (get_next_line(fd, &ins))
 	{
 		printf("read a instruction\n"); // test
 		ft_putendl(ins); //test
 		// TODO: store each ins in array of array, then validate them
+		read_ins(ins_set);
 		ft_strdel(&ins); // test
 	}
+	vali_sort(head_a);
 
 	// i = 0;
 	// while (ins[i])

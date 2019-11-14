@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/08 20:01:08 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/13 15:02:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct		s_stack
 	struct s_stack	*prev;
 	struct s_stack	*next;
 }					t_stack;
+
+typedef struct			s_ins_set
+{
+	char				*ins;
+	struct s_ins_set	*next;
+}						t_ins_set;
 
 typedef struct		s_ins
 {
@@ -53,9 +59,9 @@ void				vali_dup(t_stack *head);
 void				vali_sort(t_stack *head);
 
 
-t_stack				*newnode(int data);
-void				link_node_head(t_stack *head, t_stack *new);
-void				link_node_tail(t_stack *head, t_stack *new);
+t_stack				*newdnode(int data);
+void				link_dnode_head(t_stack *head, t_stack *new);
+void				link_dnode_tail(t_stack *head, t_stack *new);
 
 void				sa(t_stack *head);
 void				sb(t_stack *head);
