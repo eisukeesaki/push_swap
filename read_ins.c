@@ -5,50 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 14:57:45 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/13 21:35:35 by eesaki           ###   ########.fr       */
+/*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
+/*   Updated: 2019/11/15 00:17:00 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include "push_swap.h"
-#include "libft/libft.h"
-#include <stddef.h>
+#include <stdio.h> // debug purpose
 
-
-
-void	vali_ins(char *ins)
+int		get_line(char **str, char **line)
 {
-	size_t	i;
-	char	*ins_list[] =// TODO: move to dedicated header
+	char	*nl;
+	char	*tmp;
+
+	while ((nl = ft_strchr(*str, '\n')))
 	{
-		{"sa\n"},
-		{"sb\n"},
-		{"ss\n"},
-		{"pa\n"},
-		{"pb\n"},
-		{"ra\n"},
-		{"rb\n"},
-		{"rr\n"},
-		{"rra\n"},
-		{"rrb\n"},
-		{"rrr\n"},
-	};
-	i = 0;
-	while (ins_list[i])
+		*line = ft_strndup(*str, (nl - *str));
+		tmp = ft_strdup(nl + 1);
+		free(*str);
+		*str = tmp;
+		return (1);
+	}
+	if (**str)
 	{
-		if (!(ft_strequ(ins_list[i], ins)))
-		{
-			write(1, "invalid ins", 12);
-			exit(1);
-		}
+		*line = ft_strdup(*str);
+		ft_bzero(*str, ft_strlen(*str));
+		return (1);
+	}
+	return (0);
+}
+
+int		get_next_line(const int fd, char **line)
+{
+	char		buff[BUFF_SIZE + 1];
+	static char	*s[FD_MAX];
+	char		*tmp;
+	int			rc;
+
+	if (fd < 0 || !line || BUFF_SIZE <= 0)
+		return (-1);
+	while ((rc = read(fd, buff, BUFF_SIZE)) != 0)
+	{
+		if (rc == -1)
+			return (-1);
+		buff[rc] = '\0';
+		if (!s[fd])
+			s[fd] = ft_strdup(buff);
 		else
 		{
-			add_ins(ins_list[i]);
-			i = 0;
-			continue;
+			tmp = ft_strjoin(s[fd], buff);
+			free(s[fd]);
+			s[fd] = tmp;
 		}
-		i++;
 	}
+	if (ft_strlen(s[fd]) > 0)
+		return (get_line(&s[fd], line));
+	return (0);
 }
 
 void	link_node_tail(t_ins_set *head, t_ins_set *new)
@@ -68,18 +81,31 @@ t_ins_set	*newnode(char *s)
 	return (node);
 }
 
-void	read_ins(t_ins_set *ins_set, char *ins)
+t_ins_set	*read_ins(void)
 {
+	char		*line;
 	t_ins_set	*head;
 	t_ins_set	*tmp;
+	// int		fd = 1; // test
 
-	// validate ins
+	line = NULL;
 	head = NULL;
-	tmp = newnode(ins);
-	if (head = NULL)
-		head = tmp;
-	else
-		link_node_tail(head, tmp);
-
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
+	// if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
+	// {
+	// 	printf("file open error\n");
+	// 	exit(1);
+	// }
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
+	while (get_next_line(1, &line))
+	// while (get_next_line(fd, &line))
+	{
+		vali_ins(line);
+		tmp = newnode(line);
+		if (head == NULL)
+			head = tmp;
+		else
+			link_node_tail(head, tmp);
+	}
+	return (head);
 }
-

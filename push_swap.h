@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/13 15:02:06 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/15 00:16:05 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ void				notint_err(void);
 void				sort_err(void);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 intmax_t			my_atoi(const char *str);
-int					get_next_line(const int fd, char **line);
 intmax_t			vali_int(intmax_t n);
 void				vali_dup(t_stack *head);
+t_ins_set			*read_ins(void);
+void				vali_ins(char *ins);
 void				vali_sort(t_stack *head);
 
 

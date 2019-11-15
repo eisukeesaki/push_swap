@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/13 21:11:05 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/15 00:04:32 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		main(int ac, char **av)
 	char		*ins;
 	t_ins_set	*ins_set;
 	// size_t	i;
-	int		fd = 0; // test stdout
+	// int		fd = 0; // test stdout
 	// int		fd = 1; // test stdin
 
 	head_a = NULL;
@@ -81,23 +81,30 @@ int		main(int ac, char **av)
 
 	ins = NULL;
 	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
-	if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
-	{
-		puts("file open error");
-		exit(1);
-	}
+	// if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
+	// {
+	// 	puts("file open error");
+	// 	exit(1);
+	// }
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
 	// while (get_next_line(0, &ins))
-	ins_set = NULL;
-	while (get_next_line(fd, &ins))
+	ins_set = read_ins();
+	while (ins_set != NULL)
 	{
-		printf("read a instruction\n"); // test
-		ft_putendl(ins); //test
-		// TODO: store each ins in array of array, then validate them
-		read_ins(ins_set);
-		ft_strdel(&ins); // test
+		ft_putendl(ins_set->ins);
+		ins_set = ins_set->next;
 	}
-	vali_sort(head_a);
+	// exe_ins(ins_set);
+
+	// while (get_next_line(fd, &ins))
+	// {
+	// 	printf("read a instruction\n"); // test
+	// 	ft_putendl(ins); //test
+	// 	// TODO: store each ins in array of array, then validate them
+	// 	read_ins(ins_set);
+	// 	ft_strdel(&ins); // test
+	// }
+	// vali_sort(head_a);
 
 	// i = 0;
 	// while (ins[i])
