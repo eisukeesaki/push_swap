@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:06:44 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/15 19:38:01 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 00:23:08 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stddef.h>
 #define NTABELM 11
 
-void	search(t_ins_set *ins_set, t_functab *functab, t_stack *stack_a)
+void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack **stack_b)
 {
 	size_t	i;
 	t_ins_set *ins;
@@ -28,7 +28,7 @@ void	search(t_ins_set *ins_set, t_functab *functab, t_stack *stack_a)
 		{
 			if (ft_strequ(ins->ins, functab[i].ins_str))
 			{
-				functab[i].ins_func(stack_a);
+				functab[i].ins_func(stack_a, stack_b);
 				break;
 			}
 			i++;
@@ -37,7 +37,7 @@ void	search(t_ins_set *ins_set, t_functab *functab, t_stack *stack_a)
 	}
 }
 
-void	exe_ins(t_ins_set *ins_set, t_stack *stack_a)
+void	exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b)
 {
 	t_functab	functab[NTABELM] =
 	{
@@ -53,5 +53,5 @@ void	exe_ins(t_ins_set *ins_set, t_stack *stack_a)
 		{"rrb", rrb},
 		{"rrr", rrr},
 	};
-	search(ins_set, functab, stack_a);
+	search(ins_set, functab, stack_a, stack_b);
 }

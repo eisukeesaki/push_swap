@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/15 19:37:21 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 00:25:57 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef void 			ins(t_stack head);
 typedef struct			s_functab
 {
 	char				*ins_str;
-	void				(*ins_func)(t_stack *head __attribute((unused)));
+	void				(*ins_func)(t_stack *stack_a, t_stack *stack_b);
+	// void				(*ins_func)(t_stack *stack_a __attribute((unused)), t_stack *stack_b __attribute((unused)));
 }						t_functab;
 
 /*
@@ -65,24 +66,36 @@ void				vali_dup(t_stack *head);
 t_ins_set			*read_ins(void);
 void				vali_ins(char *ins);
 void				vali_sort(t_stack *head);
-void				exe_ins(t_ins_set *ins_set, t_stack *stack_a);
+void				exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b);
 
 t_stack				*newdnode(int data);
 void				link_dnode_head(t_stack *head, t_stack *new);
 void				link_dnode_tail(t_stack *head, t_stack *new);
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< instruction functions
-void				sa(t_stack *head __attribute((unused)));
-void				sb(t_stack *head __attribute((unused)));
-void				ss(t_stack *head __attribute((unused)));
-void				pa(t_stack *head __attribute((unused)));
-void				pb(t_stack *head __attribute((unused)));
-void				ra(t_stack *head __attribute((unused)));
-void				rb(t_stack *head __attribute((unused)));
-void				rr(t_stack *head __attribute((unused)));
-void				rra(t_stack *head __attribute((unused)));
-void				rrb(t_stack *head __attribute((unused)));
-void				rrr(t_stack *head __attribute((unused)));
+// void				sa(t_stack *head __attribute((unused)));
+// void				sb(t_stack *head __attribute((unused)));
+// void				ss(t_stack *head __attribute((unused)));
+// void				pa(t_stack *head __attribute((unused)));
+// void				pb(t_stack *head __attribute((unused)));
+// void				ra(t_stack *head __attribute((unused)));
+// void				rb(t_stack *head __attribute((unused)));
+// void				rr(t_stack *head __attribute((unused)));
+// void				rra(t_stack *head __attribute((unused)));
+// void				rrb(t_stack *head __attribute((unused)));
+// void				rrr(t_stack *head __attribute((unused)));
+
+// void				sa(t_stack *stack_a, t_stack *stack_b);
+// void				sb(t_stack *stack_a, t_stack *stack_b);
+// void				ss(t_stack *stack_a, t_stack *stack_b);
+// void				pa(t_stack **stack_a, t_stack **stack_b);
+void				pb(t_stack **stack_a, t_stack **stack_b);
+// void				ra(t_stack *stack_a, t_stack *stack_b);
+// void				rb(t_stack *stack_a, t_stack *stack_b);
+// void				rr(t_stack *stack_a, t_stack *stack_b);
+// void				rra(t_stack *stack_a, t_stack *stack_b);
+// void				rrb(t_stack *stack_a, t_stack *stack_b);
+// void				rrr(t_stack *stack_a, t_stack *stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> instruction functions
 
 // t_ins				ins_table[2] =

@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/15 19:39:28 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 00:18:33 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_stack	*build_a(int ac, char **av)
 	i = 1;
 	k = 0;
 	head = NULL;
-	// while (0 < i)
 	while (i < (size_t)ac)
 	{
 		split = ft_strsplit(av[i], ' ');
@@ -52,7 +51,6 @@ t_stack	*build_a(int ac, char **av)
 			k++;
 		}
 		k = 0;
-		// i--;
 		i++;
 	}
 	return (head);
@@ -61,6 +59,7 @@ t_stack	*build_a(int ac, char **av)
 int		main(int ac, char **av)
 {
 	t_stack		*head_a;
+	t_stack		*head_b;
 	char		*ins;
 	t_ins_set	*ins_set;
 	// size_t	i;
@@ -94,7 +93,8 @@ int		main(int ac, char **av)
 	// 	ft_putendl(ins_set->ins);
 	// 	ins_set = ins_set->next;
 	// }
-	exe_ins(ins_set, head_a);
+	head_b = NULL;
+	exe_ins(ins_set, &head_a, &head_b);
 
 	// while (get_next_line(fd, &ins))
 	// {
@@ -129,12 +129,6 @@ int		main(int ac, char **av)
 	return (0);
 }
 
-// TODO:	[x] read instructions on stdin
-// TODO:	[] singly list => doubly list
-// TODO:	[] validate instructions
-				// [] see TODO@L99
-// TODO:	[] create array of pointers to instruction funs
-// TODO:	[] dispatch all funcs in array of instructions. pass stack_a stack_b as args
 // TODO:	[] implement instruction funcs
 // TODO:	[] alloc stack_b
 // TODO:	[] validate emptiness of stack b
