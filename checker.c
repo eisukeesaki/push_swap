@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/15 00:04:32 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/15 19:39:28 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ int		main(int ac, char **av)
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
 	// while (get_next_line(0, &ins))
 	ins_set = read_ins();
-	while (ins_set != NULL)
-	{
-		ft_putendl(ins_set->ins);
-		ins_set = ins_set->next;
-	}
-	// exe_ins(ins_set);
+	// while (ins_set != NULL)
+	// {
+	// 	ft_putendl(ins_set->ins);
+	// 	ins_set = ins_set->next;
+	// }
+	exe_ins(ins_set, head_a);
 
 	// while (get_next_line(fd, &ins))
 	// {
