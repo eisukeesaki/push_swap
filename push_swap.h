@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 23:45:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 23:50:23 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void				link_dnode_tail(t_stack *head, t_stack *new);
 
 void				sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)));
 void				sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b);
-// void				ss(t_stack **stack_a, t_stack **stack_b);
+void				ss(t_stack **stack_a, t_stack **stack_b);
 void				pa(t_stack **stack_a, t_stack **stack_b);
 void				pb(t_stack **stack_a, t_stack **stack_b);
 // void				ra(t_stack **stack_a, t_stack **stack_b);

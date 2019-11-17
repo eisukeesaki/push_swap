@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 23:45:08 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 23:48:45 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	a_2nd->next = *stack_a;
 	*stack_a = a_2nd;
 
-	print_stacks(*stack_a, *stack_b); // debug purpose
+	// print_stacks(*stack_a, *stack_b); // debug purpose
 }
 
 void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
@@ -58,18 +58,14 @@ void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	b_2nd->next = *stack_b;
 	*stack_b = b_2nd;
 
-	print_stacks(*stack_a, *stack_b); // debug purpose
+	// print_stacks(*stack_a, *stack_b); // debug purpose
 }
 
-// void	ss(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("ss called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * call sa()
-//  * call sb()
-// **/
-// }
+void	ss(t_stack **stack_a, t_stack **stack_b)
+{
+	sa(stack_a, stack_b);
+	sb(stack_a, stack_b);
+}
 
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
