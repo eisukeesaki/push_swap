@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 00:25:57 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 19:30:41 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef void 			ins(t_stack head);
 typedef struct			s_functab
 {
 	char				*ins_str;
-	void				(*ins_func)(t_stack *stack_a, t_stack *stack_b);
+	void				(*ins_func)(t_stack **stack_a, t_stack **stack_b);
 	// void				(*ins_func)(t_stack *stack_a __attribute((unused)), t_stack *stack_b __attribute((unused)));
 }						t_functab;
 
