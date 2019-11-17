@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 21:59:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 22:37:19 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,17 @@ void				link_dnode_tail(t_stack *head, t_stack *new);
 // void				rrb(t_stack *head __attribute((unused)));
 // void				rrr(t_stack *head __attribute((unused)));
 
-// void				sa(t_stack *stack_a, t_stack *stack_b);
-// void				sb(t_stack *stack_a, t_stack *stack_b);
-// void				ss(t_stack *stack_a, t_stack *stack_b);
+void				sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)));
+// void				sb(t_stack **stack_a, t_stack **stack_b);
+// void				ss(t_stack **stack_a, t_stack **stack_b);
 void				pa(t_stack **stack_a, t_stack **stack_b);
 void				pb(t_stack **stack_a, t_stack **stack_b);
-// void				ra(t_stack *stack_a, t_stack *stack_b);
-// void				rb(t_stack *stack_a, t_stack *stack_b);
-// void				rr(t_stack *stack_a, t_stack *stack_b);
-// void				rra(t_stack *stack_a, t_stack *stack_b);
-// void				rrb(t_stack *stack_a, t_stack *stack_b);
-// void				rrr(t_stack *stack_a, t_stack *stack_b);
+// void				ra(t_stack **stack_a, t_stack **stack_b);
+// void				rb(t_stack **stack_a, t_stack **stack_b);
+// void				rr(t_stack **stack_a, t_stack **stack_b);
+// void				rra(t_stack **stack_a, t_stack **stack_b);
+// void				rrb(t_stack **stack_a, t_stack **stack_b);
+// void				rrr(t_stack **stack_a, t_stack **stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> instruction functions
 
 // t_ins				ins_table[2] =

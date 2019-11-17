@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:06:44 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 21:58:59 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 22:31:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack *
 	{
 		i = 0;
 		// while (i < NTABELM)
-		while (i < 2)
+		while (i < 3)
 		{
 			if (ft_strequ(ins->ins, functab[i].ins_str))
 			{
@@ -60,7 +60,7 @@ void	exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b)
 	// t_functab	functab[NTABELM] =
 	t_functab	functab[] =
 	{
-		// {"sa", sa},
+		{"sa", sa},
 		// {"sb", sb},
 		// {"ss", ss},
 		{"pa", pa},

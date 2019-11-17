@@ -6,29 +6,46 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 22:12:50 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 23:40:53 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
-#include <stdio.h> // test purpose
+#include <stdio.h> // debug purpose
 
-// // void	sa(t_stack *head __attribute((unused)))
-// void	sa(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	printf("sa called\n");
-// 	setbuf(stdout, NULL);
+size_t	count_nodes(t_stack *stack)
+{
+	size_t	nnodes;
 
-// /**
-//  * check if a has 2 or more nodes
-//  	* do nothing if only 1 node
-//  * re-link the first two nodes to reverse order
-// **/
-// }
+	nnodes = 0;
+	while (stack != NULL)
+	{
+		nnodes++;
+		stack = stack->next;
+	}
+	return (nnodes);
+}
+
+void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
+{
+	t_stack	*a_2nd;
+
+	if (count_nodes(*stack_a) < 2)
+		return ;
+
+	a_2nd = (*stack_a)->next;
+	(*stack_a)->prev = a_2nd;
+	(*stack_a)->next = a_2nd->next;
+	a_2nd->prev = NULL;
+	a_2nd->next = *stack_a;
+	*stack_a = a_2nd;
+
+	print_stacks(*stack_a, *stack_b); // debug purpose
+}
 
 // // void	sb(t_stack *head __attribute((unused)))
-// void	sb(t_stack *stack_a, t_stack *stack_b)
+// void	sb(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("sb called\n");
 // 	setbuf(stdout, NULL);
@@ -39,7 +56,7 @@
 // **/
 // }
 
-// void	ss(t_stack *stack_a, t_stack *stack_b)
+// void	ss(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("ss called\n");
 // 	setbuf(stdout, NULL);
@@ -84,7 +101,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	free(a);
 }
 
-// void	ra(t_stack *stack_a, t_stack *stack_b)
+// void	ra(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("ra called\n");
 // 	setbuf(stdout, NULL);
@@ -93,7 +110,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 // **/
 // }
 
-// void	rb(t_stack *stack_a, t_stack *stack_b)
+// void	rb(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rb called\n");
 // 	setbuf(stdout, NULL);
@@ -102,7 +119,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 // **/
 // }
 
-// void	rr(t_stack *stack_a, t_stack *stack_b)
+// void	rr(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rr called\n");
 // 	setbuf(stdout, NULL);
@@ -112,7 +129,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 // **/
 // }
 
-// void	rra(t_stack *stack_a, t_stack *stack_b)
+// void	rra(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rra called\n");
 // 	setbuf(stdout, NULL);
@@ -121,7 +138,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 // **/
 // }
 
-// void	rrb(t_stack *stack_a, t_stack *stack_b)
+// void	rrb(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rrb called\n");
 // 	setbuf(stdout, NULL);
@@ -130,7 +147,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 // **/
 // }
 
-// void	rrr(t_stack *stack_a, t_stack *stack_b)
+// void	rrr(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rrr called\n");
 // 	setbuf(stdout, NULL);
