@@ -6,17 +6,34 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:06:44 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 19:30:52 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 21:58:59 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stddef.h>
+#include <stdio.h> // debug purpose
 #define NTABELM 11
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug purpose
+void	print_ins_set(t_ins_set *ins_set)
+{
+	printf("<<< ins_set passed to search()\n");
+	while (ins_set != NULL)
+	{
+		printf("%s\n", ins_set->ins);
+		ins_set = ins_set->next;
+	}
+	printf(">>> ins_set passed to search()\n");
+}
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 
 void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack **stack_b)
 {
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug purpose
+	print_ins_set(ins_set);
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 	size_t	i;
 	t_ins_set *ins;
 
@@ -25,7 +42,7 @@ void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack *
 	{
 		i = 0;
 		// while (i < NTABELM)
-		while (i < 1)
+		while (i < 2)
 		{
 			if (ft_strequ(ins->ins, functab[i].ins_str))
 			{
@@ -46,7 +63,7 @@ void	exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b)
 		// {"sa", sa},
 		// {"sb", sb},
 		// {"ss", ss},
-		// {"pa", pa},
+		{"pa", pa},
 		{"pb", pb},
 		// {"ra", ra},
 		// {"rb", rb},

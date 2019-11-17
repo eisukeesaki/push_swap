@@ -6,17 +6,13 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 20:40:00 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 22:12:50 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 #include <stdio.h> // test purpose
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
-void	print_stack(t_stack *head);
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
 
 // // void	sa(t_stack *head __attribute((unused)))
 // void	sa(t_stack *stack_a, t_stack *stack_b)
@@ -53,30 +49,28 @@ void	print_stack(t_stack *head);
 // **/
 // }
 
-// // this function grows stack a
-// void	pa(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("pa called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * if (nnodes == NULL) do nothing
-//  * insert b-0 before a-0
-//  * head_b = b-1
-//  * free old b-0
-// **/
-// }
+void	pa(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*b;
+	t_stack	*tmp;
 
-// this function grows stack b
+	b = *stack_b;
+	if (*stack_b == NULL)
+		return ;
+	tmp = newdnode(b->n);
+	link_dnode_head(*stack_a, tmp);
+	*stack_a = tmp; // do this in link_dnode_head()?
+	*stack_b = b->next;
+	free(b);
+}
+
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	printf("pb called\n");
-	setbuf(stdout, NULL);
-
 	t_stack	*a;
 	t_stack *tmp;
 
 	a = *stack_a;
-	if (stack_a == NULL)
+	if (*stack_a == NULL)
 		return ;
 	if (*stack_b == NULL)
 		*stack_b = newdnode(a->n);
@@ -86,7 +80,6 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 		link_dnode_head(*stack_b, tmp);
 		*stack_b = tmp; // do this in link_dnode_head()?
 	}
-		
 	*stack_a = a->next;
 	free(a);
 }

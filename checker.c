@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 19:47:12 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 22:00:09 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< dev purpose
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
-void	print_stack(t_stack *head);
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> dev purpose
 
 t_stack	*build_a(int ac, char **av)
 {
@@ -67,6 +61,7 @@ int		main(int ac, char **av)
 	// int		fd = 1; // test stdin
 
 	head_a = NULL;
+	head_b = NULL;
 	if (ac > 1)
 	{
 		// head_a = build_a(ac - 1, av);
@@ -76,7 +71,7 @@ int		main(int ac, char **av)
 		exit(0);
 	vali_dup(head_a);
 
-	print_stack(head_a); // test
+	print_stacks(head_a, head_b); // test
 
 	ins = NULL;
 	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
@@ -93,7 +88,6 @@ int		main(int ac, char **av)
 	// 	ft_putendl(ins_set->ins);
 	// 	ins_set = ins_set->next;
 	// }
-	head_b = NULL;
 	exe_ins(ins_set, &head_a, &head_b);
 
 	// while (get_next_line(fd, &ins))
@@ -125,10 +119,7 @@ int		main(int ac, char **av)
 	// 		ins_table[i].ins(head_a);
 	// 	i++;
 	// }
-	printf("stack_a:\n");
-	print_stack(head_a); // test
-	printf("stack_b:\n");
-	print_stack(head_b); // test
+	print_stacks(head_a, head_b);
 	free(ins);
 	return (0);
 }

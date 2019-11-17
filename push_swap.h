@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 19:30:41 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 21:59:53 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void				error(void);
 void				dup_err(void);
 void				notint_err(void);
 void				sort_err(void);
+void				print_stacks(t_stack *stack_a, t_stack *stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 intmax_t			my_atoi(const char *str);
 intmax_t			vali_int(intmax_t n);
@@ -88,7 +89,7 @@ void				link_dnode_tail(t_stack *head, t_stack *new);
 // void				sa(t_stack *stack_a, t_stack *stack_b);
 // void				sb(t_stack *stack_a, t_stack *stack_b);
 // void				ss(t_stack *stack_a, t_stack *stack_b);
-// void				pa(t_stack **stack_a, t_stack **stack_b);
+void				pa(t_stack **stack_a, t_stack **stack_b);
 void				pb(t_stack **stack_a, t_stack **stack_b);
 // void				ra(t_stack *stack_a, t_stack *stack_b);
 // void				rb(t_stack *stack_a, t_stack *stack_b);
