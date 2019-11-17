@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 23:40:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/16 23:45:08 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,22 @@ void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	print_stacks(*stack_a, *stack_b); // debug purpose
 }
 
-// // void	sb(t_stack *head __attribute((unused)))
-// void	sb(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("sb called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * check if b has 2 or more nodes
-//  	* do nothing if only 1 node
-//  * re-link the first two nodes to reverse order
-// **/
-// }
+void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
+{
+	t_stack	*b_2nd;
+
+	if (count_nodes(*stack_b) < 2)
+		return ;
+
+	b_2nd = (*stack_b)->next;
+	(*stack_b)->prev = b_2nd;
+	(*stack_b)->next = b_2nd->next;
+	b_2nd->prev = NULL;
+	b_2nd->next = *stack_b;
+	*stack_b = b_2nd;
+
+	print_stacks(*stack_a, *stack_b); // debug purpose
+}
 
 // void	ss(t_stack **stack_a, t_stack **stack_b)
 // {
