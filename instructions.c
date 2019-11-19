@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/18 19:40:26 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/18 19:42:50 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,21 @@ void	ra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 }
 
 // shift up all elements of stack b by 1. The first element becomes the last one.
-// void	rb(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("rb called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * re-link so that head becomes tail
-// **/
-// }
+void	rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
+{
+	printf("rb called\n"); setbuf(stdout, NULL);
+	t_stack	*new_head;
+	t_stack	*tmp;
+
+	new_head = (*stack_b)->next;
+	tmp = *stack_b;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = *stack_b;
+	(*stack_b)->prev = tmp;
+	(*stack_b)->next = NULL;
+	*stack_b = new_head;
+}
 
 // void	rr(t_stack **stack_a, t_stack **stack_b)
 // {
