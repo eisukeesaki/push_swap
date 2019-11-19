@@ -18,5 +18,6 @@ void	link_dnode_tail(t_stack *head, t_stack *new)
 	while (head->next != NULL)
 		head = head->next;
 	new->prev = head;
+	new->next = NULL;
 	head->next = new;
 }
