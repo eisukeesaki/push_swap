@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/18 19:47:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/19 01:31:02 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,35 +103,87 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 }
 
 // shift up all elements of stack a by 1. The first element becomes the last one.
+/**
+ * change next of Nth node to NULL
+ * change next of last node to previous head node
+ * change prev of head node to last node
+ * change head to (N+1)th node
+ * change prev of new head node to NULL
+**/
 void	ra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 {
-	t_stack	*new_head;
+	int		i;
+	int		by;
 	t_stack	*tmp;
+	t_stack	*byth;
 
-	new_head = (*stack_a)->next;
+	i = 1;
+	by = 1;
 	tmp = *stack_a;
+	while (i < by)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	byth = tmp;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = *stack_a;
 	(*stack_a)->prev = tmp;
-	(*stack_a)->next = NULL;
-	*stack_a = new_head;
+	*stack_a = byth->next;
+	(*stack_a)->prev = NULL;
+	byth->next = NULL;
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< old implementation
+	// t_stack	*new_head;
+	// t_stack	*tmp;
+
+	// new_head = (*stack_a)->next;
+	// tmp = *stack_a;
+	// while (tmp->next != NULL)
+	// 	tmp = tmp->next;
+	// tmp->next = *stack_a;
+	// (*stack_a)->prev = tmp;
+	// (*stack_a)->next = NULL;
+	// *stack_a = new_head;
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> old implementation
 }
 
 // shift up all elements of stack b by 1. The first element becomes the last one.
 void	rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 {
-	t_stack	*new_head;
+	int		i;
+	int		by;
 	t_stack	*tmp;
+	t_stack	*byth;
 
-	new_head = (*stack_b)->next;
+	i = 0;
+	by = 1;
 	tmp = *stack_b;
+	while (i < by)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	byth = tmp;
+	byth->next = NULL;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 	tmp->next = *stack_b;
-	(*stack_b)->prev = tmp;
-	(*stack_b)->next = NULL;
-	*stack_b = new_head;
+	*stack_b = byth->next;
+	
+	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< old implementation
+	// t_stack	*new_head;
+	// t_stack	*tmp;
+
+	// new_head = (*stack_b)->next;
+	// tmp = *stack_b;
+	// while (tmp->next != NULL)
+	// 	tmp = tmp->next;
+	// tmp->next = *stack_b;
+	// (*stack_b)->prev = tmp;
+	// (*stack_b)->next = NULL;
+	// *stack_b = new_head;
+	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> old implementation
 }
 
 void	rr(t_stack **stack_a, t_stack **stack_b)
@@ -140,15 +192,20 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 	rb(stack_a, stack_b);
 }
 
-// void	rra(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("rra called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * re-link so that tail becomes head
-// **/
-// }
+// shift down all elements of stack a by 1. The last element becomes the first one.
 
+void	rra(t_stack **stack_a __attribute__((unused)), t_stack **stack_b __attribute__((unused)))
+{
+	printf("rra called\n");
+	setbuf(stdout, NULL);
+
+	// int	by;
+
+	// by = 1;
+	
+}
+
+// shift down all elements of stack b by 1. The last element becomes the first one.
 // void	rrb(t_stack **stack_a, t_stack **stack_b)
 // {
 // 	printf("rrb called\n");

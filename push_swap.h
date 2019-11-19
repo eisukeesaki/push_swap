@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/18 19:48:12 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/19 01:37:05 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void				dup_err(void);
 void				notint_err(void);
 void				sort_err(void);
 void				print_stacks(t_stack *stack_a, t_stack *stack_b);
+void				print_stacks_bw(t_stack *stack_a, t_stack *stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 intmax_t			my_atoi(const char *str);
 intmax_t			vali_int(intmax_t n);
@@ -94,7 +95,7 @@ void				pb(t_stack **stack_a, t_stack **stack_b);
 void				ra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)));
 void				rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b);
 void				rr(t_stack **stack_a, t_stack **stack_b);
-// void				rra(t_stack **stack_a, t_stack **stack_b);
+void				rra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)));
 // void				rrb(t_stack **stack_a, t_stack **stack_b);
 // void				rrr(t_stack **stack_a, t_stack **stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> instruction functions

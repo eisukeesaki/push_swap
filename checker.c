@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/16 22:00:09 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/19 01:37:20 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int		main(int ac, char **av)
 	// 		ins_table[i].ins(head_a);
 	// 	i++;
 	// }
-	print_stacks(head_a, head_b);
+	// print_stacks(head_a, head_b);
+	print_stacks_bw(head_a, head_b);
 	free(ins);
 	return (0);
 }
