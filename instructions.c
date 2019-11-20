@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/19 01:31:02 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/19 19:37:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,21 @@ size_t	count_nodes(t_stack *stack)
 void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 {
 	t_stack	*a_2nd;
+	t_stack	*tail; // take as arg?
 
 	if (count_nodes(*stack_a) < 2)
 		return ;
 
+	tail = *stack_a;
+	while (tail->next != NULL)
+		tail = tail->next;
 	a_2nd = (*stack_a)->next;
 	(*stack_a)->prev = a_2nd;
 	(*stack_a)->next = a_2nd->next;
+	// tail->prev = *stack_a;
 	a_2nd->prev = NULL;
 	a_2nd->next = *stack_a;
 	*stack_a = a_2nd;
-
-	// print_stacks(*stack_a, *stack_b); // debug purpose
 }
 
 void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
