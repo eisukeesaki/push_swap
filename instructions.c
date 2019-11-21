@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/20 18:16:41 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/20 23:11:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 
 void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 {
+	size_t	nnodes;
 	t_stack	*b_2nd;
 
-	if (count_nodes(*stack_b) < 2)
+	if ((nnodes = count_nodes(*stack_b)) < 2)
 		return ;
-
 	b_2nd = (*stack_b)->next;
+	if (nnodes > 2)
+		b_2nd->next->prev = *stack_b;
 	(*stack_b)->prev = b_2nd;
 	(*stack_b)->next = b_2nd->next;
 	b_2nd->prev = NULL;
 	b_2nd->next = *stack_b;
 	*stack_b = b_2nd;
-
-	// print_stacks(*stack_a, *stack_b); // debug purpose
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
@@ -76,7 +76,7 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 	if (*stack_b == NULL)
 		return ;
 	tmp = newdnode(b->n);
-	link_dnode_head(*stack_a, tmp);
+	link_dnode_head(stack_a, tmp);
 	*stack_a = tmp; // do this in link_dnode_head()?
 	*stack_b = b->next;
 	free(b);
@@ -87,18 +87,19 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	t_stack	*a;
 	t_stack *tmp;
 
-	a = *stack_a;
 	if (*stack_a == NULL)
 		return ;
+	a = *stack_a;
 	if (*stack_b == NULL)
-		*stack_b = newdnode(a->n);
+		*stack_b = newdnode((*stack_a)->n);
 	else
 	{
-		tmp = newdnode(a->n);
-		link_dnode_head(*stack_b, tmp);
-		*stack_b = tmp; // do this in link_dnode_head()?
+		tmp = newdnode((*stack_a)->n);
+		link_dnode_head(stack_b, tmp);
 	}
-	*stack_a = a->next;
+	*stack_a = (*stack_a)->next;
+	if (*stack_a != NULL)
+		(*stack_a)->prev = NULL;
 	free(a);
 }
 

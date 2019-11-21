@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/19 01:37:05 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/20 19:30:30 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				vali_sort(t_stack *head);
 void				exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b);
 
 t_stack				*newdnode(int data);
-void				link_dnode_head(t_stack *head, t_stack *new);
+void				link_dnode_head(t_stack **head, t_stack *new);
 void				link_dnode_tail(t_stack *head, t_stack *new);
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< instruction functions
