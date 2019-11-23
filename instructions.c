@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/22 21:08:18 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 00:07:01 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	ra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	t_stack	*byth;
 
 	i = 1;
-	by = 1;
+	by = 1; // how many nodes to shfit "by"
 	tmp = *stack_a;
 	while (i < by)
 	{
@@ -151,7 +151,7 @@ void	rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	t_stack	*byth;
 
 	i = 1;
-	by = 1;
+	by = 1; // how many nodes to shfit "by"
 	tmp = *stack_b;
 	while (i < by)
 	{
@@ -175,33 +175,22 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 }
 
 // shift down all elements of stack a by 1. The last element becomes the first one.
-void	rra(t_stack **stack_a __attribute__((unused)), t_stack **stack_b __attribute__((unused)))
+void	rra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 {
-	// int		i;
-	// int		by;
-	// t_stack	*tmp;
-	// t_stack	*byth;
+	t_stack	*tmp;
+	t_stack	*new_tail;
 
-	// i = 1;
-	// by = 1;
-	// tmp = *stack_a;
-	// while (i < by)
-	// {
-	// 	tmp = tmp->next;
-	// 	i++;
-	// }
-	// byth = tmp;
-	// /**
-	//  * oldhead->prev = oldtail
-	//  * oldtail->prev = NULL
-	//  * headptr = oldtail
-	// **/
-	// while (tmp->next != NULL)
-	// 	tmp = tmp->next; // tmp is at tail
-	// tmp->prev = NULL;
-	// tmp->next = *stack_a;
-	// byth->prev = tmp;
-
+	if (count_nodes(*stack_a) < 2)
+		return ;
+	tmp = *stack_a;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	new_tail = tmp->prev;
+	new_tail->next = NULL;
+	(*stack_a)->prev = tmp;
+	tmp->next = *stack_a;
+	*stack_a = tmp;
+	(*stack_a)->prev = NULL;
 }
 
 // shift down all elements of stack b by 1. The last element becomes the first one.
