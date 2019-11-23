@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 00:09:29 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 00:13:19 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,12 +212,8 @@ void	rrb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	(*stack_b)->prev = NULL;
 }
 
-// void	rrr(t_stack **stack_a, t_stack **stack_b)
-// {
-// 	printf("rrr called\n");
-// 	setbuf(stdout, NULL);
-// /**
-//  * call rra()
-//  * call rrb()
-// **/
-// }
+void	rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	rra(stack_a, stack_b);
+	rrb(stack_a, stack_b);
+}

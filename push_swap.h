@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 00:10:57 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 00:13:21 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void				rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b);
 void				rr(t_stack **stack_a, t_stack **stack_b);
 void				rra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)));
 void				rrb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b);
-// void				rrr(t_stack **stack_a, t_stack **stack_b);
+void				rrr(t_stack **stack_a, t_stack **stack_b);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> instruction functions
 
 // t_ins				ins_table[2] =
