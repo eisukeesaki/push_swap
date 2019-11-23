@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/20 23:11:06 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/22 19:00:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,21 @@ void	ss(t_stack **stack_a, t_stack **stack_b)
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*b;
-	t_stack	*tmp;
+	t_stack *tmp;
 
-	b = *stack_b;
 	if (*stack_b == NULL)
 		return ;
-	tmp = newdnode(b->n);
-	link_dnode_head(stack_a, tmp);
-	*stack_a = tmp; // do this in link_dnode_head()?
-	*stack_b = b->next;
+	b = *stack_b;
+	if (*stack_a == NULL)
+		*stack_a = newdnode((*stack_b)->n);
+	else
+	{
+		tmp = newdnode((*stack_b)->n);
+		link_dnode_head(stack_a, tmp);
+	}
+	*stack_b = (*stack_b)->next;
+	if (*stack_b != NULL)
+		(*stack_b)->prev = NULL;
 	free(b);
 }
 
