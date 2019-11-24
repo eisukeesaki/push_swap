@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/19 18:10:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 17:41:07 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,19 +86,19 @@ t_ins_set	*read_ins(void)
 	char		*line;
 	t_ins_set	*head;
 	t_ins_set	*tmp;
-	int		fd = 1; // test purpose
+	// int		fd = 0; // test purpose
 
 	line = NULL;
 	head = NULL;
 	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< reading ins from file instead of stdin to allow debugging
-	if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
-	{
-		printf("file open error\n");
-		exit(1);
-	}
+	// if ((fd = open("unused/instructions.txt", O_RDONLY)) == 1)
+	// {
+	// 	printf("file open error\n");
+	// 	exit(1);
+	// }
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
-	// while (get_next_line(1, &line))
-	while (get_next_line(fd, &line))
+	while (get_next_line(1, &line))
+	// while (get_next_line(fd, &line))
 	{
 		vali_ins(line);
 		tmp = newnode(line);

@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_args.c                                    :+:      :+:    :+:   */
+/*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:46:32 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/13 19:25:33 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 17:32:41 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 #include <limits.h>
@@ -39,6 +40,19 @@ void	sort_err(void)
 	write(1, "sort err", 9);
 	exit(1);
 }
+
+void	b_not_empty_err(void)
+{
+	write(1, "b not empty err", 16);
+	exit(1);
+}
+
+void	not_num_err()
+{
+	write(1, "not num err", 12);
+	exit(1);
+}
+
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpos
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> error func(s)
 
@@ -107,4 +121,24 @@ intmax_t	vali_int(intmax_t n)
 	if (!(INT_MIN <= n && n <= INT_MAX))
 		notint_err(); // replace with error()
 	return (n);
+}
+
+void		vali_empty_b(t_stack *stack_b)
+{
+	if (stack_b != NULL)
+		b_not_empty_err(); // replace with error()
+}
+
+char	*vali_num(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			not_num_err(); // replace with error()
+		i++;
+	}
+	return (s);
 }
