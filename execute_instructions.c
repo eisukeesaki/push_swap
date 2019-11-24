@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:06:44 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 17:10:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 18:12:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack *
 		}
 		ins = ins->next;
 	}
-	vali_empty_b(*stack_b);
 }
 
 void	exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b)

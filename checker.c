@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 17:48:16 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/23 23:13:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,42 @@ t_stack	*build_a(int ac, char **av)
 		k = 0;
 		i++;
 	}
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
 	return (head);
 }
 
 int		main(int ac, char **av)
 {
-	t_stack		*head_a;
-	t_stack		*head_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 	char		*ins;
 	t_ins_set	*ins_set;
 
-	head_a = NULL;
-	head_b = NULL;
+	stack_a = NULL;
+	stack_b = NULL;
 	if (ac > 1)
-		head_a = build_a(ac, av);
+		stack_a = build_a(ac, av);
 	else
 		exit(0);
-	vali_dup(head_a);
-	print_stacks(head_a, head_b); // test
+	vali_dup(stack_a);
+	print_stacks(stack_a, stack_b); // debug purpose
 	ins = NULL;
 	ins_set = read_ins();
-	exe_ins(ins_set, &head_a, &head_b);
-	vali_sort(head_a);
-	print_stacks(head_a, head_b);
-	// print_stacks_bw(head_a, head_b);
-	free(ins);
+	exe_ins(ins_set, &stack_a, &stack_b);
+	vali_empty_b(stack_b);
+	vali_sort(stack_a);
+	print_stacks(stack_a, stack_b); // debug purpose
+	// print_stacks_bw(stack_a, stack_b); // debug purpose
+	free(stack_a);
+	free(stack_b);
+	write(1, "OK", 3);
+	// system("leaks checker");
+	// while (1);
 	return (0);
 }
 
