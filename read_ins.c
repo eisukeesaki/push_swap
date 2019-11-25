@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 22:35:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/24 22:19:05 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ t_ins_set	*read_ins(void)
 			head = tmp;
 		else
 			link_node_tail(head, tmp);
-		// free(line);
 	}
 	return (head);
 }

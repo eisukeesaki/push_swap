@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 23:13:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/24 22:27:02 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,20 @@
 #include <stdlib.h>
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
 
-t_stack	*build_a(int ac, char **av)
+void	free_split_str(char **split)
+{
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}
+
+t_stack	*build_a(int ac, char **av) // exceeding 25 lines!
 {
 	size_t	i;
 	size_t	k;
@@ -47,12 +60,7 @@ t_stack	*build_a(int ac, char **av)
 		k = 0;
 		i++;
 	}
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
+	free_split_str(split);
 	return (head);
 }
 
@@ -81,8 +89,7 @@ int		main(int ac, char **av)
 	free(stack_a);
 	free(stack_b);
 	write(1, "OK", 3);
-	// system("leaks checker");
-	// while (1);
+	system("leaks checker");
 	return (0);
 }
 
