@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/24 22:27:02 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/01 01:58:21 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void	free_split_str(char **split)
 	free(split);
 }
 
+void	free_stacks(t_stack *stack)
+{
+	while (stack != NULL)
+	{
+		free(stack);
+		stack = stack->next;
+	}
+}
+
 t_stack	*build_a(int ac, char **av) // exceeding 25 lines!
 {
 	size_t	i;
@@ -59,8 +68,8 @@ t_stack	*build_a(int ac, char **av) // exceeding 25 lines!
 		}
 		k = 0;
 		i++;
+		free_split_str(split);
 	}
-	free_split_str(split);
 	return (head);
 }
 
@@ -86,10 +95,10 @@ int		main(int ac, char **av)
 	vali_sort(stack_a);
 	print_stacks(stack_a, stack_b); // debug purpose
 	// print_stacks_bw(stack_a, stack_b); // debug purpose
-	free(stack_a);
-	free(stack_b);
+	free_stacks(stack_a);
+	free_stacks(stack_b);
 	write(1, "OK", 3);
-	system("leaks checker");
+	// system("leaks checker");
 	return (0);
 }
 

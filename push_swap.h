@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 17:32:01 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/11/30 19:50:19 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ typedef struct			s_stack
 	int					n;
 	struct s_stack		*prev;
 	struct s_stack		*next;
-}						t_stack;
+}						t_stack; // size:24
 
 typedef struct			s_ins_set
 {
 	char				*ins;
 	struct s_ins_set	*next;
-}						t_ins_set;
+}						t_ins_set; // size:16
 
 typedef struct			s_ins
 {
 	char				*name;
 	void				(*ins)(t_stack *);
-}						t_ins;
+}						t_ins; // size:16
 
 typedef void 			ins(t_stack head);
 typedef struct			s_functab
@@ -47,7 +47,7 @@ typedef struct			s_functab
 	char				*ins_str;
 	void				(*ins_func)(t_stack **stack_a, t_stack **stack_b);
 	// void				(*ins_func)(t_stack *stack_a __attribute((unused)), t_stack *stack_b __attribute((unused)));
-}						t_functab;
+}						t_functab; // size:16
 
 /*
 **-----------------------------------------------------------------------------
