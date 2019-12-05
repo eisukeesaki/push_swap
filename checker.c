@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/01 01:58:21 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/04 22:41:54 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "libft/libft.h"
 #include <stddef.h>
 #include <stdint.h>
+#include <stdlib.h>
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug
 #include <stdio.h>
 #include <limits.h>
 #include <fcntl.h>
-#include <stdlib.h>
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug
 
 void	free_split_str(char **split)
