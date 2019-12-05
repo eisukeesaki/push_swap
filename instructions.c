@@ -6,12 +6,13 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 00:42:18 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/04 23:10:41 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
+#include <unistd.h>
 #include <stdio.h> // debug purpose
 
 size_t	count_nodes(t_stack *stack)
@@ -86,6 +87,7 @@ void	pa(t_stack **stack_a, t_stack **stack_b)
 	if (*stack_b != NULL)
 		(*stack_b)->prev = NULL;
 	free(b);
+	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
@@ -126,6 +128,7 @@ void	ra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	tmp->next = *stack_a;
 	*stack_a = new_head;
 	(*stack_a)->prev = NULL;
+	write(1, "ra\n", 3);
 }
 
 // shift up all elements of stack b by 1. The first element becomes the last one.
