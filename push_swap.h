@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/30 19:50:19 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/09 01:14:25 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ intmax_t			vali_int(intmax_t n);
 void				vali_dup(t_stack *head);
 t_ins_set			*read_ins(void);
 void				vali_ins(char *ins);
-void				vali_sort(t_stack *head);
+int					vali_sort(t_stack *stack_a, t_stack *stack_b);
 void				exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b);
 void				vali_empty_b(t_stack *stack_b);
 

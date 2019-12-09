@@ -72,31 +72,6 @@ int		find_min(t_stack **stack_a)
 	return (min);
 }
 
-void	sort_1(t_stack **stack_a, t_stack **stack_b)
-{
-	printf("<<< sorting started.\n"); // debug purpose
-	t_stack	*a;
-	t_stack	*b;
-	int		min;
-
-	a = *stack_a;
-	b = *stack_b;
-	min = find_min(stack_a);
-	while (a != NULL)
-	{
-		while (min < (*stack_a)->n)
-			ra(stack_a, NULL); // TODO:	[] modify ins func prototype. no need to pass stack_b
-		pb(stack_a, stack_b);
-		a = a->next;
-	}
-	while (*stack_b != NULL)
-	{
-		pa(stack_a, stack_b);
-		*stack_b = (*stack_b)->next;
-	}
-	printf(">>> sorting complete.\n"); // debug purpose
-}
-
 int		main(int ac, char **av)
 {
 	t_stack		*stack_a;
@@ -108,12 +83,15 @@ int		main(int ac, char **av)
 		stack_a = build_a(ac, av);
 	else
 		exit(0);
-	vali_dup(stack_a);
+	vali_dup(stack_a); // do it when building stack_a?
 	print_stacks(stack_a, stack_b); // debug purpose
+	// if (elm_ttl is 3 or 5)
+		// 3_or_5_sort(stack_a)
+	/*else*/ if (ac >= 8 && 801 >= ac)
+		chunk_sort(&stack_a, &stack_b);
 
-	sort_1(&stack_a, &stack_b);
-
-	vali_empty_b(stack_b); // TODO:	[] do this in sorting func
+	if (vali_sort(stack_a, stack_b) == 1)
+		insert_sort(&stack_a, &stack_b);
 	print_stacks(stack_a, stack_b); // debug purpose | TODO: [] print stack_b in sorting func
 	// print_stacks_bw(stack_a, stack_b); // debug purpose
 	free_stacks(stack_a);
@@ -161,3 +139,32 @@ int		main(int ac, char **av)
 //		- "$>./push_swap 42". The program should display nothing (0 instruction)
 //		-  "$>./push_swap 0 1 2 3". The program should display nothing (0 instruction)
 //		- "$>./push_swap 0 1 2 3 4 5 6 7 8 9". The program should display nothing (0 instruction)
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< old
+// sort_1(&stack_a, &stack_b); // callere
+
+void	sort_1(t_stack **stack_a, t_stack **stack_b) // optimize by implementing ra/rra selector
+{
+	printf("<<< sorting started.\n"); // debug purpose
+	t_stack	*a;
+	t_stack	*b;
+	int		min;
+
+	a = *stack_a;
+	b = *stack_b;
+	min = find_min(stack_a);
+	while (a != NULL)
+	{
+		while (min < (*stack_a)->n)
+			ra(stack_a, NULL); // TODO:	[] modify ins func prototype. no need to pass stack_b
+		pb(stack_a, stack_b);
+		a = a->next;
+	}
+	while (*stack_b != NULL)
+	{
+		pa(stack_a, stack_b);
+		*stack_b = (*stack_b)->next;
+	}
+	printf(">>> sorting complete.\n"); // debug purpose
+}
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> old

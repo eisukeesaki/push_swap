@@ -1,0 +1,44 @@
+<jadawson algo>
+SORTING ALGO
+- if elm_n is 3 or 5, use 3 or 5 algo
+- elseif elm_n is 7..200, use chunk algo
+	- determine chunk size
+	1. move elm of chunk_n to top of A
+		- search for elm of chunk_n from top and bottom
+		- choose one that requires less ins to move to top of A
+			- compare idx of elm to middle idx of A
+	2. if B is empty, pb
+	2. else, move min in B to top
+	3. pb
+	- repeat 1-3 until all elm of chunk_n is pushed to B
+	- repeat 1-3 to all remaining chunks
+	4. move min in B to top
+	5. pa
+	- repeat 4-5 until all elm in B is pushed
+- validate sort and emptiness of B
+- free
+
+- else if elm_n is 2,4,6, use insertion sort
+- validation
+- deallocate
+
+case: stack_a has 10 unsorted valid numbers
+
+- create linked list of stack_a
+- check if stack_a is initially sorted
+- count/store number of elms in stack_a
+- calculate,determine chunk size
+- find/store index of middle pos of stack_a
+- find/store index of elm that's in the range of chunk_n (scan from both top/bottom and choose the one that requires less ins to move that to the top)
+- choose ra or rra to move it to the top
+- calculate and call ra or rra n times
+
+</jadawson algo>
+
+if n_elms <= 100
+g
+
+- determine n_chunks
+- scan stkA from top to find elm that belongs to ch_n and store it as ch_n_f
+- scan stkA from bottom to find elm that belongs to ch_n and store it as ch_n_l
+- compare ch_n_f and ch_n_l 

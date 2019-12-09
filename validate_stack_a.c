@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validation.c                                       :+:      :+:    :+:   */
+/*   validate_stack_a.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:46:32 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 17:32:41 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/09 01:14:08 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,24 @@ void	not_num_err()
 // 	}
 // }
 
-void	vali_sort(t_stack *head)
+int		vali_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*start;
 	t_stack	*comp;
 
-	start = head;
-	comp = head->next;
+	start = stack_a;
+	comp = stack_a->next;
 	while (comp != NULL)
 	{
 		// if (!(start->n > comp->n))
 		if (!(start->n < comp->n))
-			sort_err(); // replace with error()
+			return (1);
+			// sort_err(); // replace with error()
 		start = start->next;
 		comp = comp->next;
 	}
+	vali_empty_b(stack_b);
+	return (0);
 }
 
 void		vali_dup(t_stack *head)
