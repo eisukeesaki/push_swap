@@ -1,4 +1,46 @@
-<jadawson algo>
+Sorting algo:
+- if n_elm is 3, use sort-3-algo
+	- call dedicated func by listing if conditions for all possible cases(5)
+- else if n_elm is 5, use sort-5-algo
+	- pb top 2 elms
+	- use sort-3-algo to sort the remaining 3 elms in A
+	- while B is not empty,
+		- in A, find correct pos to push B
+		- rotate A until the found pos is at the top
+		- pa
+- else if n_elm is 7..200, use chunk algo
+	- while A is not empty,
+		- if B is not empty, rotate B until min is at the top. else skip this
+		- in A, move min to top
+		- pb
+	- while B is not empty,
+		- if in B, max is not at the top, rotate until it is. else skip this
+		- pa
+
+chunk algo (optimization):
+- in A, count total elm
+- calc base chunk size (total elm / chunk_n multiplier)
+- while A is not empty,
+	- increment chunk_n multiplier
+	- if in A, there's an chunk_n member / A is not empty,
+		- get pos of first elm to be found in chunk_n
+		- if in A, chunk_n member is not @top / A is not empty,
+			- determine ra/rra and call it x times to move chunk_n member to the top
+		- if in A, chunk_n member is @top / A is not empty,
+			- if B has only 1 elm or B is empty,
+				- pb
+		- if B has more than 1 elm, chunk_n member is @top, A is not empty,
+			- determine rb/rrb and call it x times to move chunk_n member to the top
+			- something?
+- if A is empty
+	- while B is not empty
+		- determine rb/rrb and call it x times to move max to top
+		- pa
+- deallocate
+
+------------------------------------------------------------------------------------------
+
+<chunk algo>
 SORTING ALGO
 - if elm_n is 3 or 5, use 3 or 5 algo
 - elseif elm_n is 7..200, use chunk algo
@@ -33,7 +75,7 @@ case: stack_a has 10 unsorted valid numbers
 - choose ra or rra to move it to the top
 - calculate and call ra or rra n times
 
-</jadawson algo>
+</chunk algo>
 
 if n_elms <= 100
 g
