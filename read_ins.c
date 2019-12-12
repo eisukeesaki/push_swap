@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/24 22:19:05 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/12 01:51:51 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_ins_set	*read_ins(void)
 	// 	exit(1);
 	// }
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> reading ins from file instead of stdin to allow debugging
-	while (get_next_line(1, &line))
+	while (get_next_line(0, &line))
 	// while (get_next_line(fd, &line))
 	{
 		vali_ins(line);
