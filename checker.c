@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/04 22:41:54 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/12 01:33:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,22 +82,20 @@ int		main(int ac, char **av)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (ac > 1)
-		stack_a = build_a(ac, av);
-	else
-		exit(0);
+	stack_a = build_a(ac, av);
 	vali_dup(stack_a);
-	print_stacks(stack_a, stack_b); // debug purpose
+	// print_stacks(stack_a, stack_b, " (initial)"); // debug purpose
 	ins = NULL;
 	ins_set = read_ins();
 	exe_ins(ins_set, &stack_a, &stack_b);
 	vali_empty_b(stack_b);
-	vali_sort(stack_a);
-	print_stacks(stack_a, stack_b); // debug purpose
+	if (!is_sorted(stack_a, stack_b))
+		sort_err();
+	// print_stacks(stack_a, stack_b, " (sorted)"); // debug purpose
 	// print_stacks_bw(stack_a, stack_b); // debug purpose
 	free_stacks(stack_a);
 	free_stacks(stack_b);
-	write(1, "OK", 3);
+	write(1, "OK\n", 4);
 	// system("leaks checker");
 	return (0);
 }
