@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 18:06:44 by eesaki            #+#    #+#             */
-/*   Updated: 2019/11/23 18:12:17 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/12 01:52:30 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	print_ins_set(t_ins_set *ins_set)
 void	search(t_ins_set *ins_set, t_functab *functab, t_stack **stack_a, t_stack **stack_b)
 {
 	// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< debug purpose
-	print_ins_set(ins_set);
+	// print_ins_set(ins_set);
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 	size_t	i;
 	t_ins_set *ins;
