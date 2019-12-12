@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/09 01:14:25 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/11 23:56:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void				error(void);
 void				dup_err(void);
 void				notint_err(void);
 void				sort_err(void);
-void				print_stacks(t_stack *stack_a, t_stack *stack_b);
-void				print_stacks_bw(t_stack *stack_a, t_stack *stack_b);
+void				print_stacks(t_stack *stack_a, t_stack *stack_b, char *comment);
+void				print_stacks_bw(t_stack *stack_a, t_stack *stack_b, char *comment);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 char				*vali_num(char *s);
 intmax_t			my_atoi(const char *str);
@@ -68,9 +68,13 @@ intmax_t			vali_int(intmax_t n);
 void				vali_dup(t_stack *head);
 t_ins_set			*read_ins(void);
 void				vali_ins(char *ins);
-int					vali_sort(t_stack *stack_a, t_stack *stack_b);
+int					is_sorted(t_stack *stack_a, t_stack *stack_b);
 void				exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b);
 void				vali_empty_b(t_stack *stack_b);
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< push_swap
+void				sort_3_or_5(int n_elms, t_stack **stack_a, t_stack **stack_b);
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> push_swap
 
 t_stack				*newdnode(int data);
 void				link_dnode_head(t_stack **head, t_stack *new);
