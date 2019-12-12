@@ -17,6 +17,15 @@ void	free_split_str(char **split)
 	free(split);
 }
 
+void	free_stacks(t_stack *stack)
+{
+	while (stack != NULL)
+	{
+		free(stack);
+		stack = stack->next;
+	}
+}
+
 t_stack	*build_a(int ac, char **av, size_t *n_elms) // exceeding 25 lines!
 {
 	size_t	i;
@@ -68,5 +77,9 @@ int		main(int ac, char **av)
 	// else if (n_elms == 2 || n_elms == 4 || n_elms >= 6)
 	// 	insert_sort(&stack_a, &stack_b);
 // /* debug */	print_stacks(stack_a, stack_b, " (sorted)");
+	// free_stacks(stack_a);
+	// free_stacks(stack_b); // TODO:	[] free stack_b in sorting func
+	// TODO:	[] why is leaks reporting 0 leaks when stacks aren't freed?
+	system("leaks push_swap");
 	return (0);
 }
