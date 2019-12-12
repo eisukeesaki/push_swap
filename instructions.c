@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:04:50 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/04 23:10:41 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/11 23:34:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	sa(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	a_2nd->prev = NULL;
 	a_2nd->next = *stack_a;
 	*stack_a = a_2nd;
+	write(1, "sa\n", 3);
 }
 
 void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
@@ -60,12 +61,14 @@ void	sb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	b_2nd->prev = NULL;
 	b_2nd->next = *stack_b;
 	*stack_b = b_2nd;
+	write(1, "sb\n", 3);
 }
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
 {
 	sa(stack_a, stack_b);
 	sb(stack_a, stack_b);
+	write(1, "ss\n", 3);
 }
 
 void	pa(t_stack **stack_a, t_stack **stack_b)
@@ -109,6 +112,7 @@ void	pb(t_stack **stack_a, t_stack **stack_b)
 	if (*stack_a != NULL)
 		(*stack_a)->prev = NULL;
 	free(a);
+	write(1, "pb\n", 3);
 }
 
 // shift up all elements of stack a by 1. The first element becomes the last one.
@@ -148,12 +152,14 @@ void	rb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	tmp->next = *stack_b;
 	*stack_b = new_head;
 	(*stack_b)->prev = NULL;
+	write(1, "rb\n", 3);
 }
 
 void	rr(t_stack **stack_a, t_stack **stack_b)
 {
 	ra(stack_a, stack_b);
 	rb(stack_a, stack_b);
+	write(1, "rr\n", 3);
 }
 
 // shift down all elements of stack a by 1. The last element becomes the first one.
@@ -173,6 +179,7 @@ void	rra(t_stack **stack_a, t_stack **stack_b __attribute__((unused)))
 	tmp->next = *stack_a;
 	*stack_a = tmp;
 	(*stack_a)->prev = NULL;
+	write(1, "rra\n", 4);
 }
 
 // shift down all elements of stack b by 1. The last element becomes the first one.
@@ -192,10 +199,12 @@ void	rrb(t_stack **stack_a __attribute__((unused)), t_stack **stack_b)
 	tmp->next = *stack_b;
 	*stack_b = tmp;
 	(*stack_b)->prev = NULL;
+	write(1, "rrb\n", 4);
 }
 
 void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	rra(stack_a, stack_b);
 	rrb(stack_a, stack_b);
+	write(1, "rrr\n", 4);
 }
