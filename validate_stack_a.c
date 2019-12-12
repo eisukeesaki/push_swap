@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:46:32 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/09 01:14:08 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/11 19:50:52 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	not_num_err()
 // 	}
 // }
 
-int		vali_sort(t_stack *stack_a, t_stack *stack_b)
+int		is_sorted(t_stack *stack_a, t_stack *stack_b)
 {
 	t_stack	*start;
 	t_stack	*comp;
@@ -91,13 +91,13 @@ int		vali_sort(t_stack *stack_a, t_stack *stack_b)
 	{
 		// if (!(start->n > comp->n))
 		if (!(start->n < comp->n))
-			return (1);
+			return (0);
 			// sort_err(); // replace with error()
 		start = start->next;
 		comp = comp->next;
 	}
 	vali_empty_b(stack_b);
-	return (0);
+	return (1);
 }
 
 void		vali_dup(t_stack *head)
