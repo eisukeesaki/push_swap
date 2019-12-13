@@ -6,13 +6,14 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/11 23:56:14 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/12 22:57:15 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <stdint.h>
+# include <stdlib.h>
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
 // # include "libft/libft.h"
@@ -73,7 +74,7 @@ void				exe_ins(t_ins_set *ins_set, t_stack **stack_a, t_stack **stack_b);
 void				vali_empty_b(t_stack *stack_b);
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< push_swap
-void				sort_3_or_5(int n_elms, t_stack **stack_a, t_stack **stack_b);
+void				sort_3_or_5(t_stack **stack_a, t_stack **stack_b, int n_elms);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> push_swap
 
 t_stack				*newdnode(int data);

@@ -26,7 +26,7 @@ void	free_stacks(t_stack *stack)
 	}
 }
 
-t_stack	*build_a(int ac, char **av, size_t *n_elms) // exceeding 25 lines!
+t_stack	*build_a(int ac, char **av, int *n_elms) // exceeding 25 lines!
 {
 	size_t	i;
 	size_t	k;
@@ -61,7 +61,7 @@ int		main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	size_t	n_elms;
+	int		n_elms;
 
 	n_elms = 0;
 	stack_a = build_a(ac, av, &n_elms);
@@ -73,13 +73,14 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	if (n_elms == 3 || n_elms == 5)
-		sort_3_or_5(n_elms, &stack_a, &stack_b);
+		sort_3_or_5(&stack_a, &stack_b, n_elms);
 	// else if (n_elms == 2 || n_elms == 4 || n_elms >= 6)
 	// 	insert_sort(&stack_a, &stack_b);
 // /* debug */	print_stacks(stack_a, stack_b, " (sorted)");
-	// free_stacks(stack_a);
-	// free_stacks(stack_b); // TODO:	[] free stack_b in sorting func
-	// TODO:	[] why is leaks reporting 0 leaks when stacks aren't freed?
+	free_stacks(stack_a);
+	free_stacks(stack_b); // TODO:	[] free stack_b in sorting func
 	system("leaks push_swap");
 	return (0);
 }
+
+// TODO:	[] why is leaks reporting 0 leaks when stacks aren't free-ed?
