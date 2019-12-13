@@ -6,6 +6,7 @@ Sorting algo:
 	- use sort-3-algo to sort the remaining 3 elms in A
 	- while B is not empty,
 		- in A, find correct pos to push B
+		- determine ra/rra 
 		- rotate A until the found pos is at the top
 		- pa
 - else if n_elm is 7..200, use chunk algo
