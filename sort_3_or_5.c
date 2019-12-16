@@ -6,13 +6,31 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:07:14 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/12 23:46:38 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/15 20:01:32 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdlib.h>
 #include <stdio.h> // debug purpose
+
+int		count_rotation(int pos, int n_elms, int direction)
+{
+	int		count;
+
+	count = 0;
+	if (direction == 1) /* 1 == ra */
+	{
+		while (0 < pos--)
+			count++;
+	}
+	else if (direction == 0) /* 0 == rra */
+	{
+		while (pos-- < n_elms)
+			count++;
+	}
+	return (count);
+}
 
 int		find_max(t_stack *stack_a)
 {
@@ -21,15 +39,24 @@ int		find_max(t_stack *stack_a)
 	return (stack_a->n);
 }
 
-int		ra_or_rra(t_stack *stack_a __attribute__((unused)), t_stack *stack_b __attribute__((unused)), int n_elms, int pos)
+void	ra_or_rra(t_stack **stack_a, t_stack **stack_b, int n_elms, int pos)
 {
-	 if (pos < n_elms / 5)
-	 	return (1);
+	int		n_rotation;
+	if (pos < n_elms / 5)
+	{
+		n_rotation = count_rotation(pos, n_elms, 1);
+		while (0 < n_rotation--)
+			ra(stack_a, stack_b);
+	}
 	else
-		return (0);
+	{
+		n_rotation = count_rotation(pos, n_elms, 0);
+		while (0 < n_rotation--)
+			rra(stack_a, stack_b);
+	}
 }
 
-int		find_pos(t_stack **stack_a, t_stack **stack_b)
+int		find_pos(t_stack **stack_a, t_stack **stack_b, int n_elms)
 {
 	t_stack	*a;
 	int		pos;
@@ -42,8 +69,15 @@ int		find_pos(t_stack **stack_a, t_stack **stack_b)
 	max = find_max(*stack_a);
 	while (a->next != NULL)
 	{
-		if (a->n < (*stack_b)->n && a->next->n > (*stack_b)->n)// TODO:	[] fix this
+		if ((*stack_b)->n < min)
+			return (0);
+		else if (max < (*stack_b)->n)
+			return (n_elms - 1);
+		else if (a->n < (*stack_b)->n && a->next->n > (*stack_b)->n)// TODO:	[] fix this
+		{
+			printf("pos:%d\n", pos);
 			return (pos);
+		}
 		pos++;
 		a = a->next;
 	}
@@ -55,20 +89,8 @@ void	push_a(t_stack **stack_a, t_stack **stack_b, int n_elms)
 {
 	int		pos;
 
-	pos = find_pos(stack_a, stack_b);
-	if (ra_or_rra(*stack_a, *stack_b, n_elms, pos)) // 1 == ra | 0 == rra
-	{
-		printf("ra called from push_a()\n");
-		// while (/* correct pos is NOT at top of A */)
-		// 	ra();
-	}
-	else
-	{
-		printf("rra called from push_a()\n");
-		// while (/* correct pos is NOT at top of A */)
-		// 	rra();
-	}
-	// pa();
+	pos = find_pos(stack_a, stack_b, n_elms);
+	ra_or_rra(stack_a, stack_b, n_elms, pos);
 }
 
 void	sort_3(t_stack **stack_a, t_stack **stack_b)
@@ -107,6 +129,7 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b, int n_elms)
 	{
 		push_a(stack_a, stack_b, n_elms);
 		*stack_b = (*stack_b)->next;
+		pa(stack_a, stack_b);
 	}
 }
 

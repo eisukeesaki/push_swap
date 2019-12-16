@@ -66,7 +66,7 @@ int		main(int ac, char **av)
 	n_elms = 0;
 	stack_a = build_a(ac, av, &n_elms);
 	stack_b = NULL;
-// /* debug */	print_stacks(stack_a, stack_b, " (initial)");
+/* debug */	print_stacks(stack_a, stack_b, " (initial)");
 	if (is_sorted(stack_a, stack_b))
 	{
 		// printf("initially sorted\n\n"); // debug purpose
@@ -76,10 +76,10 @@ int		main(int ac, char **av)
 		sort_3_or_5(&stack_a, &stack_b, n_elms);
 	// else if (n_elms == 2 || n_elms == 4 || n_elms >= 6)
 	// 	insert_sort(&stack_a, &stack_b);
-// /* debug */	print_stacks(stack_a, stack_b, " (sorted)");
+/* debug */	print_stacks(stack_a, stack_b, " (sorted)");
 	free_stacks(stack_a);
 	free_stacks(stack_b); // TODO:	[] free stack_b in sorting func
-	system("leaks push_swap");
+	// system("leaks push_swap");
 	return (0);
 }
 
