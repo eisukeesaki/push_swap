@@ -29,8 +29,8 @@ void	print_stacks(t_stack *stack_a, t_stack *stack_b, char *comment)
 	}
 	else
 		printf("empty\n"); setbuf(stdout, NULL);
-	if (strcmp(comment, " (initial)"))
-		printf("-------------------------------------------------------\n"); setbuf(stdout, NULL);
+	// if (strcmp(comment, " (initial)"))
+		// printf("-------------------------------------------------------\n"); setbuf(stdout, NULL);
 }
 
 void	print_stacks_bw(t_stack *stack_a, t_stack *stack_b, char *comment)
