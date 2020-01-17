@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:07:14 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/18 02:30:25 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/01/17 14:15:13 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,21 +189,16 @@ int		find_pos(t_stack **stack_a, t_stack **stack_b)
 	pos = 0;
 	min = find_min_n(*stack_a);
 	max = find_max_n(*stack_a);
-	if ((*stack_b)->n < min)
-		return (get_idx_of_n(*stack_a, min));
-	else if (max < (*stack_b)->n)
+	if ((*stack_b)->n < min || max < (*stack_b)->n)
 		return (get_idx_of_n(*stack_a, min));
 	while (a->next != NULL)
 	{
 		pos++;
-		if (a->n < (*stack_b)->n && a->next->n > (*stack_b)->n)// TODO:	[] FIX THIS FIRST to pass "3 4 0 1 2"
-		{
+		if (a->n < (*stack_b)->n && a->next->n > (*stack_b)->n)
 			return (pos);
-		}
 		a = a->next;
 	}
-	printf("could not find pos in find_pos()\n"); // debug purpose
-	exit(1);
+	return (pos + 1); // index of bottom
 }
 
 void	push_a(t_stack **stack_a, t_stack **stack_b)
