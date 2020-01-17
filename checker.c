@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/12 01:33:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/20 01:08:27 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int		main(int ac, char **av)
 	ins = NULL;
 	ins_set = read_ins();
 	exe_ins(ins_set, &stack_a, &stack_b);
-	vali_empty_b(stack_b);
 	if (!is_sorted(stack_a, stack_b))
 		sort_err();
 	// print_stacks(stack_a, stack_b, " (sorted)"); // debug purpose

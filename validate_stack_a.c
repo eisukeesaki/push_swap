@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:46:32 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/11 19:50:52 by eesaki           ###   ########.fr       */
+/*   Updated: 2019/12/20 01:08:42 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		is_sorted(t_stack *stack_a, t_stack *stack_b)
 	t_stack	*start;
 	t_stack	*comp;
 
+	vali_empty_b(stack_b);
 	start = stack_a;
 	comp = stack_a->next;
 	while (comp != NULL)
@@ -96,7 +97,6 @@ int		is_sorted(t_stack *stack_a, t_stack *stack_b)
 		start = start->next;
 		comp = comp->next;
 	}
-	vali_empty_b(stack_b);
 	return (1);
 }
 
