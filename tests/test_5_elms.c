@@ -60,25 +60,28 @@ int		main(void)
 	int		e3 = 0;
 	int		e4 = 0;
 
-	size_t	size = snprintf(NULL, 0, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG | ../checker $ARG", e0, e1, e2, e3, e4) + 1;
-	char	*command = malloc(size);
+	size_t	size;
+	char	*command;
 
 	while (0 < test_count)
 	{
-		e0 = random_at_most(4);
-		e1 = random_at_most(4);
-		e2 = random_at_most(4);
-		e3 = random_at_most(4);
-		e4 = random_at_most(4);
+		e0 = random_at_most(INT_MAX);
+		e1 = random_at_most(INT_MAX);
+		e2 = random_at_most(INT_MAX);
+		e3 = random_at_most(INT_MAX);
+		e4 = random_at_most(INT_MAX);
 
 		if (is_duplicate(e0, e1, e2, e3, e4) || is_ascending(e0, e1, e2, e3, e4))
 			continue;
 
+		size = snprintf(NULL, 0, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG | ../checker $ARG", e0, e1, e2, e3, e4) + 1;
+		command = malloc(size);
+
 		// run only push_swap
-		sprintf(command, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG", e0, e1, e2, e3, e4);
+		// sprintf(command, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG", e0, e1, e2, e3, e4);
 
 		// run both push_swap and checker
-		// sprintf(command, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG | ../checker $ARG", e0, e1, e2, e3, e4);
+		sprintf(command, "ARG=\"%d %d %d %d %d\" ; ../push_swap $ARG | ../checker $ARG", e0, e1, e2, e3, e4);
 
 		printf("-------------------------------------------------------%d,%d,%d,%d,%d\n", e0, e1, e2, e3, e4); setbuf(stdout, NULL);
 		// printf("%s\n", command);
@@ -86,6 +89,8 @@ int		main(void)
 		printf("-------------------------------------------------------%d,%d,%d,%d,%d\n\n", e0, e1, e2, e3, e4); setbuf(stdout, NULL);
 
 		test_count--;
+
+		free(command);
 	}
 	return (0);
 }
