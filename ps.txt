@@ -1,4 +1,4 @@
-Sorting algo:
+Sorting algo
 - if n_elm is 3, use sort-3-algo
 	- call dedicated func by listing if conditions for all possible cases(5)
 - else if n_elm is 5, use sort-5-algo
@@ -17,6 +17,26 @@ Sorting algo:
 	- while B is not empty,
 		- if in B, max is not at the top, rotate until it is. else skip this
 		- pa
+
+chunk algo (5 chunks):
+- divide total elements by 5 to get chunk size
+- multiply chunk size by i to get chunk range (max val of current range)
+A. rotate stack_a until current chunk member is at the top
+	- scan stack_a from top and find member of current chunk
+	- scan stack_a from bottom and find member of current chunk
+	- out of the found two members, choose the member that requires less instructions to send it to the top
+B. pb
+	- if pb is empty || pb has one element => pb
+	- if pb has 2 or more elements,
+		- find correct pos to pb
+		- rb until the found pos is at the top
+		- pb
+- repeat A-B until there're no more members of current chunk is in stack_a 
+- increment i and repeat A-B until there're no more chunk to process
+C. rb or rrb until max is at the top
+D. pa
+- repeat C-D until stack_b is empty
+
 
 chunk algo (optimization):
 - in A, count total elm
