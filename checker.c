@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 20:48:25 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/20 01:08:27 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/01/20 20:22:51 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int		main(int ac, char **av)
 	// print_stacks(stack_a, stack_b, " (initial)"); // debug purpose
 	ins = NULL;
 	ins_set = read_ins();
+/* debug */ count_ins(ins_set);
 	exe_ins(ins_set, &stack_a, &stack_b);
 	if (!is_sorted(stack_a, stack_b))
 		sort_err();
