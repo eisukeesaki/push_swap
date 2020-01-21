@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 16:28:55 by eesaki            #+#    #+#             */
-/*   Updated: 2020/01/17 16:39:11 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/01/20 18:29:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int		get_idx_of_n(t_stack *stack, int n)
 	return (idx);
 }
 
-int		find_min_pos(t_stack *stack_a)
+int		find_min_pos(t_stack *stack)
 {
 	int		min;
 	int		pos;
 	t_stack	*a;
 
-	a = stack_a;
+	a = stack;
 	min = a->n;
 	a = a->next;
 	while (a != NULL)
@@ -53,21 +53,21 @@ int		find_min_pos(t_stack *stack_a)
 		a = a->next;
 	}
 	pos = 0;
-	while (stack_a->n != min)
+	while (stack->n != min)
 	{
 		pos++;
-		stack_a = stack_a->next;
+		stack = stack->next;
 	}
 	return (pos);
 }
 
-int		find_max_pos(t_stack *stack_a)
+int		find_max_pos(t_stack *stack)
 {
 	int		max;
 	int		pos;
 	t_stack	*a;
 
-	a = stack_a;
+	a = stack;
 	max = a->n;
 	a = a->next;
 	while (a != NULL)
@@ -77,40 +77,40 @@ int		find_max_pos(t_stack *stack_a)
 		a = a->next;
 	}
 	pos = 0;
-	while (stack_a->n != max)
+	while (stack->n != max)
 	{
 		pos++;
-		stack_a = stack_a->next;
+		stack = stack->next;
 	}
 	return (pos);
 }
 
-int		find_max_n(t_stack *stack_a)
+int		find_max_n(t_stack *stack)
 {
 	int		max;
 
-	max = stack_a->n;
-	stack_a = stack_a->next;
-	while (stack_a != NULL)
+	max = stack->n;
+	stack = stack->next;
+	while (stack != NULL)
 	{
-		if (max < stack_a->n)
-			max = stack_a->n;
-		stack_a = stack_a->next;
+		if (max < stack->n)
+			max = stack->n;
+		stack = stack->next;
 	}
 	return (max);
 }
 
-int		find_min_n(t_stack *stack_a)
+int		find_min_n(t_stack *stack)
 {
 	int		min;
 
-	min = stack_a->n;
-	stack_a = stack_a->next;
-	while (stack_a != NULL)
+	min = stack->n;
+	stack = stack->next;
+	while (stack != NULL)
 	{
-		if (stack_a->n < min)
-			min = stack_a->n;
-		stack_a = stack_a->next;
+		if (stack->n < min)
+			min = stack->n;
+		stack = stack->next;
 	}
 	return (min);
 }
@@ -136,19 +136,19 @@ void	rotate_a(t_stack **stack_a, t_stack **stack_b, int n_elms)
 	}
 }
 
-int		count_rotation(t_stack *stack_a, int pos, int direction)
+int		count_rotation(t_stack *stack, int pos, int direction)
 {
 	int		n_elms;
 	int		count;
 
-	n_elms = count_n_elms(stack_a);
+	n_elms = count_n_elms(stack);
 	count = 0;
-	if (direction == 1) /* 1 == ra */
+	if (direction == 1) /* 1 == r */
 	{
 		while (0 < pos--)
 			count++;
 	}
-	else if (direction == 0) /* 0 == rra */
+	else if (direction == 0) /* 0 == rr */
 	{
 		while (pos++ < n_elms)
 			count++;

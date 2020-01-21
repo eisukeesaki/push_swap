@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2020/01/17 16:48:20 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/01/20 20:24:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ typedef struct			s_functab
 	// void				(*ins_func)(t_stack *stack_a __attribute((unused)), t_stack *stack_b __attribute((unused)));
 }						t_functab; // size:16
 
+typedef struct			s_chunk
+{
+	int					size;
+	int					range;
+	int					i;
+	int					j;
+	int					crnt_mbr;
+	int					top_half;
+	int					b_min;
+	int					b_max;
+}						t_chunk;
+
 /*
 **-----------------------------------------------------------------------------
 **									prototypes
@@ -62,6 +74,7 @@ void				notint_err(void);
 void				sort_err(void);
 void				print_stacks(t_stack *stack_a, t_stack *stack_b, char *comment);
 void				print_stacks_bw(t_stack *stack_a, t_stack *stack_b, char *comment);
+void				count_ins(t_ins_set *ins_set);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> debug purpose
 char				*vali_num(char *s);
 intmax_t			my_atoi(const char *str);
@@ -75,10 +88,20 @@ void				vali_empty_b(t_stack *stack_b);
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< push_swap
 void				sort_small(t_stack **stack_a, t_stack **stack_b, int n_elms);
+void				sort_medium(t_stack **stack_a, t_stack **stack_b, int n_elms);
 void				sort_3_or_5(t_stack **stack_a, t_stack **stack_b, int n_elms);
 void				sort_3(t_stack **stack_a, t_stack **stack_b);
 void				push_a(t_stack **stack_a, t_stack **stack_b);
 void				rotate_a(t_stack **stack_a, t_stack **stack_b, int n_elms);
+int					count_rotation(t_stack *stack_a, int pos, int direction);
+int					count_n_elms(t_stack *stack);
+int					find_min_n(t_stack *stack);
+int					find_max_n(t_stack *stack);
+int					get_idx_of_n(t_stack *stack, int n);
+int					count_rotation(t_stack *stack, int pos, int direction);
+int					count_n_elms(t_stack *stack);
+int					find_min_pos(t_stack *stack);
+int					find_max_pos(t_stack *stack);
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> push_swap
 
 t_stack				*newdnode(int data);
