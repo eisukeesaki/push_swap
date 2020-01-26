@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 19:46:32 by eesaki            #+#    #+#             */
-/*   Updated: 2019/12/20 01:08:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/01/21 14:10:01 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,9 @@ char	*vali_num(char *s)
 {
 	size_t	i;
 
-	i = 0;
+	if (!ft_isdigit(s[0]) && s[0] != '-')
+		not_num_err();
+	i = 1;
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
@@ -145,3 +147,17 @@ char	*vali_num(char *s)
 	}
 	return (s);
 }
+
+// char	*vali_num(char *s)
+// {
+// 	size_t	i;
+
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		if (!ft_isdigit(s[i]))
+// 			not_num_err(); // replace with error()
+// 		i++;
+// 	}
+// 	return (s);
+// }
