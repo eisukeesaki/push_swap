@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 12:21:01 by eesaki            #+#    #+#             */
-/*   Updated: 2020/01/20 20:24:17 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/11 20:29:42 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,36 @@
 # define PUSH_SWAP_H
 # include <stdint.h>
 # include <stdlib.h>
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< testing
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> testing
-// # include "libft/libft.h"
+# include "libft/libft.h"
 
 /*
 **-----------------------------------------------------------------------------
 **									structs
 **-----------------------------------------------------------------------------
 */
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< to be used in new design
+// typedef struct		s_elm
+// {
+// 	int					n;
+// 	struct s_elm		*prv;
+// 	struct s_elm		*nxt;
+// }					t_elm;
+
+// typedef struct		s_stack
+// {
+// 	struct s_stack		*head;
+// 	int					size;
+// }					t_stack;
+
+// typedef struct		s_ps
+// {
+// 	t_stack				*a;
+// 	t_stack				*b;
+// 	t_stack				*ops;
+// 	t_bool				verbose;
+// }					t_ps;
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> to be used in new design
+
 typedef struct			s_stack
 {
 	int					n;
