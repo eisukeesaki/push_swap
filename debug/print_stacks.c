@@ -11,7 +11,7 @@ void	print_stacks(t_ps *ps, char *comment)
 		while (i < ps->a->size)
 		{
 			printf("%d,", a->n); setbuf(stdout, NULL);
-			a = a->nxt;
+			a = a->next;
 			i++;
 		}
 	}
@@ -27,7 +27,7 @@ void	print_stacks(t_ps *ps, char *comment)
 		while (i < ps->b->size)
 		{
 			printf("%d,", b->n); setbuf(stdout, NULL);
-			b = b->nxt;
+			b = b->next;
 			i++;
 		}
 	}

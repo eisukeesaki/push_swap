@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/16 19:25:34 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/17 17:49:20 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ t_elm		*create_node(int n)
 	if (!(elm = ft_memalloc(sizeof(t_elm))))
 		ERROR("failed to allcoate elm");
 	elm->n = n;
-	elm->prv = elm;
-	elm->nxt = elm;
+	elm->prev = elm;
+	elm->next = elm;
 	return (elm);
 }
 
@@ -30,10 +30,10 @@ void		append_node(t_stack *stack, t_elm *node)
 		stack->head = node;
 	else
 	{
-		node->prv = stack->head->prv;
-		node->nxt = stack->head;
-		stack->head->prv->nxt = node;
-		stack->head->prv = node;
+		node->prev = stack->head->prev;
+		node->next = stack->head;
+		stack->head->prev->next = node;
+		stack->head->prev = node;
 	}
 	stack->size++;
 }
