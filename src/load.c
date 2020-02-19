@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/16 20:23:23 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/17 18:21:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ t_ps		*get_ps(char **av)
 		free(split_args);
 		i++;
 	}
-	print_stacks(ps, "");
+	// print_stacks(ps, ""); // debug purpose
 	return (ps);
 }
