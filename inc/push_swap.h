@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/16 20:24:35 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/17 19:27:03 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 typedef struct		s_elm
 {
 	int				n;
-	struct s_elm	*prv;
-	struct s_elm	*nxt;
+	struct s_elm	*prev;
+	struct s_elm	*next;
 }					t_elm;
 
 typedef struct		s_stack
@@ -53,20 +53,57 @@ typedef struct		s_ps
 
 /*
 **-----------------------------------------------------------------------------
+**                                  enums
+**-----------------------------------------------------------------------------
+*/
+typedef enum		e_ops
+{
+	RA,  /* 0 */
+	RB,  /* 1 */
+	RRA, /* 2 */
+	RRB, /* 3 */
+	PA,  /* 4 */
+	PB,  /* 5 */
+	SA,  /* 6 */
+	SB,  /* 7 */
+	RR,  /* 8 */
+	RRR, /* 9 */
+	SS,  /* 10 */
+	NOPS /* 11 */
+}					t_ops;
+
+/*
+**-----------------------------------------------------------------------------
 **                                  protptypes
 **-----------------------------------------------------------------------------
 */
-/* -------------------------------- debug -------------------------------- */
+/* debug.c */
 void				print_stacks(t_ps *ps, char *comment);
 
+/* error.c */
 void				error(char *message);
 
-/* -------------------------------- helpers -------------------------------- */
+/* ps_atoi.c */
 intmax_t			ps_atoi(const char *str);
 
+/* utils.c */
+t_elm				*find_min(t_stack *stack);
+
+/* validation.c */
 void				vali_dup(t_stack *stack, int n);
+t_bool				is_sorted_circularly(t_elm *elm, int stack_size);
+
+/* load.c */
 t_ps				*get_ps(char **av);
 
+/* sort.c */
+t_bool				rotate_only_sort(t_ps *ps);
+
+/* list_manipulation.c */
 t_elm				*create_node(int n);
 void				append_node(t_stack *stack, t_elm *node);
+
+/* operations.c */
+void				perform_op_ntimes(t_ps *ps, int op, int n);
+
 #endif
