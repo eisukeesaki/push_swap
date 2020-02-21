@@ -6,11 +6,43 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/18 16:01:32 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/18 18:50:56 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	median_3_sort(void)
+{
+	printf("median_3_sort() called\n");
+}
+
+void	sort_3(t_ps *ps, t_stack *stack)
+{
+	int		top;
+	int		mid;
+	int		btm;
+
+	top = stack->head->n;
+	mid = stack->head->next->n;
+	btm = stack->head->prev->n;
+	if (top < btm && btm < mid) // 1,3,2 => sa,ra
+	{
+		perform_op_ntimes(ps, SA, 1);
+		perform_op_ntimes(ps, RA, 1);
+	}
+	else if (mid < top && top < btm) // 2,1,3 => sa
+		perform_op_ntimes(ps, SA, 1);
+	else if (btm < top && top < mid) // 2,3,1 => rra
+		perform_op_ntimes(ps, RRA, 1);
+	else if (mid < btm && btm < top) // 3,1,2 => ra
+		perform_op_ntimes(ps, RA, 1);
+	else if (btm < mid && mid < top) // 3,2,1 => sa,rra
+	{
+		perform_op_ntimes(ps, SA, 1);
+		perform_op_ntimes(ps, RRA, 1);
+	}
+}
 
 int			get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse)
 {
@@ -41,26 +73,9 @@ int			get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse)
 
 void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 {
-	// t_elm	*elm;
 	int		r_count;
 	int		rr_count;
 
-	// if (stack->head == dest)
-	// 	return ;
-	// r_count = 0;
-	// elm = stack->head;
-	// while (elm != dest)
-	// {
-	// 	r_count++;
-	// 	elm = elm->next;
-	// }
-	// rr_count = 0;
-	// elm = stack->head;
-	// while (elm != dest)
-	// {
-	// 	rr_count++;
-	// 	elm = elm->prev;
-	// }
 	r_count = get_rotation_count(stack, dest, FALSE);
 	rr_count = get_rotation_count(stack, dest, TRUE);
 	if (r_count < rr_count)

@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/17 19:27:03 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/18 18:50:55 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ t_ps				*get_ps(char **av);
 
 /* sort.c */
 t_bool				rotate_only_sort(t_ps *ps);
+void				sort_3(t_ps *ps, t_stack *stack);
+void				median_3_sort(void);
 
 /* list_manipulation.c */
 t_elm				*create_node(int n);

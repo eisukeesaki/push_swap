@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/17 19:55:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/20 19:09:40 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,31 @@ void		rotate_down(t_stack *stack)
 
 void		push()
 {
-	printf("called push()\n"); setbuf(stdout, NULL);
+	printf("called push()\n"); setbuf(stdout, NULL); // debug purpose
 }
 
-void		swap()
+void		swap(t_stack *stack)
 {
-	printf("called swap()\n"); setbuf(stdout, NULL);
+	t_elm	*old_top;
+	t_elm	*old_med;
+	t_elm	*old_btm;
+
+	if (stack->size < 2)
+		return ;
+
+	old_top = stack->head;
+	old_med = stack->head->next;
+	old_btm = stack->head->prev;
+
+	stack->head = old_med;
+	stack->head->next = old_top;
+	stack->head->prev = old_btm;
+
+	stack->head->next->next = old_btm;
+	stack->head->next->prev = stack->head;
+
+	stack->head->prev->next = stack->head;
+	stack->head->prev->prev = old_med;
 }
 
 void		dispatch_op(t_ps *ps, int op)
@@ -51,17 +70,17 @@ void		dispatch_op(t_ps *ps, int op)
 	if (op == PB)
 		push();
 	if (op == SA || op == SS)
-		swap();
+		swap(ps->a);
 	if (op == SB || op == SS)
-		swap();
+		swap(ps->b);
 }
 
 void		perform_op_ntimes(t_ps *ps, int op, int n)
 {
-	while (n > 0)
+				printf("performing op#%d %d time(s)\n", op, n); // debug purpose
+	while (n-- > 0)
 	{
 		dispatch_op(ps, op);
 		append_node(ps->ops, create_node(op));
-		n--;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/17 17:49:20 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/20 20:13:55 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,8 @@ void		append_node(t_stack *stack, t_elm *node)
 	}
 	stack->size++;
 }
+
+// void		delete_node(t_stack *stack, t_elm *node)
+// {
+
+// }

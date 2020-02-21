@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:28:48 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/18 15:47:27 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/18 19:05:13 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@ int		main(int ac, char **av)
 	
 	if (ac < 2)
 		return (0);
+			printf("ac:%d\n", ac); // debug purpose
 	ps = get_ps(av + 1);
 
-	// is stack_a already sorted circularly?
-	if (!rotate_only_sort(ps)) // if true, rotate stack_a until min is at the top
-	{
-		// if false, use sort_3() or median_3 algo
+	/* if stack_a is sorted circularly, rotate until min is at the top. */
+	if (!rotate_only_sort(ps))
+	{ /* if FALSE, sort it */
 		printf("cannot be sorted just by rotating\n");
+		if (ps->a->size == 3)
+			sort_3(ps, ps->a);
+		else
+			median_3_sort();
 	}
-
+			print_stacks(ps, ""); // debug purpose
 	return (0);
 }
