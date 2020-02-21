@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 18:04:49 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/18 15:45:48 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/18 17:31:24 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ t_elm		*find_min(t_stack *stack)
 	elm = stack->head;
 	min = NULL;
 	i = 0;
-	while (i < stack->size)
+	while (i++ < stack->size)
 	{
 		if (!min || elm->n < min->n)
 			min = elm;
 		elm = elm->next;
-		i++;
 	}
 	return (min);
 }

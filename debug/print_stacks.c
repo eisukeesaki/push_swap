@@ -8,11 +8,10 @@ void	print_stacks(t_ps *ps, char *comment)
 	printf("stack_a%s:", comment); setbuf(stdout, NULL);
 	if (a)
 	{
-		while (i < ps->a->size)
+		while (i++ < ps->a->size)
 		{
 			printf("%d,", a->n); setbuf(stdout, NULL);
 			a = a->next;
-			i++;
 		}
 	}
 	else
@@ -24,11 +23,10 @@ void	print_stacks(t_ps *ps, char *comment)
 	printf("stack_b%s:", comment); setbuf(stdout, NULL);
 	if (b)
 	{
-		while (i < ps->b->size)
+		while (i++ < ps->b->size)
 		{
 			printf("%d,", b->n); setbuf(stdout, NULL);
 			b = b->next;
-			i++;
 		}
 	}
 	else
