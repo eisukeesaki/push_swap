@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 18:11:24 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/21 19:43:05 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 **-----------------------------------------------------------------------------
 */
 # define ERROR(message) error(message)
-// # define ERROR(message) error(message)
+# define OPS "ra", "rb", "rra", "rrb", "pa", "pb",\
+				"sa", "sb", "rr", "rrr", "ss"
 
 /*
 **-----------------------------------------------------------------------------
@@ -69,7 +70,7 @@ typedef enum		e_ops
 	RR,  /* 8 */
 	RRR, /* 9 */
 	SS,  /* 10 */
-	NOPS /* 11 */
+	NOPS /* 11 (total amount of ops) */
 }					t_ops;
 
 /*
@@ -108,5 +109,8 @@ void				unlink_node(t_stack *stack, t_elm *node);
 
 /* operations.c */
 void				perform_op_ntimes(t_ps *ps, int op, int n);
+
+/* print_op_list.c */
+void				print_op_list(t_stack *op_list);
 
 #endif
