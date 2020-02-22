@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operation.c                                        :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 18:13:10 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/21 19:54:32 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void		dispatch_op(t_ps *ps, int op)
 
 void		perform_op_ntimes(t_ps *ps, int op, int n)
 {
-				printf("performing op#%d %d time(s)\n", op, n); // debug purpose
 	while (n-- > 0)
 	{
 		dispatch_op(ps, op);
