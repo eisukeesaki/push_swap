@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 19:09:40 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/21 18:13:10 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,33 @@ void		push()
 
 void		swap(t_stack *stack)
 {
-	t_elm	*old_top;
-	t_elm	*old_med;
-	t_elm	*old_btm;
+	t_elm		*bottom;
+	// t_elm	*old_top;
+	// t_elm	*old_med;
+	// t_elm	*old_btm;
 
 	if (stack->size < 2)
 		return ;
 
-	old_top = stack->head;
-	old_med = stack->head->next;
-	old_btm = stack->head->prev;
+	bottom = stack->head->next;
 
-	stack->head = old_med;
-	stack->head->next = old_top;
-	stack->head->prev = old_btm;
+	unlink_node(stack, bottom);
+	append_node(stack, bottom);
+	stack->head = bottom;
 
-	stack->head->next->next = old_btm;
-	stack->head->next->prev = stack->head;
+	// old_top = stack->head;
+	// old_med = stack->head->next;
+	// old_btm = stack->head->prev;
 
-	stack->head->prev->next = stack->head;
-	stack->head->prev->prev = old_med;
+	// stack->head = old_med;
+	// stack->head->next = old_top;
+	// stack->head->prev = old_btm;
+
+	// stack->head->next->next = old_btm;
+	// stack->head->next->prev = stack->head;
+
+	// stack->head->prev->next = stack->head;
+	// stack->head->prev->prev = old_med;
 }
 
 void		dispatch_op(t_ps *ps, int op)

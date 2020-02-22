@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 20:23:18 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/21 18:30:01 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,16 @@ void		append_node(t_stack *stack, t_elm *node)
 	stack->size++;
 }
 
-// void		delete_node(t_stack *stack, t_elm *node)
-// {
-
-// }
+void		unlink_node(t_stack *stack, t_elm *node) /* might not work when (stack->size > 3) */
+{
+	if (stack->head == node)
+		stack->head = NULL;
+	else
+	{
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+	}
+	stack->size--;
+	node->next = node;
+	node->prev = node;
+}

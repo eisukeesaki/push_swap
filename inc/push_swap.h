@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 20:23:13 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/02/21 18:11:24 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void				median_3_sort(void);
 /* list_manipulation.c */
 t_elm				*create_node(int n);
 void				append_node(t_stack *stack, t_elm *node);
+void				unlink_node(t_stack *stack, t_elm *node);
 
 /* operations.c */
 void				perform_op_ntimes(t_ps *ps, int op, int n);
