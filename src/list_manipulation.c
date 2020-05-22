@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 18:30:01 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/05/23 03:36:39 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_elm		*create_node(int n)
 	if (!(elm = ft_memalloc(sizeof(t_elm))))
 		ERROR("failed to allcoate elm");
 	elm->n = n;
+	elm->segment = 0;
 	elm->prev = elm;
 	elm->next = elm;
 	return (elm);
@@ -27,26 +28,56 @@ t_elm		*create_node(int n)
 void		append_node(t_stack *stack, t_elm *node)
 {
 	if (!stack->head)
+	{
 		stack->head = node;
+		stack->tail = node;
+	}
 	else
 	{
-		node->prev = stack->head->prev;
+		node->prev = stack->tail;
 		node->next = stack->head;
-		stack->head->prev->next = node;
+		stack->tail->next = node;
 		stack->head->prev = node;
+		stack->tail = node;
 	}
 	stack->size++;
 }
 
-void		unlink_node(t_stack *stack, t_elm *node) /* might not work when (stack->size > 3) */
+/* fucking norm... */
+void		ft_unlink(t_stack *stack, t_elm *node)
 {
-	if (stack->head == node)
+	if (stack->size == 1)
+	{
 		stack->head = NULL;
+		stack->tail = NULL;
+	}
 	else
 	{
-		node->prev->next = node->next;
-		node->next->prev = node->prev;
+		if (node == stack->head)
+		{
+			stack->head = stack->head->next;
+			stack->tail->next = stack->head;
+			stack->head->prev = stack->tail;
+		}
+		else if (node == stack->tail)
+		{
+			stack->tail = stack->tail->prev;
+			stack->head->prev = stack->tail;
+			stack->tail->next = stack->head;
+		}
+		else
+		{
+			node->prev->next = node->next;
+			node->next->prev = node->prev;
+		}
 	}
+}
+
+void		unlink_node(t_stack *stack, t_elm *node)
+{
+	if (stack->size < 1)
+		return ;
+	ft_unlink(stack, node);
 	stack->size--;
 	node->next = node;
 	node->prev = node;

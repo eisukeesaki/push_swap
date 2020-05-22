@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_op_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:54:26 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 20:35:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/05/23 05:05:35 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		print_op_list(t_stack *op_list)
 {
 	char	*ops[NOPS] = {OPS};
 	char	*output;
-	char	*tmp;
+	char	*p;
 	size_t	len;
 	int		i;
 	
@@ -42,15 +42,15 @@ void		print_op_list(t_stack *op_list)
 	}
 	if (!(output = ft_memalloc(len + 1)))
 		ERROR("failed to allocate char *output");
-	tmp = output;
+	p = output;
 	while (--i > 0)
 	{
-		tmp = strcpy_for_cat(tmp, ops[op_list->head->n]);
-		*tmp++ = '\n';
+		p = strcpy_for_cat(p, ops[op_list->head->n]);
+		*p++ = '\n';
 		op_list->head = op_list->head->next;
 	}
-	*tmp = '\0';
-			printf("op_list:\n"); setbuf(stdout, NULL);  // debug purpose
+	*p = '\0';
+	if (DBG) printf("op_list:\n"); setbuf(stdout, NULL);  // debug purpose
 	write(1, output, len);
 	free(output);
 }

@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 17:57:30 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/05/23 05:04:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// char		**split(char *s)
-// {
-
-// }
 
 t_ps		*alloc_ps(t_ps *ps)
 {
@@ -24,7 +19,6 @@ t_ps		*alloc_ps(t_ps *ps)
 		|| !(ps->b = (t_stack *)ft_memalloc(sizeof(t_stack)))
 		|| !(ps->ops = (t_stack *)ft_memalloc(sizeof(t_stack))))
 		ERROR("failed to allocate ps\n");
-		// printf(); setbuf(stdout, NULL); // debug purpose
 	return (ps);
 }
 
@@ -54,6 +48,5 @@ t_ps		*get_ps(char **av)
 		free(split_args);
 		i++;
 	}
-	// print_stacks(ps, ""); // debug purpose
 	return (ps);
 }

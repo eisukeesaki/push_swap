@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 19:54:32 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/05/23 04:55:38 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,41 @@ void		rotate_up(t_stack *stack)
 {
 	if (stack->size < 2)
 		return ;
-	stack->head = stack->head->next;
+	stack->tail = stack->head;
+	stack->head = stack->tail->next;
 }
 
 void		rotate_down(t_stack *stack)
 {
 	if (stack->size < 2)
 		return ;
-	stack->head = stack->head->prev;
+	stack->head = stack->tail;
+	stack->tail = stack->head->prev;
 }
 
-void		push()
+void		push(t_stack *from, t_stack *to)
 {
-	printf("called push()\n"); setbuf(stdout, NULL); // debug purpose
+	if (DBG) printf("executing push()...\n"); setbuf(stdout, NULL);
+	t_elm		*to_push;
+
+	if (from->size < 1)
+		return ;
+	to_push = from->head;
+	unlink_node(from, from->head);
+	append_node(to, to_push);
+	rotate_down(to);
 }
 
 void		swap(t_stack *stack)
 {
 	t_elm		*bottom;
-	// t_elm	*old_top;
-	// t_elm	*old_med;
-	// t_elm	*old_btm;
 
 	if (stack->size < 2)
 		return ;
-
 	bottom = stack->head->next;
-
 	unlink_node(stack, bottom);
 	append_node(stack, bottom);
 	stack->head = bottom;
-
-	// old_top = stack->head;
-	// old_med = stack->head->next;
-	// old_btm = stack->head->prev;
-
-	// stack->head = old_med;
-	// stack->head->next = old_top;
-	// stack->head->prev = old_btm;
-
-	// stack->head->next->next = old_btm;
-	// stack->head->next->prev = stack->head;
-
-	// stack->head->prev->next = stack->head;
-	// stack->head->prev->prev = old_med;
 }
 
 void		dispatch_op(t_ps *ps, int op)
@@ -72,10 +63,10 @@ void		dispatch_op(t_ps *ps, int op)
 		rotate_down(ps->a);
 	if (op == RRB || op == RRR)
 		rotate_down(ps->b);
-	if (op == PA || op == PB)
-		push();
+	if (op == PA)
+		push(ps->b, ps->a);
 	if (op == PB)
-		push();
+		push(ps->a, ps->b);
 	if (op == SA || op == SS)
 		swap(ps->a);
 	if (op == SB || op == SS)
