@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:28:48 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/21 20:05:25 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/07/28 03:40:35 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ int		main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	ps = get_ps(av + 1);
+	if (DBG) print_stacks(ps, "init");
 
-	/* if stack_a is sorted circularly, rotate until min is at the top. */
 	if (!rotate_only_sort(ps))
 	{ /* if FALSE, sort it */
-		printf("cannot be sorted just by rotating.\n"); setbuf(stdout, NULL);
+		if (DBG) printf("cannot be sorted just by rotating.\n"); setbuf(stdout, NULL); // debug purpose
 		if (ps->a->size == 3)
 			sort_3(ps, ps->a);
 		else
-			median_3_sort();
+			sort(ps);
 	}
-			print_stacks(ps, ""); // debug purpose
-		print_op_list(ps->ops);
+	if (DBG) print_stacks(ps, ""); // debug purpose
+	print_op_list(ps->ops);
+	free_ps(ps);
+	// system("leaks push_swap");
 	return (0);
 }

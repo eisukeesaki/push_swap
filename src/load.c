@@ -6,11 +6,29 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/05/23 05:04:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/07/24 22:13:16 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		free_split_args(char **split_args, int wc)
+{
+	int		i;
+
+	i = 0;
+	while (i < wc)
+		free(split_args[i++]);
+	free(split_args);
+}
+
+void		init_stack(t_stack *stack)
+{
+	stack->head = NULL;
+	stack->tail = NULL;
+	stack->size = 0;
+	stack->top_seg = 0;
+}
 
 t_ps		*alloc_ps(t_ps *ps)
 {
@@ -19,6 +37,8 @@ t_ps		*alloc_ps(t_ps *ps)
 		|| !(ps->b = (t_stack *)ft_memalloc(sizeof(t_stack)))
 		|| !(ps->ops = (t_stack *)ft_memalloc(sizeof(t_stack))))
 		ERROR("failed to allocate ps\n");
+	init_stack(ps->a);
+	init_stack(ps->b);
 	return (ps);
 }
 
@@ -45,8 +65,8 @@ t_ps		*get_ps(char **av)
 			append_node(ps->a, create_node(n));
 			k++;
 		}
-		free(split_args);
 		i++;
 	}
+	free_split_args(split_args, k);
 	return (ps);
 }

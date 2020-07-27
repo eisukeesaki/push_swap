@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/05/23 04:55:38 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/07/28 04:45:44 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void		swap(t_stack *stack)
 	bottom = stack->head->next;
 	unlink_node(stack, bottom);
 	append_node(stack, bottom);
+	stack->tail = bottom->prev;
 	stack->head = bottom;
 }
 

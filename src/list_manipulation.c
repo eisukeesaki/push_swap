@@ -6,41 +6,43 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/05/23 03:36:39 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/07/28 04:40:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_elm		*create_node(int n)
+void		free_ps(t_ps *ps)
 {
-	t_elm	*elm;
-
-	if (!(elm = ft_memalloc(sizeof(t_elm))))
-		ERROR("failed to allcoate elm");
-	elm->n = n;
-	elm->segment = 0;
-	elm->prev = elm;
-	elm->next = elm;
-	return (elm);
+	free_stack(ps, ps->a);
+	free_stack(ps, ps->b);
+	free_stack(ps, ps->ops);
+	free(ps);
 }
 
-void		append_node(t_stack *stack, t_elm *node)
+void		free_stack(t_ps *ps, t_stack *stack)
 {
-	if (!stack->head)
+	t_elm	*tmp;
+
+	if (stack == ps->b && (stack->head != NULL || stack->tail != NULL))
+		error("stack_b is not NULL at the end of program");
+	else if (stack != ps->b)
 	{
-		stack->head = node;
-		stack->tail = node;
+		while (1)
+		{
+			tmp = stack->head;
+			stack->head = stack->head->next;
+			free(tmp);
+			stack->size--;
+			if (stack->size <= 0)
+			{
+				stack->head = NULL;
+				stack->tail = NULL;
+				break ;
+			}
+		}
 	}
-	else
-	{
-		node->prev = stack->tail;
-		node->next = stack->head;
-		stack->tail->next = node;
-		stack->head->prev = node;
-		stack->tail = node;
-	}
-	stack->size++;
+	free(stack);
 }
 
 /* fucking norm... */
@@ -81,4 +83,37 @@ void		unlink_node(t_stack *stack, t_elm *node)
 	stack->size--;
 	node->next = node;
 	node->prev = node;
+}
+
+void		append_node(t_stack *stack, t_elm *node)
+{
+	if (!stack->head)
+	{
+		stack->head = node;
+		stack->tail = node;
+	}
+	else
+	{
+		node->prev = stack->tail;
+		node->next = stack->head;
+		stack->tail->next = node;
+		stack->head->prev = node;
+		stack->tail = node;
+	}
+	stack->size++;
+}
+
+t_elm		*create_node(int n)
+{
+	t_elm	*elm;
+
+	// if (DBG) printf("sizeof(t_elm):%lu\n", sizeof(t_elm));
+	if (!(elm = ft_memalloc(sizeof(t_elm))))
+		ERROR("failed to allcoate elm");
+	elm->n = n;
+	elm->seg = 0;
+	elm->sorted = FALSE;
+	elm->prev = elm;
+	elm->next = elm;
+	return (elm);
 }

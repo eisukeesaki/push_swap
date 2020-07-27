@@ -1,6 +1,26 @@
 #include "push_swap.h"
 #include <stdio.h>
 
+void	print_stack(t_stack *stack, char *comment)
+{
+	t_elm		*elm = stack->head;
+	int			i = 0;
+	printf("stack_%s:", comment); setbuf(stdout, NULL);
+	if (stack)
+	{
+		while (i++ < stack->size)
+		{
+			printf("%d,", elm->n); setbuf(stdout, NULL);
+			elm = elm->next;
+		}
+	}
+	else
+		printf("empty\n"); setbuf(stdout, NULL);
+	printf("\n"); setbuf(stdout, NULL);
+	// if (strcmp(comment, " (initial)"))
+		// printf("-------------------------------------------------------\n"); setbuf(stdout, NULL);
+}
+
 void	print_stacks(t_ps *ps, char *comment)
 {
 	t_elm		*a = ps->a->head;

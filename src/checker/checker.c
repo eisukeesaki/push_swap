@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 14:24:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/05/23 04:57:50 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/07/28 03:10:21 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,26 @@ int		main(int ac, char **av)
 {
 	t_ps		*ps;
 	char		*line;
-	int			fd; // debug purpose
+	int			fd = 0; // debug purpose
 	
 	if (ac < 2)
 		return (0);
 	ps = get_ps(av + 1);
 	if (DBG) print_stacks(ps, "init");
-	if ((fd = open("op_list.txt", O_RDONLY)) == -1) // debug purpose
-		printf("file open error:%s\n", strerror(errno));
-	else
-		if (DBG) printf("\nfd of op_list.txt is:%d\n", fd);
-	// while (get_next_line(0, &line))
-	while (get_next_line(fd, &line)) // debug purpose
+	if (RDFILE) // debug purpose
+	{
+		if ((fd = open("op_list.txt", O_RDONLY)) == -1)
+			printf("file open error:%s\n", strerror(errno));
+	}
+	if (DBG) printf("\nfd of op_list.txt is:%d\n", fd);
+	while (get_next_line(fd, &line)) // hard-code fd as 0 in deploy build
+	{
 		dispatch_op_checker(line, ps);
+		free(line);
+		line = NULL;
+	}
 	if (DBG) {write(1, "\n", 1); print_stacks(ps, "after op"); write(1, "\n", 1);}
 	vali_result(ps);
+	// system("leaks checker");
 	return (0);
 }
