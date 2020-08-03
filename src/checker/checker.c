@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 14:24:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 03:10:21 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 03:33:58 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,9 @@ void	dispatch_op_checker(char *op, t_ps *ps)
 	if (!strcmp(op, "rrb") || !strcmp(op, "rrr"))
 		rotate_down(ps->b);
 	if (!strcmp(op, "pa"))
-	{
-		if (DBG) printf("calling pa...\n"); setbuf(stdout, NULL);
 		push(ps->b, ps->a);
-	}
 	if (!strcmp(op, "pb"))
-	{
-		if (DBG) printf("calling pb...\n"); setbuf(stdout, NULL);
 		push(ps->a, ps->b);
-	}
 	if (!strcmp(op, "sa") || !strcmp(op, "ss"))
 		swap(ps->a);
 	if (!strcmp(op, "sb") || !strcmp(op, "ss"))
@@ -79,7 +73,7 @@ int		main(int ac, char **av)
 		free(line);
 		line = NULL;
 	}
-	if (DBG) {write(1, "\n", 1); print_stacks(ps, "after op"); write(1, "\n", 1);}
+	if (DBG) {write(1, "\n", 1); print_stacks(ps, "after ops"); write(1, "\n", 1);}
 	vali_result(ps);
 	// system("leaks checker");
 	return (0);
