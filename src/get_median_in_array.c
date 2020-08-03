@@ -6,16 +6,16 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:25:22 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:25:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 06:20:33 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			*dup_int_array(int *array, int size)
+int			*dup_int_array(int *array, size_t size)
 {
 	int		*new;
-	int		i;
+	size_t	i;
 
 	if (!(new = ft_memalloc(sizeof(int) * size)))
 		error("failed to allocate new at dup_int_array()");
@@ -28,7 +28,7 @@ int			*dup_int_array(int *array, int size)
 	return (new);
 }
 
-int		get_median_in_array(int *array, int size)
+int		get_median_in_array(int *array, size_t size)
 {
 	int		*arr;
 	int		median;

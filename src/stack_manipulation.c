@@ -6,11 +6,25 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:02:56 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 06:34:46 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		assign_seg_id(t_stack *b, int seg_id, int push_ct)
+{
+	int		i;
+	t_elm	*b_elm;
+
+	i = 0;
+	b_elm = b->head;
+	while (i++ < push_ct)
+	{
+		b_elm->seg = seg_id;
+		b_elm = b_elm->next;
+	}
+}
 
 void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 {
@@ -58,8 +72,8 @@ void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 {
 	int		median;
 	int		*b_arr;
-	int		b_arr_size;
-	int		i;
+	size_t	b_arr_size;
+	size_t	i;
 	int		k;
 
 	b_arr_size = 0;
@@ -78,6 +92,7 @@ void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 		b_arr_size = k;
 	}
 	pa_all_in_list(ps, b_arr, b_arr_size);
+	delete_seg_id(ps->a, b_arr_size);
 	free(b_arr);
 }
 
@@ -95,11 +110,13 @@ void	pb_smaller(t_ps *ps, t_stack *pb_list)
 	int		idx;
 	int		i;
 	t_elm	*elm;
+	int		curr_seg;
 
 	mid = ps->a->size / 2;
 	idx = 0;
 	i = 0;
 	elm = ps->a->head;
+	curr_seg = ps->b->head != NULL ? ps->b->head->seg : 0;
 	while (i++ < pb_list->size)
 	{
 		while (elm->n != pb_list->head->n)
@@ -116,4 +133,6 @@ void	pb_smaller(t_ps *ps, t_stack *pb_list)
 		elm = ps->a->head;
 		idx = 0;
 	}
+	assign_seg_id(ps->b, curr_seg + 1, pb_list->size);
+	free_elms(pb_list);
 }

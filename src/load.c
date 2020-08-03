@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/24 22:13:16 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 08:38:13 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,53 @@ void		init_stack(t_stack *stack)
 	stack->head = NULL;
 	stack->tail = NULL;
 	stack->size = 0;
-	stack->top_seg = 0;
+	// stack->top_seg = 0;
 }
 
 t_ps		*alloc_ps(t_ps *ps)
 {
 	if (!(ps = ft_memalloc(sizeof(t_ps)))
-		|| !(ps->a = (t_stack *)ft_memalloc(sizeof(t_stack)))
-		|| !(ps->b = (t_stack *)ft_memalloc(sizeof(t_stack)))
-		|| !(ps->ops = (t_stack *)ft_memalloc(sizeof(t_stack))))
+		|| !(ps->a = ft_memalloc(sizeof(t_stack)))
+		|| !(ps->b = ft_memalloc(sizeof(t_stack)))
+		|| !(ps->ops = ft_memalloc(sizeof(t_stack))))
+		// || !(ps->a = (t_stack *)ft_memalloc(sizeof(t_stack)))
+		// || !(ps->b = (t_stack *)ft_memalloc(sizeof(t_stack)))
+		// || !(ps->ops = (t_stack *)ft_memalloc(sizeof(t_stack))))
 		ERROR("failed to allocate ps\n");
 	init_stack(ps->a);
 	init_stack(ps->b);
+	init_stack(ps->ops);
 	return (ps);
 }
+
+// t_ps		*get_ps(char **av) // fix: make it compatible with 100,500 test and checker
+// {
+// 	t_ps		*ps;
+// 	char		**split_args;
+// 	int			n;
+// 	// size_t		i;
+// 	size_t		k;
+
+// 	ps = NULL;
+// 	ps = alloc_ps(ps);
+// 	// <parse flags>
+// 	// i = 0;
+// 	split_args = ft_strsplit(av[0], ' ');
+// 	// while (av[0][i])
+// 	// {
+// 	k = 0;
+// 	while (split_args[k])
+// 	{
+// 		n = ps_atoi(split_args[k]);
+// 		vali_dup(ps->a, n);
+// 		append_node(ps->a, create_node(n));
+// 		k++;
+// 	}
+// 		// i++;
+// 	// }
+// 	free_split_args(split_args, k);
+// 	return (ps);
+// }
 
 t_ps		*get_ps(char **av)
 {
@@ -66,7 +99,8 @@ t_ps		*get_ps(char **av)
 			k++;
 		}
 		i++;
+		free(split_args);
+		// free_split_args(split_args, k);
 	}
-	free_split_args(split_args, k);
 	return (ps);
 }

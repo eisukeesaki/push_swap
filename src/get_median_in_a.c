@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:33 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:38:04 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 06:12:38 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 size_t		get_array_size_of_unsorted(t_stack *stack)
 {
 	int		i;
-	int		size;
+	size_t	size;
 	t_elm	*head;
 
 	i = 0;

@@ -47,7 +47,7 @@ typedef struct		s_stack
 	t_elm			*head;
 	t_elm			*tail;
 	int				size;
-	int				top_seg;
+	/*int				top_seg;*/
 }					t_stack;
 
 typedef struct		s_ps
@@ -55,7 +55,7 @@ typedef struct		s_ps
 	t_stack			*a;
 	t_stack			*b;
 	t_stack			*ops;
-	t_bool			verbose;
+	/*t_bool			verbose;*/
 }					t_ps;
 
 /*
@@ -101,10 +101,11 @@ void				print_op_list(t_stack *op_list);
 void				sort_partial(t_stack *a, t_ps *ps);
 
 /* stack_manipulation_helpers.c */
-int					*create_array_of_seg(t_stack *stack, int seg, int *arr_size);
+void				delete_seg_id(t_stack *a, int pushed_size);
+int					*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size);
 
 /* get_median_in_array.c */
-int					get_median_in_array(int *array, int size);
+int					get_median_in_array(int *array, size_t size);
 
 /* quicksort.c */
 void				quicksort(int *array, int size);
@@ -119,6 +120,7 @@ void				sort(t_ps *ps);
 void				sort_3(t_ps *ps, t_stack *stack);
 
 /* list_manipulation.c */
+void				free_elms(t_stack *stack);
 void				free_ps(t_ps *ps);
 void				free_stack(t_ps *ps, t_stack *stack);
 void				unlink_node(t_stack *stack, t_elm *node);

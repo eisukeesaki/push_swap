@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 19:01:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:45:44 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 08:34:40 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		rotate_down(t_stack *stack)
 
 void		push(t_stack *from, t_stack *to)
 {
-	if (DBG) printf("executing push()...\n"); setbuf(stdout, NULL);
 	t_elm		*to_push;
 
 	if (from->size < 1)

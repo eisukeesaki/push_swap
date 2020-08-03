@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 20:02:12 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 03:54:02 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/01 20:59:55 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,17 @@ void	sort_partial(t_stack *a, t_ps *ps)
 
 	min = find_min(a);
 	if (is_sorted_circularly(a, min) == FALSE)
-		sort_2_or_3(ps);
+		sort_3(ps, a);
 	else
 	{
-		rotate_til_at_top(ps, a, min);
-		i = 0;
-		elm = a->head;
+		if (a->size == 2)
+			perform_op_ntimes(ps, SA, 1);
+		else
+		{
+			rotate_til_at_top(ps, a, min);
+			i = 0;
+			elm = a->head;
+		}
 	}
 	mark_as_sorted(a);
 }

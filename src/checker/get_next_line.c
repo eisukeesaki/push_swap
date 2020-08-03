@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
-/*   Updated: 2020/04/25 20:07:59 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 06:25:56 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		get_line(char **str, char **line)
 
 	while ((nl = ft_strchr(*str, '\n')))
 	{
-		*line = ft_strndup(*str, (nl - *str));
+		*line = ft_strndup(*str, (size_t)(nl - *str));
 		tmp = ft_strdup(nl + 1);
 		free(*str);
 		*str = tmp;

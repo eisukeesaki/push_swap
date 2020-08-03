@@ -6,11 +6,32 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:40:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/03 08:38:43 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		free_elms(t_stack *stack)
+{
+	t_elm	*tmp;
+
+	if (stack->head == NULL || stack->tail == NULL)
+		return ;
+	while (1)
+	{
+		tmp = stack->head;
+		stack->head = stack->head->next;
+		free(tmp);
+		stack->size--;
+		if (stack->size <= 0)
+		{
+			stack->head = NULL;
+			stack->tail = NULL;
+			break ;
+		}
+	}
+}
 
 void		free_ps(t_ps *ps)
 {
@@ -23,7 +44,6 @@ void		free_ps(t_ps *ps)
 void		free_stack(t_ps *ps, t_stack *stack)
 {
 	t_elm	*tmp;
-
 	if (stack == ps->b && (stack->head != NULL || stack->tail != NULL))
 		error("stack_b is not NULL at the end of program");
 	else if (stack != ps->b)
