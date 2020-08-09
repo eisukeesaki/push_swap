@@ -8,11 +8,11 @@ HIGH="\033[1m";
 BOLD="\e[1m";
 
 # select test
-TEST_2_ELM=1;
-TEST_3_ELM=1;
-TEST_4_ELM=1;
-TEST_5_ELM=1;
-TEST_100_ELM=0;
+TEST_2_ELM=0;
+TEST_3_ELM=0;
+TEST_4_ELM=0;
+TEST_5_ELM=0;
+TEST_100_ELM=1;
 TEST_500_ELM=0;
 
 #----------------------------------------------------------------------------
@@ -20,46 +20,46 @@ TEST_500_ELM=0;
 #----------------------------------------------------------------------------
 if [ $TEST_2_ELM == 1 ]
 then
-	echo "------------------------------Testing   2 elements------------------------------";
-	TEST_CT=100;
-	FAIL_CT=0;
-	TOT_INS=0;
-	for (( i=0; i<$TEST_CT; i++ ))
-	do
-		ARG="`ruby -e 'printf Array.new(2) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-		INSLIST=`./push_swap $ARG`;
-		if [ -z "$INSLIST" ]
+echo "------------------------------Testing   2 elements------------------------------";
+TEST_CT=100;
+FAIL_CT=0;
+TOT_INS=0;
+for (( i=0; i<$TEST_CT; i++ ))
+do
+	ARG="`ruby -e 'printf Array.new(2) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
+	INSLIST=`./push_swap $ARG`;
+	if [ -z "$INSLIST" ]
+	then
+		:;
+	else
+		INSLIST="${INSLIST}\n";
+	fi
+	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	INS_CT=`printf "$INSLIST" | wc -l | bc`;
+	if [ "$RESULT" != "OK" ]
+	then
+		echo "${RED}$RESULT${EOC}";
+		echo "${RED}stack was not sorted.${EOC}\n";
+		let "FAIL_CT += 1";
+	else
+		let "TOT_INS += INS_CT";
+		if [ $INS_CT -le 1 ]
 		then
-			:;
+			echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
 		else
-			INSLIST="${INSLIST}\n";
-		fi
-		RESULT=`printf "$INSLIST" | checker/checker $ARG`;
-		INS_CT=`printf "$INSLIST" | wc -l | bc`;
-		if [ "$RESULT" != "OK" ]
-		then
-			echo "${RED}$RESULT${EOC}";
-			echo "${RED}stack was not sorted.${EOC}\n";
+			echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1)";
+			echo "\t\tPassed arguments:";
+			echo "\t\t$ARG\n";
 			let "FAIL_CT += 1";
-		else
-			let "TOT_INS += INS_CT";
-			if [ $INS_CT -le 1 ]
-			then
-				echo "${GREEN}$RESULT [PASS]${EOC}\t$INS_CT\tinstructions.";
-			else
-				echo "${GREEN}$RESULT${EOC} ${RED}[FAIL]${EOC}\t$INS_CT\tinstructions. (Limit is 1)";
-				echo "\t\tPassed arguments:";
-				echo "\t\t$ARG\n";
-				let "FAIL_CT += 1";
-			fi
 		fi
-	done
-	echo --------------------------------------------------------------------------------
-	let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
-	echo "[SUMMARY for 2 element test]";
-	echo "\t- $FAIL_CT/$TEST_CT failed tests.";
-	echo "\t- Average instructions: $AVG_INS (limit is 1)";
-	echo "\n\n";
+	fi
+done
+echo --------------------------------------------------------------------------------
+let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+echo "[SUMMARY for 2 element test]";
+echo "\t- $FAIL_CT/$TEST_CT failed tests.";
+echo "\t- Average instructions: $AVG_INS (limit is 1)";
+echo "\n\n";
 fi
 
 #----------------------------------------------------------------------------
@@ -158,6 +158,7 @@ if [ $TEST_5_ELM == 1 ]
 then
 echo "------------------------------Testing   5 elements------------------------------";
 TEST_CT=100;
+# TEST_CT=3;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
@@ -165,9 +166,13 @@ do
 	ARG="`ruby -e 'printf Array.new(5) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
 	# ARG="`ruby -e 'printf Array.new(5) { rand(1...100) }.uniq.map { |i| i.to_s}.join(" ")'`";
 	INSLIST=`./push_swap $ARG`;
+	# echo "INSLIST: $INSLIST";
 	if [ -z "$INSLIST" ]
 	then
 		:
+		# echo "error. instructions are missing.";
+		# let "FAIL_CT += 1";
+		# continue;
 	else
 		INSLIST="${INSLIST}\n";
 	fi

@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 06:19:01 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/04 10:28:24 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int			*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size)
 	elm = stack->head;
 	// if (!(array = ft_memalloc(sizeof(get_array_size_of_seg(stack, seg)))))
 	*arr_size = get_array_size_of_seg(stack, seg);
-	if (!(array = ft_memalloc((size_t)*arr_size)))
+	if (!(array = ft_memalloc(sizeof(int) * *arr_size)))
 		ERROR("failed to allocate array in create_array_of_seg()");
 	// while (*arr_size < stack->size)
 	i = 0;

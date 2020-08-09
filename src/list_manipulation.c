@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 08:38:43 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:54:53 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,19 @@ void		free_elms(t_stack *stack)
 
 	if (stack->head == NULL || stack->tail == NULL)
 		return ;
-	while (1)
+	while (0 < stack->size)
 	{
 		tmp = stack->head;
-		stack->head = stack->head->next;
+		if (1 < stack->size)
+			stack->head = stack->head->next;
+		unlink_node(stack, tmp);
 		free(tmp);
-		stack->size--;
-		if (stack->size <= 0)
-		{
-			stack->head = NULL;
-			stack->tail = NULL;
-			break ;
-		}
 	}
 }
 
 void		free_ps(t_ps *ps)
 {
+	// system("leaks push_swap");
 	free_stack(ps, ps->a);
 	free_stack(ps, ps->b);
 	free_stack(ps, ps->ops);
@@ -44,22 +40,18 @@ void		free_ps(t_ps *ps)
 void		free_stack(t_ps *ps, t_stack *stack)
 {
 	t_elm	*tmp;
+
 	if (stack == ps->b && (stack->head != NULL || stack->tail != NULL))
-		error("stack_b is not NULL at the end of program");
+		error("stack_b is not NULL after sorting is complete");
 	else if (stack != ps->b)
 	{
-		while (1)
+		while (0 < stack->size)
 		{
 			tmp = stack->head;
-			stack->head = stack->head->next;
+			if (1 < stack->size)
+				stack->head = stack->head->next;
+			unlink_node(stack, tmp);
 			free(tmp);
-			stack->size--;
-			if (stack->size <= 0)
-			{
-				stack->head = NULL;
-				stack->tail = NULL;
-				break ;
-			}
 		}
 	}
 	free(stack);

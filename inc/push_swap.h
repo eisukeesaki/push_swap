@@ -87,6 +87,7 @@ typedef enum		e_ops
 /* debug.c */
 void				print_stacks(t_ps *ps, char *comment);
 void				print_stack(t_stack *stack, char *comment);
+void				print_all_ptrs_to_char(char **p);
 
 /* error.c */
 void				error(char *message);
@@ -154,6 +155,9 @@ t_elm				*find_min(t_stack *stack);
 
 /* rotate_only_sort.c */
 t_bool				rotate_only_sort(t_ps *ps);
+
+/* ps_strsplit.c */
+// char				**ps_strsplit(char *s, char c);
 
 /* load.c */
 t_ps				*get_ps(char **av);

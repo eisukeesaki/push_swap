@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 02:34:17 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/09 16:56:28 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	sort(t_ps *ps)
 		else
 			break ;
 	}
-	// free(pb_list);// TODO: EXC BAD ACCESS
+	free(pb_list);
 }
 
 // void	sort_top_3(t_ps *ps)

@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:54:26 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 08:00:35 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/04 06:26:35 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ void		print_op_list(t_stack *op_list)
 	// *p = '\0';
 	// if (DBG) printf("op_list:\n"); setbuf(stdout, NULL);  // debug purpose
 	write(1, output, len);
-	// free(output);// TODO: EXC BAD ACCESS
+	free(output);// TODO: EXC BAD ACCESS
 }
