@@ -5,12 +5,13 @@ void	print_stack(t_stack *stack, char *comment)
 {
 	t_elm		*elm = stack->head;
 	int			i = 0;
+
 	printf("<stack_%s>\n", comment); setbuf(stdout, NULL);
 	if (stack)
 	{
 		while (i++ < stack->size)
 		{
-			printf("%d(seg:%d)\n", elm->n, elm->seg); setbuf(stdout, NULL);
+			printf("%d(seg:%d)(sorted:%d)\n", elm->n, elm->seg, elm->sorted); setbuf(stdout, NULL);
 			elm = elm->next;
 		}
 	}
@@ -30,7 +31,7 @@ void	print_stacks(t_ps *ps, char *comment)
 	{
 		while (i++ < ps->a->size)
 		{
-			printf("%d(seg:%d)\n", a->n, a->seg); setbuf(stdout, NULL);
+			printf("%d(seg:%d)(sorted:%d)\n", a->n, a->seg, a->sorted); setbuf(stdout, NULL);
 			a = a->next;
 		}
 	}

@@ -114,8 +114,12 @@ void				quicksort(int *array, int size);
 /* get_median_in_a.c */
 int					get_median_in_a(t_stack *stack);
 
+/* sort_top_3_helpers */
+void				update_top_mid_btm(t_stack *a, int *top, int *mid, int *btm);
+
 /* sort.c */
 void				sort(t_ps *ps);
+void				sort_top_3(t_ps *ps);
 
 /* sort_3.c */
 void				sort_3(t_ps *ps, t_stack *stack);

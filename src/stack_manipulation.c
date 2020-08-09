@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 06:34:46 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/09 19:31:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,28 @@ void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 	int		idx;
 	int		i;
 	int		k;
-	t_stack	*b;
+	int		m;
+	t_elm	*b_elm;
 
 	mid = ps->b->size / 2;
-	idx = 0;
 	i = 0;
-	b = ps->b;
-	while (i < b_arr_size)
+	m = 0;
+	while (i++ < b_arr_size)
 	{
 		k = 0;
-		while (k++ < ps->b->size && b->head->n != pa_list[i++])
+		idx = 0;
+		b_elm = ps->b->head;
+		while (k++ < ps->b->size && b_elm->n != pa_list[m])
 		{
 			idx++;
-			b->head = b->head->next;
+			b_elm = b_elm->next;
 		}
 		if (idx <= mid)
 			perform_op_ntimes(ps, RB, idx);
 		else
 			perform_op_ntimes(ps, RRB, ps->b->size - idx);
 		perform_op_ntimes(ps, PA, 1);
-		b = ps->b;
+		m++;
 	}
 }
 

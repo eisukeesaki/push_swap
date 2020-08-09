@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/04 10:28:24 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/09 17:38:03 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	delete_seg_id(t_stack *a, int pushed_size)
 	while (i < pushed_size)
 	{
 		a_elm->seg = 0;
+		a_elm = a_elm->next;
 		i++;
 	}
 }

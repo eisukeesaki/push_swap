@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/09 16:56:28 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/09 18:18:11 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	sort(t_ps *ps)
 	int		i;
 	t_stack	*pb_list;
 	t_elm	*a_elm;
+	__attribute__((unused)) int		outmost_loop_ct = 0; // debug purpose
 
 	median = 0;
 	if (!(pb_list = (t_stack *)ft_memalloc(sizeof(t_stack))))
 		ERROR("failed to allocate pb_list");
-	while (!is_sorted(ps->a))
+	while (!is_sorted(ps->a) && ++outmost_loop_ct)
 	{
 		while (count_unsorted(ps->a) > 3)
 		{
@@ -46,26 +47,35 @@ void	sort(t_ps *ps)
 	free(pb_list);
 }
 
-// void	sort_top_3(t_ps *ps)
-// {
-// 	int		top;
-// 	int		mid;
-// 	int		btm;
+void	sort_top_3(t_ps *ps)
+{
+	int		top;
+	int		mid;
+	int		btm;
 
-// 	top = ps->a->head->n;
-// 	mid = ps->a->head->next->n;
-// 	btm = ps->a->head->next->next->n;
-// 	while (1)
-// 	{
-// 		if ((mid < top && top < btm) || (mid < btm && btm < top) || (btm < mid && mid < top))
-// 			perform_op_ntimes(ps, SA, 1);
-// 		top = ps->a->head->n;
-// 		mid = ps->a->head->next->n;
-// 		btm = ps->a->head->next->next->n;
-// 		if (top < mid && mid < btm)
-// 			break;
-// 		perform_op_ntimes(ps, RA, 1);
-// 		perform_op_ntimes(ps, SA, 1);
-// 		perform_op_ntimes(ps, RRA, 1);
-// 	}
-// }
+	// top = ps->a->head->n;
+	// mid = ps->a->head->next->n;
+	// btm = ps->a->head->next->next->n;
+	top = 0;
+	mid = 0;
+	btm = 0;
+	update_top_mid_btm(ps->a, &top, &mid, &btm);
+	while (1)
+	{
+		if ((mid < top && top < btm) || (mid < btm && btm < top) || (btm < mid && mid < top))
+			perform_op_ntimes(ps, SA, 1);
+		// top = ps->a->head->n;
+		// mid = ps->a->head->next->n;
+		// btm = ps->a->head->next->next->n;
+		update_top_mid_btm(ps->a, &top, &mid, &btm);
+		if (top < mid && mid < btm)
+			break;
+		perform_op_ntimes(ps, RA, 1);
+		perform_op_ntimes(ps, SA, 1);
+		perform_op_ntimes(ps, RRA, 1);
+		update_top_mid_btm(ps->a, &top, &mid, &btm);
+		// top = ps->a->head->n;
+		// mid = ps->a->head->next->n;
+		// btm = ps->a->head->next->next->n;
+	}
+}
