@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/09 18:18:11 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/10 17:04:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	sort(t_ps *ps)
 	int		i;
 	t_stack	*pb_list;
 	t_elm	*a_elm;
-	__attribute__((unused)) int		outmost_loop_ct = 0; // debug purpose
+	__attribute__((unused)) int		outermost_loop_ct = 0; // debug purpose
 
 	median = 0;
 	if (!(pb_list = (t_stack *)ft_memalloc(sizeof(t_stack))))
 		ERROR("failed to allocate pb_list");
-	while (!is_sorted(ps->a) && ++outmost_loop_ct)
+	while (!is_sorted(ps->a) && ++outermost_loop_ct)
 	{
 		while (count_unsorted(ps->a) > 3)
 		{

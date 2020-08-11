@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:28:48 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/09 19:34:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/11 14:08:50 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int		main(int ac, char **av)
 	if (DBG) print_stacks(ps, "after sort"); // debug purpose
 	print_op_list(ps->ops);
 	free_ps(ps);
-	system("leaks push_swap");
+	// system("leaks push_swap");
 	return (0);
 }

@@ -102,6 +102,7 @@ void				print_op_list(t_stack *op_list);
 void				sort_partial(t_stack *a, t_ps *ps);
 
 /* stack_manipulation_helpers.c */
+void				select_3_largest(int *b_arr, size_t *b_arr_size);
 void				delete_seg_id(t_stack *a, int pushed_size);
 int					*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size);
 
@@ -109,6 +110,7 @@ int					*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size);
 int					get_median_in_array(int *array, size_t size);
 
 /* quicksort.c */
+void				rev_quicksort(int *array, int size);
 void				quicksort(int *array, int size);
 
 /* get_median_in_a.c */

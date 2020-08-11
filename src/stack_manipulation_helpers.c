@@ -6,11 +6,17 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/09 17:38:03 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/11 14:00:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	select_3_largest(int *b_arr, size_t *b_arr_size)
+{
+	rev_quicksort(b_arr, *b_arr_size);
+	(*b_arr_size)--;
+}
 
 void	delete_seg_id(t_stack *a, int pushed_size)
 {
