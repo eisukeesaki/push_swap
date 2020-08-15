@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:28:48 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/11 14:08:50 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 18:56:50 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		main(int ac, char **av)
 		// if (DBG) printf("cannot be sorted just by rotating.\n"); setbuf(stdout, NULL); // debug purpose
 		if (ps->a->size == 3)
 			sort_3(ps, ps->a);
+		else if (ps->a->size == 5)
+			sort_5(ps);
 		else
 			sort(ps);
 	}

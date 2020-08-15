@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/11 14:13:45 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/12 15:02:12 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,43 @@ void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 	}
 }
 
+// void	get_pa_list_and_pa(t_ps *ps, int top_seg) // working code
+// {
+// 	int		median;
+// 	int		*b_arr;
+// 	size_t	b_arr_size;
+// 	size_t	i;
+// 	int		k;
+
+// 	b_arr_size = 0;
+// 	b_arr = create_array_of_seg(ps->b, top_seg, &b_arr_size);
+// 	// printf("num of elms in seg: %zu\n", b_arr_size);  // debug purpose
+// 	while (b_arr_size > 3)
+// 	{
+// 		// printf("b_arr_size: %zu\n", b_arr_size);  // debug purpose
+// 		if (b_arr_size == 4)
+// 		{
+// 			select_3_largest(b_arr, &b_arr_size);
+// 			continue ;
+// 		}
+// 		median = get_median_in_array(b_arr, b_arr_size);
+// 		i = 0;
+// 		k = 0;
+// 		while (i < b_arr_size)
+// 		{
+// 			// if (b_arr[i] > median)
+// 			if (b_arr[i] >= median)
+// 				b_arr[k++] = b_arr[i];
+// 			i++;
+// 		}
+// 		b_arr_size = k;
+// 	}
+// 	// printf("pushing %zu elms to stack_a\n", b_arr_size);  // debug purpose
+// 	pa_all_in_list(ps, b_arr, b_arr_size);
+// 	delete_seg_id(ps->a, b_arr_size);
+// 	free(b_arr);
+// }
+
 void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 {
 	int		median;
@@ -81,28 +118,19 @@ void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 
 	b_arr_size = 0;
 	b_arr = create_array_of_seg(ps->b, top_seg, &b_arr_size);
-	// printf("num of elms in seg: %zu\n", b_arr_size);  // debug purpose
-	while (b_arr_size > 3)
+	if (b_arr_size > 3)
 	{
-		// printf("b_arr_size: %zu\n", b_arr_size);  // debug purpose
-		if (b_arr_size == 4)
-		{
-			select_3_largest(b_arr, &b_arr_size);
-			continue ;
-		}
 		median = get_median_in_array(b_arr, b_arr_size);
 		i = 0;
 		k = 0;
 		while (i < b_arr_size)
 		{
-			// if (b_arr[i] > median)
 			if (b_arr[i] >= median)
 				b_arr[k++] = b_arr[i];
 			i++;
 		}
 		b_arr_size = k;
 	}
-	// printf("pushing %zu elms to stack_a\n", b_arr_size);  // debug purpose
 	pa_all_in_list(ps, b_arr, b_arr_size);
 	delete_seg_id(ps->a, b_arr_size);
 	free(b_arr);
@@ -128,7 +156,7 @@ void	pb_smaller(t_ps *ps, t_stack *pb_list)
 	idx = 0;
 	i = 0;
 	elm = ps->a->head;
-	curr_seg = ps->b->head != NULL ? ps->b->head->seg : 0;
+	curr_seg = get_top_seg(ps->b);
 	while (i++ < pb_list->size)
 	{
 		while (elm->n != pb_list->head->n)

@@ -85,8 +85,9 @@ typedef enum		e_ops
 **-----------------------------------------------------------------------------
 */
 /* debug.c */
-void				print_stacks(t_ps *ps, char *comment);
-void				print_stack(t_stack *stack, char *comment);
+// void				print_stacks(t_ps *ps, char *comment);
+t_bool				print_stacks(t_ps *ps, char *comment);
+t_bool				print_stack(t_stack *stack, char *comment);
 void				print_all_ptrs_to_char(char **p);
 
 /* error.c */
@@ -98,7 +99,11 @@ intmax_t			ps_atoi(const char *str);
 /* print_op_list.c */
 void				print_op_list(t_stack *op_list);
 
+/* confirm_sort_partial.c */
+t_bool				confirm_sort_partial(t_stack *a);
+
 /* sort_partial.c */
+void				mark_as_sorted(t_stack *stack);
 void				sort_partial(t_stack *a, t_ps *ps);
 
 /* stack_manipulation_helpers.c */
@@ -123,6 +128,9 @@ void				update_top_mid_btm(t_stack *a, int *top, int *mid, int *btm);
 void				sort(t_ps *ps);
 void				sort_top_3(t_ps *ps);
 
+/* sort_5.c */
+void				sort_5(t_ps *ps);
+
 /* sort_3.c */
 void				sort_3(t_ps *ps, t_stack *stack);
 
@@ -144,6 +152,7 @@ void				swap(t_stack *stack);
 void				perform_op_ntimes(t_ps *ps, int op, int n);
 
 /* stack_manipulation.c */
+void				pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size);
 void				rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest);
 void				process_b(t_ps *ps);
 void				pb_smaller(t_ps *ps, t_stack *pb_list);

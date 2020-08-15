@@ -6,11 +6,12 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:04:21 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 04:16:25 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/12 11:25:36 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>  // debug purpose
 
 int		get_top_seg(t_stack *b)
 {
@@ -45,10 +46,11 @@ int		count_unsorted(t_stack *stack) // returns num of unsorted elms in stack_a
 			count++;
 		head = head->next;
 	}
+	// printf("%d unsorted elms in stack_a\n", count);
 	return (count);
 }
 
-t_bool	is_sorted(t_stack *stack) // checks if unsorted segment exists in stack_a
+t_bool	is_sorted(t_stack *stack) // checks if unsorted elms exists in stack_a
 {
 	int		i;
 	t_elm	*head;

@@ -1,7 +1,7 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-void	print_stack(t_stack *stack, char *comment)
+t_bool	print_stack(t_stack *stack, char *comment)
 {
 	t_elm		*elm = stack->head;
 	int			i = 0;
@@ -20,9 +20,11 @@ void	print_stack(t_stack *stack, char *comment)
 	printf("\n"); setbuf(stdout, NULL);
 	// if (strcmp(comment, " (initial)"))
 		// printf("-------------------------------------------------------\n"); setbuf(stdout, NULL);
+	return (TRUE);
 }
 
-void	print_stacks(t_ps *ps, char *comment)
+// void	print_stacks(t_ps *ps, char *comment)
+t_bool	print_stacks(t_ps *ps, char *comment)
 {
 	t_elm		*a = ps->a->head;
 	int			i = 0;
@@ -54,6 +56,7 @@ void	print_stacks(t_ps *ps, char *comment)
 		printf("empty\n"); setbuf(stdout, NULL);
 	// if (strcmp(comment, " (initial)"))
 		// printf("-------------------------------------------------------\n"); setbuf(stdout, NULL);
+	return (TRUE);
 }
 
 // print_stacks_bw()?

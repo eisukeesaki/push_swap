@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:33 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 06:12:38 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/12 13:00:41 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,51 @@ size_t		get_array_size_of_unsorted(t_stack *stack)
 	head = stack->head;
 	while (i++ < stack->size)
 	{
-		if (stack->head->sorted == FALSE)
+		if (head->sorted == FALSE)
 			size++;
 		head = head->next;
 	}
 	return (size);
 }
 
-int			*create_array_of_unsorted(t_stack *stack)
+// int			*create_array_of_unsorted(t_stack *stack) // working code
+// {
+// 	int		*array;
+// 	t_elm	*elm;
+// 	int		i;
+
+// 	elm = stack->head;
+// 	i = 0;
+// 	if (!(array = ft_memalloc(get_array_size_of_unsorted(stack) * sizeof(int))))
+// 	// if (!(array = ft_memalloc(sizeof(get_array_size_of_unsorted(stack)))))
+// 		ERROR("failed to allocate array in create_array_unsorted()");
+// 	while (i < stack->size)
+// 	{
+// 		if (elm->sorted == FALSE)
+// 			array[i] = elm->n; /* increment i here? */
+// 		elm = elm->next;
+// 		i++;
+// 	}
+// 	return (array);
+// }
+
+int			*create_array_of_unsorted(t_stack *stack, size_t *size)
 {
 	int		*array;
 	t_elm	*elm;
 	int		i;
+	int		k;
 
 	elm = stack->head;
 	i = 0;
-	if (!(array = ft_memalloc(get_array_size_of_unsorted(stack) * sizeof(int))))
-	// if (!(array = ft_memalloc(sizeof(get_array_size_of_unsorted(stack)))))
+	k = 0;
+	*size = get_array_size_of_unsorted(stack);
+	if (!(array = ft_memalloc(*size * sizeof(int))))
 		ERROR("failed to allocate array in create_array_unsorted()");
 	while (i < stack->size)
 	{
 		if (elm->sorted == FALSE)
-			array[i] = elm->n; /* increment i here? */
+			array[k++] = elm->n; /* increment i here? */
 		elm = elm->next;
 		i++;
 	}
@@ -55,11 +78,14 @@ int			*create_array_of_unsorted(t_stack *stack)
 int		get_median_in_a(t_stack *stack)
 {
 	int		*arr;
+	size_t	size;
 	int		median;
 
-	arr = create_array_of_unsorted(stack);
-	quicksort(arr, stack->size);
-	median = arr[stack->size / 2];
+	size = 0;
+	arr = create_array_of_unsorted(stack, &size);
+	quicksort(arr, (int)size);
+	// median = arr[size / 2];
+	median = size % 2 == 0 ? arr[(size / 2) - 1] : arr[size / 2];
 	free(arr);
 	return (median);
 }
