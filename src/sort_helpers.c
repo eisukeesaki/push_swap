@@ -6,14 +6,13 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:04:21 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/12 11:25:36 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:39:52 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>  // debug purpose
 
-int		get_top_seg(t_stack *b)
+int			get_top_seg(t_stack *b)
 {
 	int		seg;
 	int		i;
@@ -29,9 +28,7 @@ int		get_top_seg(t_stack *b)
 	return (seg);
 }
 
-// checked order
-
-int		count_unsorted(t_stack *stack) // returns num of unsorted elms in stack_a
+int			count_unsorted(t_stack *stack)
 {
 	int		count;
 	int		i;
@@ -46,11 +43,10 @@ int		count_unsorted(t_stack *stack) // returns num of unsorted elms in stack_a
 			count++;
 		head = head->next;
 	}
-	// printf("%d unsorted elms in stack_a\n", count);
 	return (count);
 }
 
-t_bool	is_sorted(t_stack *stack) // checks if unsorted elms exists in stack_a
+t_bool		is_sorted(t_stack *stack)
 {
 	int		i;
 	t_elm	*head;
@@ -110,31 +106,3 @@ t_elm		*find_min(t_stack *stack)
 	}
 	return (min);
 }
-
-// t_bool	is_sorted(t_stack *stack) // checks if stack is COMPLETELY sorted or not
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (++i < stack->size)
-// 	{
-// 		if (stack->head->n > stack->head->next->n)
-// 			return (FALSE);
-// 		stack->head = stack->head->next;
-// 	}
-// 	return (TRUE);
-// }
-
-// t_bool	unsorted_elm_exist_a(t_stack *a)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (++i < a->size)
-// 	{
-// 		if (a->head->seg != 0)
-// 			return (TRUE);
-// 		a->head = a->head->next;
-// 	}
-// 	return (FALSE);
-// }

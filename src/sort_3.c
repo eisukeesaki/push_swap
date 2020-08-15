@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 03:33:43 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 03:34:55 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:37:48 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	sort_3(t_ps *ps, t_stack *stack)
 {
-	int		top;
-	int		mid;
-	int		btm;
+	int	top;
+	int	mid;
+	int	btm;
 
 	top = stack->head->n;
 	mid = stack->head->next->n;

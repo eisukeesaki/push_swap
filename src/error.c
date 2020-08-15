@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:28:13 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 20:23:15 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:51:03 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "push_swap.h"
 #include <unistd.h>
-#include <stdlib.h>
 
-void	error(char *message)
+void		error(char *message)
 {
-	t_bool		debug;
+	t_bool	debug;
 
 	write(1, "Error\n", 7);
-	if ((debug = 1))/* disable it when dev is complete! */
+	if (DBG)
 		ft_putstr(message);
 	exit(1);
 }

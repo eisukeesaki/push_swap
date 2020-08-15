@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 02:56:20 by eesaki            #+#    #+#             */
-/*   Updated: 2020/02/20 20:23:34 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:34:39 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdint.h>
-// #include <stdio.h>
 
-intmax_t	ps_atoi(const char *str)
+intmax_t		ps_atoi(const char *str)
 {
 	intmax_t	n;
 	int			i;
@@ -34,12 +33,3 @@ intmax_t	ps_atoi(const char *str)
 	}
 	return (neg ? -n : n);
 }
-
-// int		main(void)
-// {
-// 	char		s[] = "2147483648";
-// 	intmax_t	ret = my_atoi(s);
-// 	printf("%jd\n", ret);
-
-// 	return (0);
-// }

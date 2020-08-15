@@ -6,19 +6,19 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/11 14:00:14 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:57:37 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	select_3_largest(int *b_arr, size_t *b_arr_size)
+void		select_3_largest(int *b_arr, size_t *b_arr_size)
 {
 	rev_quicksort(b_arr, *b_arr_size);
 	(*b_arr_size)--;
 }
 
-void	delete_seg_id(t_stack *a, int pushed_size)
+void		delete_seg_id(t_stack *a, int pushed_size)
 {
 	t_elm	*a_elm;
 	int		i;
@@ -33,20 +33,7 @@ void	delete_seg_id(t_stack *a, int pushed_size)
 	}
 }
 
-void	print_int_array(int *array, int size) // debug purpose
-{
-	int		i;
-
-	i = 0;
-	printf("int array (size:%d):", size);
-	while (i < size)
-	{
-		printf("%d\n", array[i]);
-		i++;
-	}
-}
-
-int		get_array_size_of_seg(t_stack *stack, int seg)
+int			get_array_size_of_seg(t_stack *stack, int seg)
 {
 	int		i;
 	int		size;
@@ -72,23 +59,17 @@ int			*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size)
 	int		k;
 
 	elm = stack->head;
-	// if (!(array = ft_memalloc(sizeof(get_array_size_of_seg(stack, seg)))))
 	*arr_size = get_array_size_of_seg(stack, seg);
 	if (!(array = ft_memalloc(sizeof(int) * *arr_size)))
-		ERROR("failed to allocate array in create_array_of_seg()");
-	// while (*arr_size < stack->size)
+		ERROR("failed to allocate \"array\" in create_array_of_seg()\n");
 	i = 0;
 	k = 0;
 	while (i < stack->size)
 	{
 		if (elm->seg == seg)
-			array[k++] = elm->n; /* increment i here? */
-			// array[*arr_size] = elm->n; /* increment i here? */
+			array[k++] = elm->n;
 		elm = elm->next;
 		i++;
-		// (*arr_size)++;
 	}
-	// printf("seg: %d\n", seg);
-	// print_int_array(array, *arr_size); // debug purpose
 	return (array);
 }

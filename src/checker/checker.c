@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 14:24:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 03:33:58 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:58:07 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 void	vali_result(t_ps *ps)
 {
 	if (ps->b->head != NULL)
-		ERROR("stack_b is not empty. exiting.");
+		ERROR("stack_b is not empty. exiting.\n");
 	if (ps->a->head)
 	{
 		while (ps->a->head->next != ps->a->tail)
 		{
 			if (ps->a->head->n > ps->a->head->next->n)
-				ERROR("stack_a is not sorted in ascending order. exiting.");
+				ERROR("stack_a is not sorted in ascending order. exiting.\n");
 			ps->a->head = ps->a->head->next;
 		}
 	}

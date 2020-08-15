@@ -8,12 +8,12 @@ HIGH="\033[1m";
 BOLD="\e[1m";
 
 # select test
-TEST_2_ELM=0;
-TEST_3_ELM=0;
-TEST_4_ELM=0;
-TEST_5_ELM=0;
+TEST_2_ELM=1;
+TEST_3_ELM=1;
+TEST_4_ELM=1;
+TEST_5_ELM=1;
 TEST_100_ELM=1;
-TEST_500_ELM=0;
+TEST_500_ELM=1;
 
 #----------------------------------------------------------------------------
 #                                 2 element test
@@ -40,6 +40,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -55,7 +57,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 echo "[SUMMARY for 2 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";
 echo "\t- Average instructions: $AVG_INS (limit is 1)";
@@ -87,6 +89,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -105,7 +109,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 echo "[SUMMARY for 3 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";
 echo "\t- Average instructions: $AVG_INS (limit is 3)";
@@ -137,6 +141,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -144,7 +150,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 echo "[SUMMARY for 4 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";
 echo "\t- Average instructions: $AVG_INS";
@@ -158,15 +164,12 @@ if [ $TEST_5_ELM == 1 ]
 then
 echo "------------------------------Testing   5 elements------------------------------";
 TEST_CT=100;
-# TEST_CT=3;
 FAIL_CT=0;
 TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(5) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	# ARG="`ruby -e 'printf Array.new(5) { rand(1...100) }.uniq.map { |i| i.to_s}.join(" ")'`";
 	INSLIST=`./push_swap $ARG`;
-	# echo "INSLIST: $INSLIST";
 	if [ -z "$INSLIST" ]
 	then
 		:
@@ -182,6 +185,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -197,7 +202,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 echo "[SUMMARY for 5 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";
 echo "\t- Average instructions: $AVG_INS (limit is 12)";
@@ -210,7 +215,7 @@ fi
 if [ $TEST_100_ELM == 1 ]
 then
 echo "------------------------------Testing 100 elements------------------------------";
-TEST_CT=5;
+TEST_CT=100;
 FAIL_CT=0;
 TOT_INS=0;
 TOT_PTS=0;
@@ -230,6 +235,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -262,7 +269,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 let "AVG_PTS = TOT_PTS / TEST_CT";
 echo "[SUMMARY for 100 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";
@@ -277,7 +284,7 @@ fi
 if [ $TEST_500_ELM == 1 ]
 then
 echo "------------------------------Testing 500 elements------------------------------";
-TEST_CT=5;
+TEST_CT=50;
 FAIL_CT=0;
 TOT_INS=0;
 TOT_PTS=0;
@@ -297,6 +304,8 @@ do
 	then
 		echo "${RED}$RESULT${EOC}";
 		echo "${RED}stack was not sorted.${EOC}\n";
+		echo "\t\tPassed arguments:";
+		echo "\t\t$ARG\n";
 		let "FAIL_CT += 1";
 	else
 		let "TOT_INS += INS_CT";
@@ -329,7 +338,7 @@ do
 	fi
 done
 echo --------------------------------------------------------------------------------
-let "AVG_INS = TOT_INS / (TEST_CT - FAIL_CT)";
+let "AVG_INS = TOT_INS / TEST_CT";
 let "AVG_PTS = TOT_PTS / TEST_CT";
 echo "[SUMMARY for 500 element test]";
 echo "\t- $FAIL_CT/$TEST_CT failed tests.";

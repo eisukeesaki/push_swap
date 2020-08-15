@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/12 15:02:12 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:41:49 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 		perform_op_ntimes(ps, (stack == ps->a) ? RRA : RRB, rr_count);
 }
 
-void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
+void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 {
 	int		mid;
 	int		idx;
@@ -48,7 +48,6 @@ void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 	int		m;
 	t_elm	*b_elm;
 
-	// printf("pushing %d elms to stack a\n", b_arr_size);  // debug purpose
 	mid = ps->b->size / 2;
 	i = 0;
 	m = 0;
@@ -71,44 +70,7 @@ void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 	}
 }
 
-// void	get_pa_list_and_pa(t_ps *ps, int top_seg) // working code
-// {
-// 	int		median;
-// 	int		*b_arr;
-// 	size_t	b_arr_size;
-// 	size_t	i;
-// 	int		k;
-
-// 	b_arr_size = 0;
-// 	b_arr = create_array_of_seg(ps->b, top_seg, &b_arr_size);
-// 	// printf("num of elms in seg: %zu\n", b_arr_size);  // debug purpose
-// 	while (b_arr_size > 3)
-// 	{
-// 		// printf("b_arr_size: %zu\n", b_arr_size);  // debug purpose
-// 		if (b_arr_size == 4)
-// 		{
-// 			select_3_largest(b_arr, &b_arr_size);
-// 			continue ;
-// 		}
-// 		median = get_median_in_array(b_arr, b_arr_size);
-// 		i = 0;
-// 		k = 0;
-// 		while (i < b_arr_size)
-// 		{
-// 			// if (b_arr[i] > median)
-// 			if (b_arr[i] >= median)
-// 				b_arr[k++] = b_arr[i];
-// 			i++;
-// 		}
-// 		b_arr_size = k;
-// 	}
-// 	// printf("pushing %zu elms to stack_a\n", b_arr_size);  // debug purpose
-// 	pa_all_in_list(ps, b_arr, b_arr_size);
-// 	delete_seg_id(ps->a, b_arr_size);
-// 	free(b_arr);
-// }
-
-void	get_pa_list_and_pa(t_ps *ps, int top_seg)
+void		get_pa_list_and_pa(t_ps *ps, int top_seg)
 {
 	int		median;
 	int		*b_arr;
@@ -136,7 +98,7 @@ void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 	free(b_arr);
 }
 
-void	process_b(t_ps *ps)
+void		process_b(t_ps *ps)
 {
 	int		top_seg;
 
@@ -144,7 +106,7 @@ void	process_b(t_ps *ps)
 	get_pa_list_and_pa(ps, top_seg);
 }
 
-void	pb_smaller(t_ps *ps, t_stack *pb_list)
+void		pb_smaller(t_ps *ps, t_stack *pb_list)
 {
 	int		mid;
 	int		idx;

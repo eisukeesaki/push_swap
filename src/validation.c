@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 17:57:49 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 05:22:58 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:57:46 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,7 @@ void		vali_dup(t_stack *stack, int n)
 	while (i++ < stack->size)
 	{
 		if (n == elm->n)
-			ERROR("duplicate in argument");
+			ERROR("duplicate in argument\n");
 		elm = elm->next;
 	}
 }
-
-// TODO:	[] fix. current state only checks if stack is COMPLETELY sorted. not CIRCULARLY sorted
-// t_bool		is_sorted_circularly(t_elm *elm, int stack_size)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (++i < stack_size)
-// 	{
-// 		if (elm->n > elm->next->n)
-// 			return (FALSE);
-// 		elm = elm->next;
-// 	}
-// 	return (TRUE);
-// }

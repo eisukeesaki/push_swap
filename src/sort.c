@@ -6,62 +6,24 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 18:57:47 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:57:24 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void	sort(t_ps *ps) // working code
-// {
-// 	int		median;
-// 	int		i;
-// 	t_stack	*pb_list;
-// 	t_elm	*a_elm;
-// 	__attribute__((unused)) int		outermost_loop_ct = 0; // debug purpose
-
-// 	median = 0;
-// 	if (!(pb_list = (t_stack *)ft_memalloc(sizeof(t_stack))))
-// 		ERROR("failed to allocate pb_list");
-// 	while (!is_sorted(ps->a) && ++outermost_loop_ct)
-// 	{
-// 		while (count_unsorted(ps->a) > 3)
-// 		{
-// 			a_elm = ps->a->head;
-// 			median = get_median_in_a(ps->a) - 1; // adjusting median here would give create a median that doesn't exist. fix it.
-// 			i = 0;
-// 			while (ps->a->size > i++)
-// 			{
-// 					if (a_elm->n <= median && a_elm->sorted == FALSE)
-// 						append_node(pb_list, create_node(a_elm->n));
-// 				a_elm = a_elm->next;
-// 			} //if (DBG) print_stack(pb_list, "pb_list:");
-// 			pb_smaller(ps, pb_list);
-// 		} //if (DBG) print_stacks(ps, "before sort_partial()");
-// 		sort_partial(ps->a, ps); // sorts up to 3 elms in stack
-// 		if (ps->b->size > 0)
-// 			process_b(ps);
-// 		else
-// 			break ;
-// 	}
-// 	free(pb_list);
-// }
-
-void	sort(t_ps *ps)
+void		sort(t_ps *ps)
 {
 	int		median;
 	int		i;
 	t_stack	*pb_list;
 	t_elm	*a_elm;
-	__attribute__((unused)) int		outermost_loop_ct = 0; // debug purpose
-	__attribute__((unused)) int		pb_ct = 0; // debug purpose
 
 	median = 0;
 	if (!(pb_list = (t_stack *)ft_memalloc(sizeof(t_stack))))
-		ERROR("failed to allocate pb_list");
-	// while (!is_sorted(ps->a))
+		ERROR("failed to allocate \"pb_list\" in sort()\n");
 	while (1)
-	{	++outermost_loop_ct;
+	{
 		while (count_unsorted(ps->a) > 3)
 		{
 			a_elm = ps->a->head;
@@ -72,10 +34,10 @@ void	sort(t_ps *ps)
 				if (a_elm->n <= median && a_elm->sorted == FALSE)
 					append_node(pb_list, create_node(a_elm->n));
 				a_elm = a_elm->next;
-			} //if (DBG) print_stack(pb_list, "pb_list:");
-			pb_smaller(ps, pb_list); pb_ct++;
-		} //if (DBG) print_stacks(ps, "before sort_partial()");
-		sort_partial(ps->a, ps); // sorts up to 3 elms in stack
+			}
+			pb_smaller(ps, pb_list);
+		}
+		sort_partial(ps->a, ps);
 		if (ps->b->size > 0)
 			process_b(ps);
 		else
@@ -84,7 +46,7 @@ void	sort(t_ps *ps)
 	free(pb_list);
 }
 
-void	sort_top_3(t_ps *ps)
+void		sort_top_3(t_ps *ps)
 {
 	int		top;
 	int		mid;

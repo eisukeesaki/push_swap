@@ -6,15 +6,15 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:54:26 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/04 06:26:35 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:56:35 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*strcpy_for_cat(char *dst, const char *src)
+char		*strcpy_for_cat(char *dst, const char *src)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (src[i])
@@ -24,15 +24,6 @@ char	*strcpy_for_cat(char *dst, const char *src)
 	}
 	return (dst + i);
 }
-
-// void	*ft_memalloc_sg(size_t size)
-// {
-// 	void	*mem;
-
-// 	if ((mem = malloc(size)))
-// 		ft_memset(mem, '\0', size);
-// 	return (mem);
-// }
 
 void		print_op_list(t_stack *op_list)
 {
@@ -50,7 +41,7 @@ void		print_op_list(t_stack *op_list)
 		op_list->head = op_list->head->next;
 	}
 	if (!(output = ft_memalloc(len + 1)))
-		ERROR("failed to allocate char *output");
+		ERROR("failed to allocate \"output\" in print_op_list()\n");
 	p = output;
 	while (--i > 0)
 	{
@@ -58,8 +49,6 @@ void		print_op_list(t_stack *op_list)
 		*p++ = '\n';
 		op_list->head = op_list->head->next;
 	}
-	// *p = '\0';
-	// if (DBG) printf("op_list:\n"); setbuf(stdout, NULL);  // debug purpose
 	write(1, output, len);
-	free(output);// TODO: EXC BAD ACCESS
+	free(output);
 }

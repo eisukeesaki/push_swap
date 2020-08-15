@@ -6,7 +6,7 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/09 16:54:53 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 19:59:17 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void		free_elms(t_stack *stack)
 
 void		free_ps(t_ps *ps)
 {
-	// system("leaks push_swap");
 	free_stack(ps, ps->a);
 	free_stack(ps, ps->b);
 	free_stack(ps, ps->ops);
@@ -42,7 +41,7 @@ void		free_stack(t_ps *ps, t_stack *stack)
 	t_elm	*tmp;
 
 	if (stack == ps->b && (stack->head != NULL || stack->tail != NULL))
-		error("stack_b is not NULL after sorting is complete");
+		error("stack_b is not NULL after sorting is complete\n");
 	else if (stack != ps->b)
 	{
 		while (0 < stack->size)
@@ -119,9 +118,8 @@ t_elm		*create_node(int n)
 {
 	t_elm	*elm;
 
-	// if (DBG) printf("sizeof(t_elm):%lu\n", sizeof(t_elm));
 	if (!(elm = ft_memalloc(sizeof(t_elm))))
-		ERROR("failed to allcoate elm");
+		ERROR("failed to allcoate \"elm\" in create_node()\n");
 	elm->n = n;
 	elm->seg = 0;
 	elm->sorted = FALSE;

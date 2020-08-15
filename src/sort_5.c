@@ -6,20 +6,20 @@
 /*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 15:20:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/14 18:55:46 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/15 20:01:54 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_5(t_ps *ps)
+void		sort_5(t_ps *ps)
 {
 	t_elm	*a_h;
 	int		*a_arr;
 	int		i;
 
 	if (!(a_arr = ft_memalloc(sizeof(int) * 5)))
-		error("failed to allocate a_arr in sort_5()");
+		error("failed to allocate \"a_arr\" in sort_5()\n");
 	i = 0;
 	a_h = ps->a->head;
 	while (i < 5)
