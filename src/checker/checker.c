@@ -6,12 +6,12 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 14:24:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:38:37 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 22:07:00 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "get_next_line.h"
+#include "ft_get_next_line.h"
 
 void	validate_result(t_ps *ps)
 {
@@ -59,7 +59,7 @@ int		main(int ac, char **av)
 		return (0);
 	ps = get_ps(av + 1);
 	fd = 0;
-	while (get_next_line(fd, &line))
+	while (ft_get_next_line(fd, &line))
 	{
 		dispatch_op_checker(line, ps);
 		free(line);
