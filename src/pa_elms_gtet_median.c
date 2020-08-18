@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation.c                               :+:      :+:    :+:   */
+/*   pa_elms_gtet_median.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:41:49 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:23:40 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void		assign_seg_id(t_stack *b, int seg_id, int push_ct)
-{
-	int		i;
-	t_elm	*b_elm;
-
-	i = 0;
-	b_elm = b->head;
-	while (i++ < push_ct)
-	{
-		b_elm->seg = seg_id;
-		b_elm = b_elm->next;
-	}
-}
 
 void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 {
@@ -41,14 +27,12 @@ void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 
 void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 {
-	int		mid;
 	int		idx;
 	int		i;
 	int		k;
 	int		m;
 	t_elm	*b_elm;
 
-	mid = ps->b->size / 2;
 	i = 0;
 	m = 0;
 	while (i++ < b_arr_size)
@@ -61,7 +45,7 @@ void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 			idx++;
 			b_elm = b_elm->next;
 		}
-		if (idx <= mid)
+		if (idx <= ps->b->size / 2)
 			perform_op_ntimes(ps, RB, idx);
 		else
 			perform_op_ntimes(ps, RRB, ps->b->size - idx);
@@ -72,9 +56,9 @@ void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 
 void		get_pa_list_and_pa(t_ps *ps, int top_seg)
 {
-	int		median;
 	int		*b_arr;
 	size_t	b_arr_size;
+	int		median;
 	size_t	i;
 	int		k;
 
@@ -98,43 +82,10 @@ void		get_pa_list_and_pa(t_ps *ps, int top_seg)
 	free(b_arr);
 }
 
-void		process_b(t_ps *ps)
+void		pa_elms_gtet_median(t_ps *ps)
 {
 	int		top_seg;
 
 	top_seg = get_top_seg(ps->b);
 	get_pa_list_and_pa(ps, top_seg);
-}
-
-void		pb_smaller(t_ps *ps, t_stack *pb_list)
-{
-	int		mid;
-	int		idx;
-	int		i;
-	t_elm	*elm;
-	int		curr_seg;
-
-	mid = ps->a->size / 2;
-	idx = 0;
-	i = 0;
-	elm = ps->a->head;
-	curr_seg = get_top_seg(ps->b);
-	while (i++ < pb_list->size)
-	{
-		while (elm->n != pb_list->head->n)
-		{
-			idx++;
-			elm = elm->next;
-		}
-		if (idx <= mid)
-			perform_op_ntimes(ps, RA, idx);
-		else
-			perform_op_ntimes(ps, RRA, ps->a->size - idx);
-		perform_op_ntimes(ps, PB, 1);
-		pb_list->head = pb_list->head->next;
-		elm = ps->a->head;
-		idx = 0;
-	}
-	assign_seg_id(ps->b, curr_seg + 1, pb_list->size);
-	free_elms(pb_list);
 }

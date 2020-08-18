@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 15:17:05 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/03 06:25:56 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 19:01:27 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		get_line(char **str, char **line)
 
 	while ((nl = ft_strchr(*str, '\n')))
 	{
-		*line = ft_strndup(*str, (size_t)(nl - *str));
+		*line = ft_strndup(*str, (nl - *str));
 		tmp = ft_strdup(nl + 1);
 		free(*str);
 		*str = tmp;

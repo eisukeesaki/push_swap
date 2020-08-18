@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_median_in_array.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:25:22 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:58:59 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:18:35 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int			*dup_int_array(int *array, size_t size)
 
 int			get_median_in_array(int *array, size_t size)
 {
-	int		*arr;
 	int		median;
+	int		*arr;
 
 	arr = dup_int_array(array, size);
 	quicksort(arr, size);

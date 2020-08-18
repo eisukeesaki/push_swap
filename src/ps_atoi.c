@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 02:56:20 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:34:39 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:25:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 intmax_t		ps_atoi(const char *str)
 {
 	intmax_t	n;
-	int			i;
 	int			neg;
+	int			i;
 
 	n = 0;
 	i = 0;

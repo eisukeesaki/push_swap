@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_manipulation_helpers.c                       :+:      :+:    :+:   */
+/*   pa_elms_gtet_median_part2.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:57:37 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:22:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		select_3_largest(int *b_arr, size_t *b_arr_size)
+void		assign_seg_id(t_stack *b, int seg_id, int push_ct)
 {
-	rev_quicksort(b_arr, *b_arr_size);
-	(*b_arr_size)--;
+	int		i;
+	t_elm	*b_elm;
+
+	i = 0;
+	b_elm = b->head;
+	while (i < push_ct)
+	{
+		b_elm->seg = seg_id;
+		b_elm = b_elm->next;
+		i++;
+	}
 }
 
 void		delete_seg_id(t_stack *a, int pushed_size)
@@ -35,18 +44,19 @@ void		delete_seg_id(t_stack *a, int pushed_size)
 
 int			get_array_size_of_seg(t_stack *stack, int seg)
 {
-	int		i;
 	int		size;
-	t_elm	*head;
+	int		i;
+	t_elm	*elm;
 
 	i = 0;
 	size = 0;
-	head = stack->head;
-	while (i++ < stack->size)
+	elm = stack->head;
+	while (i < stack->size)
 	{
-		if (head->seg == seg)
+		if (elm->seg == seg)
 			size++;
-		head = head->next;
+		elm = elm->next;
+		i++;
 	}
 	return (size);
 }
@@ -54,20 +64,23 @@ int			get_array_size_of_seg(t_stack *stack, int seg)
 int			*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size)
 {
 	int		*array;
-	t_elm	*elm;
 	int		i;
 	int		k;
+	t_elm	*elm;
 
 	elm = stack->head;
 	*arr_size = get_array_size_of_seg(stack, seg);
 	if (!(array = ft_memalloc(sizeof(int) * *arr_size)))
-		ERROR("failed to allocate \"array\" in create_array_of_seg()\n");
+		error("failed to allocate \"array\" in create_array_of_seg()\n");
 	i = 0;
 	k = 0;
 	while (i < stack->size)
 	{
 		if (elm->seg == seg)
-			array[k++] = elm->n;
+		{
+			array[k] = elm->n;
+			k++;
+		}
 		elm = elm->next;
 		i++;
 	}

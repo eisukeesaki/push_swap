@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:59:29 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 20:43:23 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,24 @@ void		init_stack(t_stack *stack)
 	stack->size = 0;
 }
 
-t_ps		*alloc_ps(t_ps *ps)
+t_ps		*alloc_ps(void)
 {
+	t_ps	*ps;
+
 	if (!(ps = ft_memalloc(sizeof(t_ps)))
 		|| !(ps->a = ft_memalloc(sizeof(t_stack)))
 		|| !(ps->b = ft_memalloc(sizeof(t_stack)))
 		|| !(ps->ops = ft_memalloc(sizeof(t_stack))))
-		ERROR("failed to allocate \"ps\" in init_stack()\n");
+		error("failed to allocate \"ps\" in init_stack()\n");
 	init_stack(ps->a);
 	init_stack(ps->b);
 	init_stack(ps->ops);
 	return (ps);
 }
+
+/*
+** TODO parse option flags in get_ps()
+*/
 
 t_ps		*get_ps(char **av)
 {
@@ -53,9 +59,7 @@ t_ps		*get_ps(char **av)
 	size_t	i;
 	size_t	k;
 
-	ps = NULL;
-	ps = alloc_ps(ps);
-	/* parse flags */
+	ps = alloc_ps();
 	i = 0;
 	while (av[i])
 	{

@@ -3,30 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/07/28 03: by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:59:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdint.h>
-# include <stdlib.h>
 # include "libft.h"
-# include <stdio.h> // debug purpose
 
 /*
 **-----------------------------------------------------------------------------
 **                                  macros
 **-----------------------------------------------------------------------------
 */
-# define ERROR(message) error(message)
-# define DBG 0 // debug purpose
-# define RDFILE 0 // debug purpose
-# define OPS "ra", "rb", "rra", "rrb", "pa", "pb",\
-				"sa", "sb", "rr", "rrr", "ss"
+# define DEBUG 0
 
 /*
 **-----------------------------------------------------------------------------
@@ -47,7 +40,6 @@ typedef struct		s_stack
 	t_elm			*head;
 	t_elm			*tail;
 	int				size;
-	/*int				top_seg;*/
 }					t_stack;
 
 typedef struct		s_ps
@@ -84,82 +76,66 @@ typedef enum		e_ops
 **                                  protptypes
 **-----------------------------------------------------------------------------
 */
-/* debug.c */
-// void				print_stacks(t_ps *ps, char *comment);
-t_bool				print_stacks(t_ps *ps, char *comment);
-t_bool				print_stack(t_stack *stack, char *comment);
-void				print_all_ptrs_to_char(char **p);
-
 /* error.c */
 void				error(char *message);
 
-/* ps_atoi.c */
-intmax_t			ps_atoi(const char *str);
-
-/* print_op_list.c */
-void				print_op_list(t_stack *op_list);
-
-/* confirm_sort_partial.c */
-t_bool				confirm_sort_partial(t_stack *a);
-
-/* sort_partial.c */
-void				mark_as_sorted(t_stack *stack);
-void				sort_partial(t_stack *a, t_ps *ps);
-
-/* stack_manipulation_helpers.c */
-void				select_3_largest(int *b_arr, size_t *b_arr_size);
-void				delete_seg_id(t_stack *a, int pushed_size);
-int					*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size);
-
-/* get_median_in_array.c */
-int					get_median_in_array(int *array, size_t size);
-
-/* quicksort.c */
-void				rev_quicksort(int *array, int size);
-void				quicksort(int *array, int size);
+/* free.c */
+void				free_output_and_ops(char *output, char **ops);
+void				free_elms(t_stack *stack);
+void				free_ps(t_ps *ps);
+void				free_stack(t_ps *ps, t_stack *stack);
 
 /* get_median_in_a.c */
 int					get_median_in_a(t_stack *stack);
 
-/* sort_top_3_helpers */
-void				update_top_mid_btm(t_stack *a, int *top, int *mid, int *btm);
-
-/* sort.c */
-void				sort(t_ps *ps);
-void				sort_top_3(t_ps *ps);
-
-/* sort_5.c */
-void				sort_5(t_ps *ps);
-
-/* sort_3.c */
-void				sort_3(t_ps *ps, t_stack *stack);
+/* get_median_in_array.c */
+int					get_median_in_array(int *array, size_t size);
 
 /* list_manipulation.c */
-void				free_elms(t_stack *stack);
-void				free_ps(t_ps *ps);
-void				free_stack(t_ps *ps, t_stack *stack);
 void				unlink_node(t_stack *stack, t_elm *node);
 void				append_node(t_stack *stack, t_elm *node);
 t_elm				*create_node(int n);
 
+/* load.c */
+t_ps				*get_ps(char **av);
+
 /* operations.c */
-/* checker */
-void				rotate_up(t_stack *stack); /* ra, rb */
-void				rotate_down(t_stack *stack); /* rra, rrb */
+void				rotate_up(t_stack *stack);
+void				rotate_down(t_stack *stack);
 void				push(t_stack *from, t_stack *to);
 void				swap(t_stack *stack);
-/* /checker */
+
+/* pa_elms_gtet_median.c */
+void				rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest);
+void				pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size);
+void				pa_elms_gtet_median(t_ps *ps);
+
+/* pa_elms_gtet_median_part2.c */
+void				assign_seg_id(t_stack *b, int seg_id, int push_ct);
+void				delete_seg_id(t_stack *a, int pushed_size);
+int					*create_array_of_seg(t_stack *stack, int seg, size_t *arr_size);
+
+/* perform_op_ntimes.c */
 void				perform_op_ntimes(t_ps *ps, int op, int n);
 
-/* stack_manipulation.c */
-void				pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size);
-void				rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest);
-void				process_b(t_ps *ps);
-void				pb_smaller(t_ps *ps, t_stack *pb_list);
+/* print_op_list.c */
+void				print_op_list(t_stack *op_list);
 
-/* validation.c */
-t_bool				is_sorted_circularly(t_stack *stack, t_elm *min_elm);
-void				vali_dup(t_stack *stack, int n);
+/* ps_atoi.c */
+intmax_t			ps_atoi(const char *str);
+
+/* quicksort.c */
+void				quicksort(int *array, int size);
+void				rev_quicksort(int *array, int size);
+
+/* sort.c */
+void				sort(t_ps *ps);
+
+/* sort_3.c */
+void				sort_3(t_ps *ps, t_stack *stack);
+
+/* sort_5.c */
+void				sort_5(t_ps *ps);
 
 /* sort_helpers.c */
 int					get_top_seg(t_stack *b);
@@ -168,13 +144,15 @@ t_bool				is_sorted(t_stack *a);
 int					get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse);
 t_elm				*find_min(t_stack *stack);
 
-/* rotate_only_sort.c */
-t_bool				rotate_only_sort(t_ps *ps);
+/* sort_remaining_unsorteds_in_a.c */
+void				mark_as_sorted(t_stack *stack);
+void				sort_remaining_unsorteds_in_a(t_stack *a, t_ps *ps);
 
-/* ps_strsplit.c */
-// char				**ps_strsplit(char *s, char c);
+/* sort_top_3.c */
+void				sort_top_3(t_ps *ps);
 
-/* load.c */
-t_ps				*get_ps(char **av);
+/* validation.c */
+t_bool				is_sorted_circularly(t_stack *stack, t_elm *min_elm);
+void				vali_dup(t_stack *stack, int n);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 17:57:49 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:57:46 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:05:11 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void		vali_dup(t_stack *stack, int n)
 
 	elm = stack->head;
 	i = 0;
-	while (i++ < stack->size)
+	while (i < stack->size)
 	{
 		if (n == elm->n)
-			ERROR("duplicate in argument\n");
+			error("duplicate in argument\n");
 		elm = elm->next;
+		i++;
 	}
 }

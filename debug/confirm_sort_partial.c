@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_bool		confirm_sort_partial(t_stack *a)
+t_bool		confirm_sort_remaining_unsorteds_in_a(t_stack *a)
 {
 	int		i;
 	t_elm	*a_elm;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_partial.c                                     :+:      :+:    :+:   */
+/*   sort_remaining_unsorteds_in_a.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 20:02:12 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:41:04 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:09:45 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void		bring_unsorted_to_top(t_ps *ps, int unsorted_ct)
 	i = 0;
 	rra_ct = 0;
 	a_t = ps->a->tail;
-	if (!a_t->sorted)
+	if (a_t->sorted == FALSE)
 	{
-		while (i++ < unsorted_ct)
+		while (i < unsorted_ct)
 		{
-			if (!a_t->sorted)
+			if (a_t->sorted == FALSE)
 				rra_ct++;
 			a_t = a_t->prev;
+			i++;
 		}
 		perform_op_ntimes(ps, RRA, rra_ct);
 	}
@@ -36,15 +37,16 @@ void		bring_unsorted_to_top(t_ps *ps, int unsorted_ct)
 void		mark_as_sorted(t_stack *stack)
 {
 	int		i;
-	t_elm	*head;
+	t_elm	*elm;
 
 	i = 0;
-	head = stack->head;
-	while (i++ < stack->size)
+	elm = stack->head;
+	while (i < stack->size)
 	{
-		if (head->sorted == FALSE)
-			head->sorted = TRUE;
-		head = head->next;
+		if (elm->sorted == FALSE)
+			elm->sorted = TRUE;
+		elm = elm->next;
+		i++;
 	}
 }
 
@@ -58,11 +60,9 @@ void		sort_2_or_3(t_ps *ps)
 	sort_3(ps, ps->a);
 }
 
-void		sort_partial(t_stack *a, t_ps *ps)
+void		sort_remaining_unsorteds_in_a(t_stack *a, t_ps *ps)
 {
 	t_elm	*min;
-	int		i;
-	t_elm	*elm;
 	int		unsorted_ct;
 
 	min = find_min(a);
@@ -75,20 +75,15 @@ void		sort_partial(t_stack *a, t_ps *ps)
 		else if (unsorted_ct == 3)
 			sort_top_3(ps);
 		else
-			error("something went wrong in sort_partial()\n");
+			error("unexpected amount of unsorted elms were found "
+				"during sort_remaining_unsorteds_in_a()\n");
 	}
 	else
 	{
 		if (a->size == 2 && a->head->n > a->head->next->n)
 			perform_op_ntimes(ps, SA, 1);
 		else
-		{
 			rotate_til_at_top(ps, a, min);
-			i = 0;
-			elm = a->head;
-		}
 	}
 	mark_as_sorted(a);
-	// if (confirm_sort_partial(a) == FALSE)  // debug purpose
-		// error("sort_partial() has failed\n");
 }

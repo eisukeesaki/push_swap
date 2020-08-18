@@ -3,69 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:57:24 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:28:15 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		sort(t_ps *ps)
+void		pb_elms_ltet_median(t_ps *ps, t_stack *pb_list)
+{
+	int		idx;
+	int		i;
+	t_elm	*a_elm;
+
+	idx = 0;
+	i = 0;
+	a_elm = ps->a->head;
+	while (i++ < pb_list->size)
+	{
+		while (a_elm->n != pb_list->head->n)
+		{
+			idx++;
+			a_elm = a_elm->next;
+		}
+		if (idx <= ps->a->size / 2)
+			perform_op_ntimes(ps, RA, idx);
+		else
+			perform_op_ntimes(ps, RRA, ps->a->size - idx);
+		perform_op_ntimes(ps, PB, 1);
+		pb_list->head = pb_list->head->next;
+		a_elm = ps->a->head;
+		idx = 0;
+	}
+	assign_seg_id(ps->b, get_top_seg(ps->b) + 1, pb_list->size);
+	free_elms(pb_list);
+}
+
+void		create_pb_list(t_stack *a, t_stack *pb_list)
 {
 	int		median;
 	int		i;
-	t_stack	*pb_list;
 	t_elm	*a_elm;
 
-	median = 0;
+	i = 0;
+	a_elm = a->head;
+	median = get_median_in_a(a);
+	while (i < a->size)
+	{
+		if (a_elm->n <= median && a_elm->sorted == FALSE)
+			append_node(pb_list, create_node(a_elm->n));
+		a_elm = a_elm->next;
+		i++;
+	}
+}
+
+void		sort(t_ps *ps)
+{
+	t_stack	*pb_list;
+
 	if (!(pb_list = (t_stack *)ft_memalloc(sizeof(t_stack))))
-		ERROR("failed to allocate \"pb_list\" in sort()\n");
+		error("failed to allocate \"pb_list\" in sort()\n");
 	while (1)
 	{
 		while (count_unsorted(ps->a) > 3)
 		{
-			a_elm = ps->a->head;
-			median = get_median_in_a(ps->a);
-			i = 0;
-			while (ps->a->size > i++)
-			{
-				if (a_elm->n <= median && a_elm->sorted == FALSE)
-					append_node(pb_list, create_node(a_elm->n));
-				a_elm = a_elm->next;
-			}
-			pb_smaller(ps, pb_list);
+			create_pb_list(ps->a, pb_list);
+			pb_elms_ltet_median(ps, pb_list);
 		}
-		sort_partial(ps->a, ps);
+		sort_remaining_unsorteds_in_a(ps->a, ps);
 		if (ps->b->size > 0)
-			process_b(ps);
+			pa_elms_gtet_median(ps);
 		else
 			break ;
 	}
 	free(pb_list);
-}
-
-void		sort_top_3(t_ps *ps)
-{
-	int		top;
-	int		mid;
-	int		btm;
-
-	top = 0;
-	mid = 0;
-	btm = 0;
-	update_top_mid_btm(ps->a, &top, &mid, &btm);
-	while (1)
-	{
-		if ((mid < top && top < btm) || (mid < btm && btm < top) || (btm < mid && mid < top))
-			perform_op_ntimes(ps, SA, 1);
-		update_top_mid_btm(ps->a, &top, &mid, &btm);
-		if (top < mid && mid < btm)
-			break;
-		perform_op_ntimes(ps, RA, 1);
-		perform_op_ntimes(ps, SA, 1);
-		perform_op_ntimes(ps, RRA, 1);
-		update_top_mid_btm(ps->a, &top, &mid, &btm);
-	}
 }

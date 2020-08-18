@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 16:28:13 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:51:03 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:59:21 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 void		error(char *message)
 {
-	t_bool	debug;
-
 	write(1, "Error\n", 7);
-	if (DBG)
+	if (DEBUG)
 		ft_putstr(message);
 	exit(1);
 }

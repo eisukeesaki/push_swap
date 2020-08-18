@@ -8,9 +8,9 @@ HIGH="\033[1m";
 BOLD="\e[1m";
 
 # select test
-TEST_2_ELM=1;
+TEST_2_ELM=0;
 TEST_3_ELM=1;
-TEST_4_ELM=1;
+TEST_4_ELM=0;
 TEST_5_ELM=1;
 TEST_100_ELM=1;
 TEST_500_ELM=1;

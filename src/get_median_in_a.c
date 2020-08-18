@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_median_in_a.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eesaki <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:33 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/15 19:58:49 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/18 21:22:58 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 size_t		get_array_size_of_unsorted(t_stack *stack)
 {
-	int		i;
 	size_t	size;
-	t_elm	*head;
+	int		i;
+	t_elm	*elm;
 
 	i = 0;
 	size = 0;
-	head = stack->head;
+	elm = stack->head;
 	while (i < stack->size)
 	{
-		if (head->sorted == FALSE)
+		if (elm->sorted == FALSE)
 			size++;
-		head = head->next;
+		elm = elm->next;
 		i++;
 	}
 	return (size);
@@ -34,20 +34,23 @@ size_t		get_array_size_of_unsorted(t_stack *stack)
 int			*create_array_of_unsorted(t_stack *stack, size_t *size)
 {
 	int		*array;
-	t_elm	*elm;
 	int		i;
 	int		k;
+	t_elm	*elm;
 
 	elm = stack->head;
 	i = 0;
 	k = 0;
 	*size = get_array_size_of_unsorted(stack);
 	if (!(array = ft_memalloc(*size * sizeof(int))))
-		ERROR("failed to allocate \"array\" in create_array_unsorted()\n");
+		error("failed to allocate \"array\" in create_array_unsorted()\n");
 	while (i < stack->size)
 	{
 		if (elm->sorted == FALSE)
-			array[k++] = elm->n;
+		{
+			array[k] = elm->n;
+			k++;
+		}
 		elm = elm->next;
 		i++;
 	}
@@ -56,9 +59,9 @@ int			*create_array_of_unsorted(t_stack *stack, size_t *size)
 
 int			get_median_in_a(t_stack *stack)
 {
+	int		median;
 	int		*arr;
 	size_t	size;
-	int		median;
 
 	size = 0;
 	arr = create_array_of_unsorted(stack, &size);
