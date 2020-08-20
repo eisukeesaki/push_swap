@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 16:28:48 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:38:42 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:23:49 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_bool		rotate_only_sort(t_ps *ps)
+static t_bool	rotate_only_sort(t_ps *ps)
 {
 	t_elm	*min;
 
@@ -23,7 +23,7 @@ t_bool		rotate_only_sort(t_ps *ps)
 	return (TRUE);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	t_ps	*ps;
 

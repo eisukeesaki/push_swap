@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/13 15:54:44 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:59:14 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:20:06 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void				swap(t_stack *stack);
 
 /* pa_elms_gtet_median.c */
 void				rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest);
-void				pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size);
 void				pa_elms_gtet_median(t_ps *ps);
 
 /* pa_elms_gtet_median_part2.c */
@@ -140,12 +139,10 @@ void				sort_5(t_ps *ps);
 /* sort_helpers.c */
 int					get_top_seg(t_stack *b);
 int					count_unsorted(t_stack *stack); // returns num of unsorted elms in stack_a
-t_bool				is_sorted(t_stack *a);
 int					get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse);
 t_elm				*find_min(t_stack *stack);
 
 /* sort_remaining_unsorteds_in_a.c */
-void				mark_as_sorted(t_stack *stack);
 void				sort_remaining_unsorteds_in_a(t_stack *a, t_ps *ps);
 
 /* sort_top_3.c */

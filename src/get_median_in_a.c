@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 18:06:33 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:22:58 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:20:45 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t		get_array_size_of_unsorted(t_stack *stack)
+static size_t	get_array_size_of_unsorted(t_stack *stack)
 {
 	size_t	size;
 	int		i;
@@ -31,7 +31,7 @@ size_t		get_array_size_of_unsorted(t_stack *stack)
 	return (size);
 }
 
-int			*create_array_of_unsorted(t_stack *stack, size_t *size)
+static int		*create_array_of_unsorted(t_stack *stack, size_t *size)
 {
 	int		*array;
 	int		i;
@@ -57,7 +57,7 @@ int			*create_array_of_unsorted(t_stack *stack, size_t *size)
 	return (array);
 }
 
-int			get_median_in_a(t_stack *stack)
+int				get_median_in_a(t_stack *stack)
 {
 	int		median;
 	int		*arr;

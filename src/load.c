@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:34:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 20:43:23 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:24:42 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		free_split_args(char **split_args)
+static void	free_split_args(char **split_args)
 {
 	int		i;
 
@@ -25,14 +25,14 @@ void		free_split_args(char **split_args)
 	free(split_args);
 }
 
-void		init_stack(t_stack *stack)
+static void	init_stack(t_stack *stack)
 {
 	stack->head = NULL;
 	stack->tail = NULL;
 	stack->size = 0;
 }
 
-t_ps		*alloc_ps(void)
+static t_ps	*alloc_ps(void)
 {
 	t_ps	*ps;
 

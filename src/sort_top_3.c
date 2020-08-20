@@ -6,20 +6,20 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/15 21:56:46 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:34:33 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:19:58 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	update_top_mid_btm(t_stack *a, int *top, int *mid, int *btm)
+static void	update_top_mid_btm(t_stack *a, int *top, int *mid, int *btm)
 {
 	*top = a->head->n;
 	*mid = a->head->next->n;
 	*btm = a->head->next->next->n;
 }
 
-void	sort_top_3(t_ps *ps)
+void		sort_top_3(t_ps *ps)
 {
 	int	top;
 	int	mid;

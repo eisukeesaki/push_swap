@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/12 15:20:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:29:21 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:24:25 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			*create_sorted_array_of_stack_a(t_ps *ps)
+static int	*create_sorted_array_of_stack_a(t_ps *ps)
 {
 	int		*a_array;
 	int		i;
@@ -32,7 +32,7 @@ int			*create_sorted_array_of_stack_a(t_ps *ps)
 	return (a_array);
 }
 
-void		pb_largest_two_elms(t_ps *ps)
+static void	pb_largest_two_elms(t_ps *ps)
 {
 	int		*a_array;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:33:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:22:06 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:22:54 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void		delete_seg_id(t_stack *a, int pushed_size)
 	}
 }
 
-int			get_array_size_of_seg(t_stack *stack, int seg)
+static int	get_array_size_of_seg(t_stack *stack, int seg)
 {
 	int		size;
 	int		i;

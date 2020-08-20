@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:28:19 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:28:15 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:24:08 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		pb_elms_ltet_median(t_ps *ps, t_stack *pb_list)
+static void	pb_elms_ltet_median(t_ps *ps, t_stack *pb_list)
 {
 	int		idx;
 	int		i;
@@ -41,7 +41,7 @@ void		pb_elms_ltet_median(t_ps *ps, t_stack *pb_list)
 	free_elms(pb_list);
 }
 
-void		create_pb_list(t_stack *a, t_stack *pb_list)
+static void	create_pb_list(t_stack *a, t_stack *pb_list)
 {
 	int		median;
 	int		i;

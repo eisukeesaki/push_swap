@@ -6,7 +6,7 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 04:00:58 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:23:40 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:22:23 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		rotate_til_at_top(t_ps *ps, t_stack *stack, t_elm *dest)
 		perform_op_ntimes(ps, (stack == ps->a) ? RRA : RRB, rr_count);
 }
 
-void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
+static void	pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 {
 	int		idx;
 	int		i;
@@ -54,7 +54,7 @@ void		pa_all_in_list(t_ps *ps, int *pa_list, int b_arr_size)
 	}
 }
 
-void		get_pa_list_and_pa(t_ps *ps, int top_seg)
+static void	get_pa_list_and_pa(t_ps *ps, int top_seg)
 {
 	int		*b_arr;
 	size_t	b_arr_size;

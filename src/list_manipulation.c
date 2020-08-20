@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 18:12:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 17:36:23 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:21:27 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_unlink(t_stack *stack, t_elm *node)
+static void	ft_unlink(t_stack *stack, t_elm *node)
 {
 	if (stack->size == 1)
 	{

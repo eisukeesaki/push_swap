@@ -6,14 +6,14 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/23 14:24:56 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 22:07:00 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:25:14 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "ft_get_next_line.h"
 
-void	validate_result(t_ps *ps)
+static void	validate_result(t_ps *ps)
 {
 	if (ps->b->head != NULL)
 		error("stack_b is not empty. exiting.\n");
@@ -29,7 +29,7 @@ void	validate_result(t_ps *ps)
 	write(1, "OK\n", 3);
 }
 
-void	dispatch_op_checker(char *op, t_ps *ps)
+static void	dispatch_op_checker(char *op, t_ps *ps)
 {
 	if (strcmp(op, "ra") == FALSE || strcmp(op, "rr") == FALSE)
 		rotate_up(ps->a);
@@ -49,7 +49,7 @@ void	dispatch_op_checker(char *op, t_ps *ps)
 		swap(ps->b);
 }
 
-int		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	t_ps		*ps;
 	char		*line;
@@ -66,5 +66,6 @@ int		main(int ac, char **av)
 		line = NULL;
 	}
 	validate_result(ps);
+	free_ps(ps);
 	return (0);
 }

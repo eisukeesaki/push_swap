@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   call_ops.c                                         :+:      :+:    :+:   */
+/*   perform_op_ntimes.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/18 16:55:27 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 16:55:40 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:23:10 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		dispatch_op(t_ps *ps, int op)
+static void	dispatch_op(t_ps *ps, int op)
 {
 	if (op == RA || op == RR)
 		rotate_up(ps->a);

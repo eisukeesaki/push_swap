@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:54:26 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 17:36:23 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:23:26 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char		**init_ops(void)
+static char	**init_ops(void)
 {
 	char	**ops;
 
@@ -33,7 +33,7 @@ char		**init_ops(void)
 	return (ops);
 }
 
-char		*strcpy_for_cat(char *dst, const char *src)
+static char	*strcpy_for_cat(char *dst, const char *src)
 {
 	int		i;
 

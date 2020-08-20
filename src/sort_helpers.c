@@ -6,13 +6,13 @@
 /*   By: eesaki <eesaki@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/31 17:04:21 by eesaki            #+#    #+#             */
-/*   Updated: 2020/08/18 21:29:56 by eesaki           ###   ########.fr       */
+/*   Updated: 2020/08/21 01:26:53 by eesaki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			get_top_seg(t_stack *b)
+int				get_top_seg(t_stack *b)
 {
 	int		seg;
 	int		i;
@@ -29,7 +29,7 @@ int			get_top_seg(t_stack *b)
 	return (seg);
 }
 
-int			count_unsorted(t_stack *stack)
+int				count_unsorted(t_stack *stack)
 {
 	int		count;
 	int		i;
@@ -48,24 +48,7 @@ int			count_unsorted(t_stack *stack)
 	return (count);
 }
 
-t_bool		is_sorted(t_stack *stack)
-{
-	int		i;
-	t_elm	*elm;
-
-	i = 0;
-	elm = stack->head;
-	while (i < stack->size)
-	{
-		if (stack->head->sorted == FALSE)
-			return (FALSE);
-		elm = elm->next;
-		i++;
-	}
-	return (TRUE);
-}
-
-int			get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse)
+int				get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse)
 {
 	int		count;
 	t_elm	*elm;
@@ -92,7 +75,7 @@ int			get_rotation_count(t_stack *stack, t_elm *dest, t_bool reverse)
 	}
 }
 
-t_elm		*find_min(t_stack *stack)
+t_elm			*find_min(t_stack *stack)
 {
 	t_elm	*min;
 	t_elm	*elm;
