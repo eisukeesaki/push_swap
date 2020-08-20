@@ -1,4 +1,8 @@
-#PATH=~/42/Projects/push_swap/;
+# executable paths
+CKR_PATH=~/dev/42/Projects/push_swap;
+PS_PATH=~/dev/42/Projects/push_swap;
+
+# colors
 EOC="\033[0m";
 RED="\033[31m";
 GREEN="\033[32m";
@@ -8,9 +12,9 @@ HIGH="\033[1m";
 BOLD="\e[1m";
 
 # select test
-TEST_2_ELM=1;
+TEST_2_ELM=0;
 TEST_3_ELM=1;
-TEST_4_ELM=1;
+TEST_4_ELM=0;
 TEST_5_ELM=1;
 TEST_100_ELM=1;
 TEST_500_ELM=1;
@@ -27,14 +31,14 @@ TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(2) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:;
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
@@ -76,14 +80,14 @@ TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(3) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
@@ -128,14 +132,14 @@ TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(4) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
@@ -169,7 +173,7 @@ TOT_INS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(5) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:
@@ -179,7 +183,7 @@ do
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
@@ -222,14 +226,14 @@ TOT_PTS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(100) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
@@ -291,14 +295,14 @@ TOT_PTS=0;
 for (( i=0; i<$TEST_CT; i++ ))
 do
 	ARG="`ruby -e 'printf Array.new(500) { rand(-2147483648...2147483647) }.uniq.map { |i| i.to_s}.join(" ")'`";
-	INSLIST=`./push_swap $ARG`;
+	INSLIST=`$PS_PATH/push_swap $ARG`;
 	if [ -z "$INSLIST" ]
 	then
 		:
 	else
 		INSLIST="${INSLIST}\n";
 	fi
-	RESULT=`printf "$INSLIST" | checker/checker $ARG`;
+	RESULT=`printf "$INSLIST" | $CKR_PATH/checker $ARG`;
 	INS_CT=`printf "$INSLIST" | wc -l | bc`;
 	if [ "$RESULT" != "OK" ]
 	then
