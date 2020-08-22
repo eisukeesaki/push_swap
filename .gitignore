@@ -17,6 +17,7 @@
 
 # VSCode
 .vscode/*
+*/.vscode/*
 
 # Unnecessary dirs
 
