@@ -1,12 +1,8 @@
-# README.md push_swap
+# What is `push_swap`?
 
-# push_swap
-
-# What is push_swap?
+_Below is a visualization of the process of my `push_swap` sorting 500 numbers._
 
 ![README/push_swap_sort_500_visualized.gif](README/push_swap_sort_500_visualized.gif)
-
-This is a visualization of the process of sorting 500 numbers.
 
 ### It's a data sorting game
 
