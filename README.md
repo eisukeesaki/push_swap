@@ -4,7 +4,7 @@
 
 # What is push_swap?
 
-![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_swap_sort_500_visualized.gif](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_swap_sort_500_visualized.gif)
+![README/push_swap_sort_500_visualized.gif](README/push_swap_sort_500_visualized.gif)
 
 This is a visualization of the process of sorting 500 numbers.
 
@@ -59,15 +59,15 @@ This data must be initially loaded to Stack A.
 
 - **Instruction set** (`sa`, `sb`, `ss`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`, `pa`, `pb`) to manipulate the contents of the two stacks
 
-    ![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/swap.jpg](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/swap.jpg)
+    ![README/swap.jpg](README/swap.jpg)
 
-    ![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/rotate.jpg](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/rotate.jpg)
+    ![README/rotate.jpg](README/rotate.jpg)
 
-    ![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/reverse_rotate.jpg](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/reverse_rotate.jpg)
+    ![README/reverse_rotate.jpg](README/reverse_rotate.jpg)
 
-    ![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_a.jpg](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_a.jpg)
+    ![README/push_a.jpg](README/push_a.jpg)
 
-    ![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_b.jpg](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/push_b.jpg)
+    ![README/push_b.jpg](README/push_b.jpg)
 
 ### Goal
 
@@ -145,21 +145,21 @@ The `checker` program must
 
 ### Process flow
 
-![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/process_flow.png](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/process_flow.png)
+![README/process_flow.png](README/process_flow.png)
 
 ### Function design
 
 **Create a linked list of stack_a**
 
-![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/create_linked_list_of_stack_a.png](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/create_linked_list_of_stack_a.png)
+![README/create_linked_list_of_stack_a.png](README/create_linked_list_of_stack_a.png)
 
 ### Read instruction list
 
-![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/read_instructions.png](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/read_instructions.png)
+![README/read_instructions.png](README/read_instructions.png)
 
 ### Execute instructions
 
-![README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/execute_instructions.png](README%20md%20push_swap%204ea334a3e312411d94b92dd2416eedc5/execute_instructions.png)
+![README/execute_instructions.png](README/execute_instructions.png)
 
 ## `push_swap`
 
@@ -168,28 +168,28 @@ The `checker` program must
 Stack A, B, and the instruction list is managed as doubly linked lists.
 
 ```c
-typedef struct		s_elm   /* node of linked list */
+typedef struct    s_elm
 {
-	int			      	n;      /* number */
-	int			      	seg;    /* assign segment id for manipulation purposes */
-	t_bool		    	sorted; /* is this number already sorted? */
-	struct s_elm  	*prev;
-	struct s_elm  	*next;
-}					        t_elm;
+  int             n;       /* number */
+  int             seg;     /* assign segment id for manipulation purposes */
+  t_bool          sorted;  /* is this number already sorted? */
+  struct s_elm    *prev;
+  struct s_elm    *next;
+}                 t_elm    /* node of linked list */
 
-typedef struct		s_stack /* stack */
+typedef struct    s_stack
 {
-	t_elm		      	*head;
-	t_elm		      	*tail;
-	int				      size;
-}					        t_stack;
+  t_elm           *head;
+  t_elm           *tail;
+  int             size;
+}                 t_stack; /* stack */
 
-typedef struct		s_ps    /* collection of pointers to all linked lists */
+typedef struct    s_ps
 {
-	t_stack		    	*a;     /* Stack A */
-	t_stack			    *b;     /* Stack B */
-	t_stack			    *ops;   /* instruction list */
-}					        t_ps;
+  t_stack         *a;      /* Stack A */
+  t_stack         *b;      /* Stack B */
+  t_stack         *ops;    /* instruction list */
+}                 t_ps;    /* collection of pointers to all linked lists */
 ```
 
 ### Key algorithms
@@ -202,47 +202,47 @@ I created dedicated functions for the following cases.
 - 5 numbers given as input data
 
 ```
-int				main(int ac, char **av)
+int  main(int ac, char **av)
 {
-	error handling;
-	variable definition;
-	stacks = initialize_stacks(av + 1);
+  error handling;
+  variable definition;
+  stacks = initialize_stacks(av + 1);
 
-	if (sort_stack_a_only_using_rotation_if_possible(stacks) == FALSE)
-	{
-		if (stack_a->size == 3)
-			sort_3(stack_a);
-		else if (stack_a->size == 5)
-			sort_5(stacks);
-		else
-			sort(stacks);
-	}
-	print_instruction_list(stack_instruction);
-	memory deallocation;
+  if (sort_stack_a_only_using_rotation_if_possible(stacks) == FALSE)
+  {
+    if (stack_a->size == 3)
+      sort_3(stack_a);
+    else if (stack_a->size == 5)
+      sort_5(stacks);
+    else
+      sort(stacks);
+  }
+  print_instruction_list(stack_instruction);
+  memory deallocation;
 }
 ```
 
 `sort()` will handle all other cases, and it is the key function for this project.
 
 ```
-void		sort(pointer_to_struct_containing_all_pointers_to_all_stacks)
+void  sort(pointer_to_struct_containing_all_pointers_to_all_stacks)
 {
-	variable definition;
-	memory allocation;
-	error handling;
-	
-	while (1)
-	{
-		while (n_unsorted_numbers_in_stack_a > 3)
-		{
-			pb_numbers_less_than_or_equal_to_median(create_list_of_numbers_to_pb());
-		}
-		sort_remaining_unsorted_numbers_in_stack_a();
-		if (n_numbers_in_stack_b > 0)
-			pa_numbers_greater_than_or_equal_to_median();	
-		else
-			break ;
-	}
-	memory deallocation;
-};
+  variable definition;
+  memory allocation;
+  error handling;
+
+  while (1)
+  {
+    while (n_unsorted_numbers_in_stack_a > 3)
+    {
+      pb_numbers_less_than_or_equal_to_median(create_list_of_numbers_to_pb());
+    }
+    sort_remaining_unsorted_numbers_in_stack_a();
+    if (n_numbers_in_stack_b > 0)
+      pa_numbers_greater_than_or_equal_to_median();	
+    else
+      break ;
+  }
+  memory deallocation;
+}
 ```
