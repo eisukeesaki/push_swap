@@ -27,8 +27,10 @@ _Below is a visualization of the process of my `push_swap` sorting 500 numbers._
 - Write in C
 - Use of C Standard Library is forbidden. Use your self-written-library if necessary.
 - Only allowed to use the following functions across the entire project.
-    - write
+    - open
+    - close
     - read
+    - write
     - malloc
     - free
     - exit
