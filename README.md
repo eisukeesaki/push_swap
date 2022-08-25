@@ -1,96 +1,110 @@
-# What is `push_swap`?
+# push_swap
 
-_Below is a visualization of the process of my `push_swap` sorting 500 numbers._
+This project will make you sort data on a stack, with a limited set of instructions, using
+the lowest possible number of actions. To succeed you’ll have to manipulate various types of algorithms and choose the one (of many) most appropriate solution for an optimized data sorting.
 
-![README/push_swap_sort_500_visualized.gif](README/push_swap_sort_500_visualized.gif)
+[Introduction](#introduction)  
+[Objectives](#objectives)  
+[General Instructions](#general-instructions)  
+[Mandatory Part](#mandatory-part)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Game rules](#game-rules)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example](#example)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The “checker” program](#the-checker-program)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The “push_swap” program](#the-pushswap-program)  
+[My test program](#my-test-program)
 
-### It's a data sorting game
+## Introduction
 
-- A data sorting game with restrictions intended to make the game more algorithmically challenging
-- You must sort data:
-    - using only 2 stacks
-    - with the least amount of operations as possible
-    - as fast as possible
+The Push_swap project is a very simple and highly effective algorithm project: data will need to be sorted. You have at your disposal a set of int values, 2 stacks and a set of instructions to manipulate both stacks.  
 
-### Objectives of the game
+Your goal ? Write 2 programs in C:
 
-- Learn how to manipulate data on stacks
-- Understand complexity
-- Learn how to choose, tune, and utilize the appropriate data structures and sorting algorithms for given circumstances
-- Learn how to optimize sorting algorithms for performance and efficiency
-- Learn how to effectively test and debug
+- The first, named checker which takes integer arguments and reads instjkjkjkjkjructions on the standard output. Once read, checker executes them and displays OK if integers are sorted. Otherwise, it will display KO.
 
-# Game rules
+- The second one called push_swap which calculates and displays on the standard output the smallest progam using Push_swap instruction language that sorts inte- ger arguments received.
 
-### General rules
+## Objectives
 
-- Write in C
-- Use of C Standard Library is forbidden. Use your self-written-library if necessary.
-- Only allowed to use the following functions across the entire project.
-    - open
-    - close
-    - read
-    - write
-    - malloc
-    - free
-    - exit
-- Can have any memory leaks
-- Global variables are forbidden
+To write a sorting algorithm is always a very important step in a coder’s life, because it is often the first encounter with the concept of complexity.  
 
-### I**nput data**
+Sorting algorithms, and their complexities are part of the classic questions discussed during job interviews. It’s probably a good time to look at these concepts because you’ll have to face them at one point.  
 
-This is the data that I'm suppose to sort.
-It is a list of random integers (either positive or negative) without any duplicates.
-This data must be initially loaded to Stack A.
+The learning objectives of this project are rigor, use of C and use of basic algorithms. Especially looking at the complexity of these basic algorithms.  
 
-### At my disposal
+Sorting values is simple. To sort them the fastest way possible is less simple, especially because from one integers configuration to another, the most efficient sorting algorithm can differ.
 
-- Two stacks called **Stack A** and **Stack B**
+## General Instructions
 
-    ```
-     n    n
-     n    n
-     n    n
-    ---  --- 
-     A    B
-    ```
+- This project will only be tested by actual human beings. You are therefore free to organize and name your files as you wish, although you need to respect some requirements listed below.
 
-- **Instruction set** (`sa`, `sb`, `ss`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`, `pa`, `pb`) to manipulate the contents of the two stacks
+- The firts executable file must be named checker and the second push_swap.
 
-    ![README/swap.jpg](README/swap.jpg)
+- You must submit a Makefile. That Makefile needs to compile the project and must contain the usual rules. It can only recompile the program if necessary.
 
-    ![README/rotate.jpg](README/rotate.jpg)
+- If you are clever, you will use your library for this project, submit also your folder libft including its own Makefile at the root of your repository. Your Makefile will have to compile the library, and then compile your project.
 
-    ![README/reverse_rotate.jpg](README/reverse_rotate.jpg)
+- Global variables are forbidden.
 
-    ![README/push_a.jpg](README/push_a.jpg)
+- Your project must be written in C in accordance with the Norm.
 
-    ![README/push_b.jpg](README/push_b.jpg)
+- You have to handle errors in a sensitive manner. In no way can your program quit in an unexpected manner (Segmentation fault, bus error, double free, etc).
 
-### Goal
+- Neither program can have any memory leaks.
 
-- Load the input data into Stack A, then sort the contents of Stack A in ascending order.
-- Stack B must be empty when the sorting completes.
+- You’ll have to submit at the root of your folder, a file called author containing your username followed by a ’\n’
 
-### The `push_swap` program
+  ```text
+  $>cat -e author
+  xlogin$
+  ```
 
-The `push_swap` program must calculate and display a list of instructions to the standard output that will successfully sort the contents of Stack A in ascending order, with the least number of operations as possible, and preferably, as fast as possible.
+- Within your mandatory part you are allowed to use the following functions:
+  - write
+  - read
+  - malloc
+  - free
+  - exit
 
-```
-$>./push_swap 2 1 3 6 5 8
-sa
-pb
-pb
-pb
-sa
-pa
-pa
-pa
-```
+## Mandatory part
 
-### Maximum tolerated number of instructions
+### Game rules
 
-`push_swap` must generate a list of instructions that's smaller than the maximum tolerated number of instructions stated below.
+- The game is composed of 2 stacks named a and b. • To start with:
+
+- a contains a random number of either positive or negative numbers without any duplicates.
+
+- b is empty
+
+- The goal is to sort in ascending order numbers into stack a.
+
+- To do this you have the following operations at your disposal:  
+  **sa :** `swap a` - swap the first 2 elements at the top of stack a. Do nothing if there is only one or no elements).  
+
+  **sb :** `swap b` - swap the first 2 elements at the top of stack b. Do nothing if there is only one or no elements).  
+
+  **ss :** `sa` and `sb` at the same time.  
+
+  **pa :** `push a` - take the first element at the top of b and put it at the top of a. Do
+  nothing if b is empty.  
+
+  **pb :** `push b` - take the first element at the top of a and put it at the top of b. Do
+  nothing if a is empty.  
+
+  **ra :** `rotate a` - shift up all elements of stack a by 1. The first element becomes
+  the last one.  
+
+  **rb :** `rotate b` - shift up all elements of stack b by 1. The first element becomes the last one.  
+  **rr :** `ra` and rb at the same time.  
+
+  **rra :** `reverse rotate a` - shift down all elements of stack a by 1. The flast element becomes the first one.  
+
+  **rrb :** `reverse rotate b` - shift down all elements of stack b by 1. The flast element becomes the first one.  
+
+  **rrr :** `rra` and `rrb` at the same time.
+
+## Tolerated number of instructions
+
+`push_swap` must generate a list of instructions that is smaller than the tolerated number of instructions defined below.
 
 **When sorting 3 numbers:**
 
@@ -117,130 +131,143 @@ pa
 - Less than 10000 instructions: 2 points
 - Less than 11500 instructions: 1 point
 
-### The `checker` program
+## Example
 
-The `checker` program must
+To illustrate the effect of some of these instructions, let’s sort a random list of integers. In this example, we’ll consider that both stack are growing from the right.
 
-- Take the input data as an argument, load them into Stack A
-- Read the list of instructions generated by `push_swap` (from the standard input)
-- Execute the instruction list on Stack A to validate the instruction list
-- Give feedback to the standard output
-    - `OK\n`
-    Stack A has been successfully sorted with the given instruction list, and stack_b is empty.
-    - `KO\n`
-    Stack A could not be sorted with the given instruction list, and/or stack_b is not empty.
-    - `Error\n`
-    An error occurred during the validation process.
-    errors include for example:
-        - Some arguments are not integers
-        - Some arguments are bigger than an integer
-        - Duplicates were found in argument
-        - An instruction don’t exist and/or is incorrectly formatted.
-
-# How I solved the game
-
-## `checker`
-
-### Process flow
-
-![README/process_flow.png](README/process_flow.png)
-
-### Function design
-
-**Create a linked list of stack_a**
-
-![README/create_linked_list_of_stack_a.png](README/create_linked_list_of_stack_a.png)
-
-### Read instruction list
-
-![README/read_instructions.png](README/read_instructions.png)
-
-### Execute instructions
-
-![README/execute_instructions.png](README/execute_instructions.png)
-
-## `push_swap`
-
-### Data structure
-
-Stack A, B, and the instruction list is managed as doubly linked lists.
-
-```c
-typedef struct    s_elm
-{
-  int             n;       /* number */
-  int             seg;     /* assign segment id for manipulation purposes */
-  t_bool          sorted;  /* is this number already sorted? */
-  struct s_elm    *prev;
-  struct s_elm    *next;
-}                 t_elm    /* node of linked list */
-
-typedef struct    s_stack
-{
-  t_elm           *head;
-  t_elm           *tail;
-  int             size;
-}                 t_stack; /* stack */
-
-typedef struct    s_ps
-{
-  t_stack         *a;      /* Stack A */
-  t_stack         *b;      /* Stack B */
-  t_stack         *ops;    /* instruction list */
-}                 t_ps;    /* collection of pointers to all linked lists */
+```text
+--------------------------------------------------------------------------------
+Init a and b:
+2
+1
+3
+6
+8
+5
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec sa:
+1
+2
+3
+6
+8
+5
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec pb pb pb:
+6 3
+5 2
+8 1
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec ra rb (equiv. to rr):
+5 2
+8 1
+6 3
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec rra rrb (equiv. to rrr):
+6 3
+5 2
+8 1
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec sa:
+5 3
+6 2
+8 1
+_ _
+a b
+--------------------------------------------------------------------------------
+Exec pa pa pa:
+1
+2
+3
+5
+6
+8
+_ _
+a b
 ```
 
-### Key algorithms
+This example sort integers from a in 12 instructions. Can you do better ?
 
-**Here are the pseudocode of my implementation.**
+## The “checker” program
 
-I created dedicated functions for the following cases.
+- You have to write a program named checker, which will get as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order). If no argument is given checker stops and displays nothing.
 
-- 3 numbers given as input data
-- 5 numbers given as input data
+- Checker will then wait and read instructions on the standard input, each instruction will be followed by ’\n’. Once all the instructions have been read, checker will execute them on the stack received as an argument.
 
+- If after executing those instructions, stack a is actually sorted and b is empty, then checker must display "OK" followed by a ’\n’ on the standard output. In every other case, checker must display "KO" followed by a ’\n’ on the standard output.
+
+- In case of error, you must display Error followed by a ’\n’ on the standard error. Errors include for example: some arguments are not integers, some arguments are bigger than an integer, there are duplicates, an instruction don’t exist and/or is incorrectly formatted.
+
+Thanks to the checker program, you will be able to check if the
+list of instructions you’ll generate with the program push_swap is
+actually sorting the stack properly.
+
+```text
+$>./checker 3 2 1 0
+rra
+pb
+sa
+rra
+pa
+OK
+$>./checker 3 2 1 0
+sa
+rra
+pb
+KO
+$>./checker 3 2 one 0
+Error
+$>
 ```
-int  main(int ac, char **av)
-{
-  error handling;
-  variable definition;
-  stacks = initialize_stacks(av + 1);
 
-  if (sort_stack_a_only_using_rotation_if_possible(stacks) == FALSE)
-  {
-    if (stack_a->size == 3)
-      sort_3(stack_a);
-    else if (stack_a->size == 5)
-      sort_5(stacks);
-    else
-      sort(stacks);
-  }
-  print_instruction_list(stack_instruction);
-  memory deallocation;
-}
+## The “push_swap” program
+- You have to write a program named push_swap which will receive as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).
+
+- The program must display the smallest list of instructions possible to sort the stack a, the smallest number being at the top.
+
+- Instructions must be separaed by a ’\n’ and nothing else.
+
+- The goal is to sort the stack with the minimum possible number of operations. During testing, we’ll compare the number of instructions your program found with a maximum number of operation tolerated. If your program either displays a list too big or if the list isn’t sorted properly, you’ll get no points.
+
+- In case of error, you must display Error followed by a ’\n’ on the standard error. Errors include for example: some arguments aren’t integers, some arguments are bigger than an integer, and/or there are duplicates.
+
+```text
+$>./push_swap 2 1 3 6 5 8
+sa
+pb
+pb
+pb
+sa
+pa
+pa
+pa
+$>./push_swap 0 one 2 3
+Error
+$>
 ```
 
-`sort()` will handle all other cases, and it is the key function for this project.
+During testing, we’ll use your two programs as follow:
 
+```text
+$>ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
+6
+$>ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
+OK
+$>
 ```
-void  sort(pointer_to_struct_containing_all_pointers_to_all_stacks)
-{
-  variable definition;
-  memory allocation;
-  error handling;
 
-  while (1)
-  {
-    while (n_unsorted_numbers_in_stack_a > 3)
-    {
-      pb_numbers_less_than_or_equal_to_median(create_list_of_numbers_to_pb());
-    }
-    sort_remaining_unsorted_numbers_in_stack_a();
-    if (n_numbers_in_stack_b > 0)
-      pa_numbers_greater_than_or_equal_to_median();	
-    else
-      break ;
-  }
-  memory deallocation;
-}
-```
+If your program checker displays KO, it means that your push_swap came up with a list of instructions that doesn’t sort the list.
+
+## My test program
+
+I made a [shell script](https://github.com/eisukeesaki/push_swap_tests) that will test my `push_swap` program.
