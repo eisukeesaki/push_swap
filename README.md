@@ -3,6 +3,9 @@
 This project will make you sort data on a stack, with a limited set of instructions, using
 the lowest possible number of actions. To succeed you’ll have to manipulate various types of algorithms and choose the one (of many) most appropriate solution for an optimized data sorting.
 
+This is an actual visualization of my completed `push_swap` program.  
+[README/push_swap_sort_500_visualized.gif](README/push_swap_sort_500_visualized.gif)
+
 [Introduction](#introduction)  
 [Objectives](#objectives)  
 [General Instructions](#general-instructions)  
