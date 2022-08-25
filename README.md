@@ -13,7 +13,7 @@ This is an actual visualization of my completed `push_swap` program.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Game rules](#game-rules)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example](#example)  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The “checker” program](#the-checker-program)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The “push_swap” program](#the-pushswap-program)  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[The “push swap” program](#the-push-swap-program)  
 [My test program](#my-test-program)
 
 ## Introduction
@@ -22,7 +22,7 @@ The Push_swap project is a very simple and highly effective algorithm project: d
 
 Your goal ? Write 2 programs in C:
 
-- The first, named checker which takes integer arguments and reads instjkjkjkjkjructions on the standard output. Once read, checker executes them and displays OK if integers are sorted. Otherwise, it will display KO.
+- The first, named checker which takes integer arguments and reads instructions on the standard output. Once read, checker executes them and displays OK if integers are sorted. Otherwise, it will display KO.
 
 - The second one called push_swap which calculates and displays on the standard output the smallest progam using Push_swap instruction language that sorts inte- ger arguments received.
 
@@ -233,7 +233,7 @@ Error
 $>
 ```
 
-## The “push_swap” program
+## The “push swap” program
 - You have to write a program named push_swap which will receive as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).
 
 - The program must display the smallest list of instructions possible to sort the stack a, the smallest number being at the top.
